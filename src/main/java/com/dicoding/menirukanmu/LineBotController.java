@@ -131,10 +131,10 @@ public class LineBotController
                                 description = jsonPart.getString("description");
                                 if(main != "" && description!="")
                                 {
-                                    message+=main+": "+description + "\r\n";
+                                    message+=main;
                                 }
                             }
-                            getMessageData(message, idTarget);
+                            getMessageData(message.toString(), idTarget);
                             getMessageData("test",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
