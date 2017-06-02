@@ -113,17 +113,22 @@ public class LineBotController
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
 
+                String city="";
+
                 if (!msgText.contains("bot leave")){
                     if(msgText.contains("/weather"))
                     {
-
+                        String string = "004-034556";
+                        String[] parts = string.split("-");
+                        String part1 = parts[0]; // 004
+                        String part2 = parts[1]; // 034556
                         try {
-                            String message="";
+                            //String message="";
 
-                            //JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-                            JSONObject json = new JSONObject("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-                            getMessageData(json.toString(), idTarget);
-                            getMessageData("test",idTarget);
+                           // JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+
+                            //getMessageData(json.toString(), idTarget);
+                            getMessageData(part1.toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
