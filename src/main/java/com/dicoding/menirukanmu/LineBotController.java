@@ -9,6 +9,7 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,8 +116,24 @@ public class LineBotController
                     if(msgText.contains("/weather"))
                     {
                         try {
+                            String message="";
+
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-                            getMessageData(json.toString(), idTarget);
+                            String weatherInfo = json.getString("weather");
+                            JSONArray arr = new JSONArray(weatherInfo);
+                            for(int a=0;a<arr.length();a++)
+                            {
+                                JSONObject jsonPart = arr.getJSONObject(a);
+                                String main = "";
+                                String description = "";
+                                main = jsonPart.getString("main");
+                                description = jsonPart.getString("description");
+                                if(main != "" && description!="")
+                                {
+                                    message+=main+": "+description + "\r\n";
+                                }
+                            }
+                            getMessageData(message, idTarget);
 
                         } catch (IOException e) {
                             System.out.println("Exception is raised ");
