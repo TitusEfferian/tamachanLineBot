@@ -45,7 +45,7 @@ public class LineBotController
         }
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
-        
+
 
         String msgText = " ";
         String idTarget = " ";
