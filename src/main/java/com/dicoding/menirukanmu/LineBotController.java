@@ -120,9 +120,9 @@ public class LineBotController
                         try {
                             String message="";
 
-                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-
-                            getMessageData(json.getString("weather").toString(), idTarget);
+                            //JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            JSONObject json = new JSONObject("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            getMessageData(json.toString(), idTarget);
                             getMessageData("test",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
