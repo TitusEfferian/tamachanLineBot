@@ -133,6 +133,7 @@ public class LineBotController
                                     message+=main+": "+description + "\r\n";
                                 }
                             }
+                            getMessageData("test",idTarget);
                             getMessageData(message, idTarget);
 
                         } catch (IOException e) {
