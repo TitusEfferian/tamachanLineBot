@@ -120,16 +120,16 @@ public class LineBotController
                     {
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
-                        String part1 = parts[0]; // 004
-                        String part2 = parts[1]; // 034556
+
+                        String part2 = parts[1];
                         try {
-                            //String message="";
 
-                           // JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
 
-                            //getMessageData(json.toString(), idTarget);
-                            getMessageData(part2.toString(),idTarget);
+                            getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
