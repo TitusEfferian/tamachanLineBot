@@ -115,9 +115,30 @@ public class LineBotController
                 if (!msgText.contains("bot leave")){
                     if(msgText.contains("/weather"))
                     {
+
                         try {
+                            String message="";
+
+                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            String weatherInfo = json.getString("weather");
+                            JSONArray arr = new JSONArray(weatherInfo);
+                            for(int a=0;a<arr.length();a++)
+                            {
+                                JSONObject jsonPart = arr.getJSONObject(a);
+                                String main = "";
+                                String description = "";
+                                main = jsonPart.getString("main");
+                                description = jsonPart.getString("description");
+                                if(main != "" && description!="")
+                                {
+                                    message+=main+": "+description + "\r\n";
+                                }
+                            }
+                            getMessageData(message, idTarget);
                             getMessageData("test",idTarget);
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
