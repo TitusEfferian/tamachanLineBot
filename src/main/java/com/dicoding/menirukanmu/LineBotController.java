@@ -52,6 +52,7 @@ public class LineBotController
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
             JSONObject json = new JSONObject(jsonText);
+
             return json;
         } finally {
             is.close();
@@ -121,7 +122,7 @@ public class LineBotController
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
 
-                            getMessageData(json.toString(), idTarget);
+                            getMessageData(json.getString("weather").toString(), idTarget);
                             getMessageData("test",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
