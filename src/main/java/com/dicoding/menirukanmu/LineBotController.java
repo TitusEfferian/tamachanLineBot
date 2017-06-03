@@ -157,8 +157,8 @@ public class LineBotController
                                 }
 
                             }
-                           // getMessageData("current weather on "+part2+" is "+message,idTarget);
-                            getMessageData(jsonForecast.toString(),idTarget);
+                            getMessageData("current weather on "+part2+" is "+message,idTarget);
+                            getMessageData(jsonForecast.get("list").toString(),idTarget);
 
 
                         } catch (IOException e) {
