@@ -134,12 +134,14 @@ public class LineBotController
                         try {
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-                           // JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
+                            JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
+
                             String weather = json.get("weather").toString();
                             String message="";
                             JSONObject jsonSys = json.getJSONObject("sys");
                             String country = jsonSys.getString("country");
                             JSONArray arr = new JSONArray(weather);
+                            String cod = jsonForeCast.getString("cod");
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
                             {
@@ -159,14 +161,12 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
+                                getMessageData(cod,idTarget);
                             }
                             else
                             {
                                 getMessageData("don't know",idTarget);
                             }
-
-
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -176,14 +176,11 @@ public class LineBotController
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list : /weather [city name]... develop for personal amusement",idTarget);
+                            getMessageData("command list : /weather [city name] \n develop for personal amusement",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-
-
-
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
