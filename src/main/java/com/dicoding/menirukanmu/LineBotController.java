@@ -121,6 +121,8 @@ public class LineBotController
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
 
+
+
                         String part2 = parts[1];
                         try {
 
@@ -130,6 +132,14 @@ public class LineBotController
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(msgText.contains("vinni stefanie"))
+                    {
+                        try {
+                            getMessageData("i love you vinni",idTarget);
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
