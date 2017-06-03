@@ -160,9 +160,9 @@ public class LineBotController
                                     message+=main+": "+description;
                                 }
                             }
-                            getMessageData(arr.toString(),idTarget);
+
                             getMessageData("current weather on "+part2+" is "+message,idTarget);
-                           // getMessageData(json.get("sys").toString(),idTarget);
+                            getMessageData(arr.toString(),idTarget);
 
 
                         } catch (IOException e) {
