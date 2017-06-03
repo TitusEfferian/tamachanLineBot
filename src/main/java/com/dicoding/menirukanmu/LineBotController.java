@@ -14,6 +14,7 @@ import com.linecorp.bot.model.response.BotApiResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -141,7 +142,8 @@ public class LineBotController
                             //JSONObject jsonCountry = json.getJSONObject(json.get("sys"));
 
                             JSONArray arr = new JSONArray(weather);
-                            JSONArray arr2= new JSONArray(json.get("sys"));
+                            JSONObject jsonSys = new JSONObject(json.getJSONObject("sys").toString());
+
 
 
 
@@ -163,7 +165,7 @@ public class LineBotController
                             }
 
                             getMessageData("current weather on "+part2+" is "+message,idTarget);
-                            getMessageData(arr2.toString(),idTarget);
+                            getMessageData(jsonSys.toString(),idTarget);
 
 
                         } catch (IOException e) {
