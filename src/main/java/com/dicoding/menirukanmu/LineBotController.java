@@ -1,6 +1,8 @@
 
 package com.dicoding.menirukanmu;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -133,7 +135,27 @@ public class LineBotController
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
                             String weather = json.get("weather").toString();
 
-                            getMessageData(weather,idTarget);
+                            JSONObject jsonObject = new JSONObject(weather);
+                            String weatherInfo = jsonObject.getString("weather");
+                            JSONArray arr = new JSONArray(weatherInfo);
+                            for(int i=0;i<arr.length();i++)
+                            {
+                                JSONObject jsonPart =arr.getJSONObject(i);
+                                String main ="";
+                                String description="";
+
+                                main = jsonPart.getString("main");
+                                description = jsonPart.getString("description");
+
+                                if(main != "" && description!="")
+                                {
+                                   // message+=main+": "+description + "\r\n";
+                                    getMessageData(weather,idTarget);
+
+                                }
+
+                            }
+                           // getMessageData(weather,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
