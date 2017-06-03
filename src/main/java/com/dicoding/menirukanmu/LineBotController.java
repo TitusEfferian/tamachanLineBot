@@ -39,6 +39,8 @@ public class LineBotController
 
 
 
+
+
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -130,7 +132,7 @@ public class LineBotController
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
 
-                            getMessageData(json.getString("weather").toString(),idTarget);
+                            getMessageData(json.get("weather").toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
