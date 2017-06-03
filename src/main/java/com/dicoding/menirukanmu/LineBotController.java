@@ -152,7 +152,7 @@ public class LineBotController
                                     message+=main+": "+description;
 
                                     getMessageData(message,idTarget);
-                                    getMessageData("test",idTarget);
+                                    getMessageData("test test",idTarget);
 
                                 }
 
