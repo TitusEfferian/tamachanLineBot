@@ -37,13 +37,32 @@ import retrofit2.Response;
 public class LineBotController
 {
 
-    public void introduction(String message, String idTarget)
+    public void messageReplyByTitus(String message, String idTarget)
     {
         if(message.contains("/help"))
         {
             try {
                 getMessageData("command list : /weather [city name]... develop for personal amusement",idTarget);
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(message.contains("/weather"))
+        {
+            String string = message.toString();
+            String[] parts = string.split(" ");
+
+
+
+            String part2 = parts[1];
+            try {
+
+                JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+
+                getMessageData(json.toString(),idTarget);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -125,29 +144,13 @@ public class LineBotController
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
 
-                String city="";
+
 
                 if (!msgText.contains("bot leave")){
-                    if(msgText.contains("/weather"))
-                    {
-                        String string = msgText.toString();
-                        String[] parts = string.split(" ");
 
 
 
-                        String part2 = parts[1];
-                        try {
-
-                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
-
-                            getMessageData(json.toString(),idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    introduction("/help",idTarget);
+                    messageReplyByTitus("/help",idTarget);
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
