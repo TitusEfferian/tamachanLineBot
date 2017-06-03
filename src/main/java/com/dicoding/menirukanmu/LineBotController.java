@@ -37,6 +37,18 @@ import retrofit2.Response;
 public class LineBotController
 {
 
+    public void introduction(String message, String idTarget)
+    {
+        if(message.contains("/help"))
+        {
+            try {
+                getMessageData("command list : /weather [city name]... develop for personal amusement",idTarget);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -135,14 +147,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("vinni stefanie"))
-                    {
-                        try {
-                            getMessageData("i love you vinni",idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    introduction("/help",idTarget);
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
