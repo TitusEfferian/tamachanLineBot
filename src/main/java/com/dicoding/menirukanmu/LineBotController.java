@@ -136,14 +136,11 @@ public class LineBotController
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
                            // JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
                             String weather = json.get("weather").toString();
-
-
                             String message="";
                             JSONObject jsonSys = json.getJSONObject("sys");
                             String country = jsonSys.getString("country");
-
                             JSONArray arr = new JSONArray(weather);
-
+                            boolean counter = false;
                             for(int i=0;i<arr.length();i++)
                             {
                                 JSONObject jsonPart =arr.getJSONObject(i);
@@ -156,11 +153,18 @@ public class LineBotController
                                 if(main != "" && description!="")
                                 {
                                     message+=main+": "+description;
+                                    counter = true;
                                 }
                             }
+                            if(counter)
+                            {
+                                getMessageData("current weather on " + part2 + " " + country + " is " + message, idTarget);
+                            }
+                            else
+                            {
+                                getMessageData("don't know",idTarget);
+                            }
 
-                            getMessageData("current weather on "+part2+" "+country+" is "+message,idTarget);
-                       
 
 
                         } catch (IOException e) {
