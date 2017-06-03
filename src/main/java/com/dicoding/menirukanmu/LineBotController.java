@@ -141,6 +141,7 @@ public class LineBotController
                             //JSONObject jsonCountry = json.getJSONObject(json.get("sys"));
 
                             JSONArray arr = new JSONArray(weather);
+                            JSONArray arr2= new JSONArray(json.get("sys"));
 
 
 
@@ -162,7 +163,7 @@ public class LineBotController
                             }
 
                             getMessageData("current weather on "+part2+" is "+message,idTarget);
-                            getMessageData(arr.toString(),idTarget);
+                            getMessageData(arr2.toString(),idTarget);
 
 
                         } catch (IOException e) {
