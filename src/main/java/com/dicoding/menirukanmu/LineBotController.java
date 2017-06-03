@@ -144,8 +144,8 @@ public class LineBotController
                                 String main ="";
                                 String description="";
 
-                                main = jsonPart.getString("main");
-                                description = jsonPart.getString("description");
+                                main = jsonPart.get("main").toString();
+                                description = jsonPart.get("description").toString();
 
                                 if(main != "" && description!="")
                                 {
