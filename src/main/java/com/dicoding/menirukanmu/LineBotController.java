@@ -131,8 +131,9 @@ public class LineBotController
                         try {
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            String weather = json.get("weather").toString();
 
-                            getMessageData(json.get("weather").toString(),idTarget);
+                            getMessageData(weather,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
