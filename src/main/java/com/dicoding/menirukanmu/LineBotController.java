@@ -150,7 +150,7 @@ public class LineBotController
                                 if(main != "" && description!="")
                                 {
                                    // message+=main+": "+description + "\r\n";
-                                    getMessageData(weather,idTarget);
+                                    getMessageData(main,idTarget);
 
                                 }
 
