@@ -1,7 +1,7 @@
 
 package com.dicoding.menirukanmu;
 
-import android.util.Log;
+
 
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
