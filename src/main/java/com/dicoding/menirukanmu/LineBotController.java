@@ -160,7 +160,7 @@ public class LineBotController
                                 }
                             }
                             getMessageData("current weather on "+part2+" is "+message,idTarget);
-                            getMessageData(json.getString("country").toString(),idTarget);
+                            getMessageData(json.getString("sys").toString(),idTarget);
 
 
                         } catch (IOException e) {
