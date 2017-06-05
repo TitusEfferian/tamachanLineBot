@@ -137,10 +137,11 @@ public class LineBotController
                             JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
 
                             String weather = json.get("weather").toString();
+                            String test = jsonForeCast.get("cnt").toString();
 
                             String message="";
                             JSONObject jsonSys = json.getJSONObject("sys");
-                            
+
 
                             String country = jsonSys.getString("country");
                             JSONArray arr = new JSONArray(weather);
@@ -164,7 +165,7 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-
+                                getMessageData(test,idTarget);
                             }
                             else
                             {
@@ -260,3 +261,4 @@ public class LineBotController
         }
     }
 }
+
