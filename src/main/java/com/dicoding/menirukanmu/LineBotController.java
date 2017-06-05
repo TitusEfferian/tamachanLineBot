@@ -158,11 +158,15 @@ public class LineBotController
                                 String main = "";
 
                                 main=jsonObject.getString("main");
+                                if(main!="") {
 
-                                test+=main;
+                                    test += main;
+                                }
+                                else {
+                                    test="kosong";
+                                }
 
                             }
-
 
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
