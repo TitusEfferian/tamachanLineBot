@@ -193,7 +193,7 @@ public class LineBotController
                                kalimat+=temp;
                            }
                             // getMessageData("test",idTarget);
-                            getMessageData(string,idTarget);
+                            getMessageData(kalimat,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
