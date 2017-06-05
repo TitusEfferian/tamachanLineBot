@@ -181,7 +181,7 @@ public class LineBotController
                     if(msgText.contains("/osu"))
                     {
                         try {
-                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            JSONObject json = readJsonFromUrl("https://osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=deceitful&m=2");
                             getMessageData("test",idTarget);
                             getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
