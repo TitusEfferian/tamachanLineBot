@@ -128,8 +128,6 @@ public class LineBotController
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
 
-
-
                         String part2 = parts[1];
                         try {
 
@@ -148,8 +146,6 @@ public class LineBotController
 
                             //array
                             JSONArray arr = new JSONArray(weather);
-
-
 
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
@@ -179,6 +175,18 @@ public class LineBotController
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(msgText.contains("/osu"))
+                    {
+                        try {
+                            JSONObject osuJson = readJsonFromUrl("https://osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=deceitful&m=2");
+
+                            getMessageData(osuJson.toString(),idTarget);
+
+
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
