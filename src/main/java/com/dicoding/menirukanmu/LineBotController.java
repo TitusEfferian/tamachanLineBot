@@ -182,9 +182,10 @@ public class LineBotController
                     {
                         try {
                           //  JSONObject json = readJsonFromUrl("https://osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=doityourself-&m=3");
-                           JSONObject json = readJsonFromUrl("https://graph.facebook.com/19292868552");
-                            getMessageData("test",idTarget);
-                            getMessageData(json.toString(),idTarget);
+                         //  JSONObject json = readJsonFromUrl("https://graph.facebook.com/19292868552");
+                            String string ="[{\"user_id\":\"1396447\",\"username\":\"Deceitful\",\"count300\":\"29608384\",\"count100\":\"1667645\",\"count50\":\"11611665\",\"playcount\":\"81587\",\"ranked_score\":\"60275648286\",\"total_score\":\"509929721519\",\"pp_rank\":\"5\",\"level\":\"104.83\",\"pp_raw\":\"13083.8\",\"accuracy\":\"99.99954986572266\",\"count_rank_ss\":\"2112\",\"count_rank_s\":\"30\",\"count_rank_a\":\"1\",\"country\":\"ID\",\"pp_country_rank\":\"1\",\"events\":[{\"display_html\":\"<img src='\\/images\\/XH_small.png'\\/> <b><a href='\\/u\\/1396447'>Deceitful<\\/a><\\/b> achieved <b>rank #1<\\/b> on <a href='\\/b\\/909953?m=2'>senya - Iro wa Nioedo Chirinuru o(OPver.) [Chemistry of Emotions]<\\/a> (Catch the Beat)\",\"beatmap_id\":\"909953\",\"beatmapset_id\":\"420659\",\"date\":\"2017-06-05 23:45:34\",\"epicfactor\":\"4\"}]}]";
+                           // getMessageData("test",idTarget);
+                            getMessageData(string,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
