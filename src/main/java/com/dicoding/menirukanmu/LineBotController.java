@@ -137,14 +137,32 @@ public class LineBotController
                             JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
 
                             String weather = json.get("weather").toString();
-                            String test = jsonForeCast.get("cnt").toString();
 
+                            //variable
                             String message="";
+                            String test="";
+
+
                             JSONObject jsonSys = json.getJSONObject("sys");
 
 
                             String country = jsonSys.getString("country");
+
+                            //array
                             JSONArray arr = new JSONArray(weather);
+                            JSONArray jsonArray = new JSONArray(jsonForeCast.get("list").toString());
+
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonObject=jsonArray.getJSONObject(a);
+                                String main = "";
+
+                                main=jsonObject.getString("main");
+
+                                test+=main;
+
+                            }
+
 
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
