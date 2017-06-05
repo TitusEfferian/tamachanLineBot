@@ -120,7 +120,7 @@ public class LineBotController
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
 
-                String city="";
+
 
                 if (!msgText.contains("bot leave")){
                     if(msgText.contains("/weather"))
@@ -178,25 +178,16 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/osu"))
+                    if(msgText.contains("osu"))
                     {
                         try {
-                             JSONObject jsonOsu = readJsonFromUrl("osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=doityourself-&m=3");
-                             String string = jsonOsu.toString();
-
-                             if(string!="")
-                             {
-                                 getMessageData("tidak null",idTarget);
-                             }
-                             else
-                             {
-                                 getMessageData("null",idTarget);
-                             }
-                            
+                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=jakarta&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
+
                     if(msgText.contains("/help"))
                     {
                         try {
