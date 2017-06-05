@@ -181,7 +181,8 @@ public class LineBotController
                     if(msgText.contains("/osu"))
                     {
                         try {
-                            JSONObject json = readJsonFromUrl("https://osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=doityourself-&m=3");
+                          //  JSONObject json = readJsonFromUrl("https://osu.ppy.sh/api/get_user?k=37967304c711a663eb326dcf8b41e1a5987e2b7f&u=doityourself-&m=3");
+                           JSONObject json = readJsonFromUrl("https://graph.facebook.com/19292868552");
                             getMessageData("test",idTarget);
                             getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
