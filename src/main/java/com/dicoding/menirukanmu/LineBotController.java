@@ -42,18 +42,7 @@ import retrofit2.Response;
 public class LineBotController
 {
 
-    public String nationID(String id)
-    {
 
-        String string="";
-        try {
-            JSONObject jsonObject = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/"+id);
-            string=jsonObject.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return string;
-    }
 
 
     public String osuUrl(String nickname,String mode)
@@ -316,7 +305,12 @@ public class LineBotController
                     }
                     if(msgText.contains("/id"))
                     {
-                        nationID("ID");
+                        try {
+                            JSONObject json = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/id");
+                            getMessageData(json.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     if(msgText.contains("hello"))
                     {
