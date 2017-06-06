@@ -304,6 +304,14 @@ public class LineBotController
                         String[] parts = string.split(" ");
 
                         String part2 = parts[1];
+                        String dateFor ="";
+                        String fajr ="";
+                        String shurooq="";
+                        String dhuhr="";
+                        String asr="";
+                        String maghrib="";
+                        String isha="";
+
 
                         String title = "";
                         try {
@@ -314,12 +322,18 @@ public class LineBotController
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
-
+                                dateFor=jsonPart.getString("date_for");
+                                fajr=jsonPart.getString("fajr");
+                                shurooq=jsonPart.getString("shurooq");
+                                dhuhr=jsonPart.getString("dhuhr");
+                                asr=jsonPart.getString("asr");
+                                maghrib=jsonPart.getString("maghrib");
+                                isha=jsonPart.getString("isha");
                             }
 
 
                            // JSONObject
-                            getMessageData(json.toString(),idTarget);
+                            getMessageData(dateFor,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
