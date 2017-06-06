@@ -278,6 +278,7 @@ public class LineBotController
                             JSONObject jsonObject = readJsonFromUrl("http://muslimsalat.com/daily.json?key=5db94b590c066277ad540f984a288bac");
                             String qibla_direction=jsonObject.getString("qibla_direction");
 
+                            getMessageData(jsonObject.toString(),idTarget);
                             getMessageData(qibla_direction,idTarget);
 
 
