@@ -339,7 +339,9 @@ public class LineBotController
                     {
                         //162a37b7350d4aaaa9f2c0df18bf3a54
                         try {
-                            getMessageData(idTarget.toString(),idTarget);
+                            getMessageData("debug",idTarget);
+                            getMessageData("hello"+profile(payload.events[0].message.id),idTarget);
+                          //  profile(payload.events[0].message.id);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -413,7 +415,7 @@ public class LineBotController
         }
     }
 
-    private void profile()
+    private String profile(String userId)
     {
 
         Response<UserProfileResponse> response =
@@ -422,7 +424,7 @@ public class LineBotController
             response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .getProfile("<user_id>")
+                    .getProfile(userId)
                     .execute();
         } catch (IOException e) {
             e.printStackTrace();
@@ -435,6 +437,7 @@ public class LineBotController
         } else {
             System.out.println(response.code() + " " + response.message());
         }
+        return  userId;
     }
     private void leaveGR(String id, String type){
         try {
