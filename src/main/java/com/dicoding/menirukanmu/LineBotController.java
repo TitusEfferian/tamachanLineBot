@@ -316,8 +316,8 @@ public class LineBotController
 
                             while ((line = br.readLine()) != null) {
                                 //  System.out.println(line);
-                                jsonString += line;
-                                // getMessageData(line,idTarget);
+                                //jsonString += line;
+                                 getMessageData(line,idTarget);
                             }
 
                         } catch (MalformedURLException mue) {
@@ -332,11 +332,7 @@ public class LineBotController
                             }
 
                         }
-                        try {
-                            getMessageData(jsonString,idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
 
                     }
 
