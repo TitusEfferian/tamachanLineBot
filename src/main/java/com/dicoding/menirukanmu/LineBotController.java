@@ -308,9 +308,17 @@ public class LineBotController
 
                         try {
                             JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                            JSONArray jsonArray = new JSONArray(json.getString("items"));
+
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(a);
+                                date_for=jsonObject.getString("date_for");
+
+                            }
 
 
-                            getMessageData(json.get("state").toString()+","+json.get("country").toString()+"\n",idTarget);
+                            getMessageData(json.get("state").toString()+","+json.get("country").toString()+"\n"+date_for,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
