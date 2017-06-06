@@ -313,7 +313,7 @@ public class LineBotController
                         String isha="";
                         String title = "";
                         try {
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                            /*JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
 
                             JSONArray jsonArray= new JSONArray(json.getString("items"));
 
@@ -327,11 +327,41 @@ public class LineBotController
                                 asr=jsonPart.getString("asr");
                                 maghrib=jsonPart.getString("maghrib");
                                 isha=jsonPart.getString("isha");
+                            }*/
+                            URL url;
+                            InputStream is = null;
+                            BufferedReader br;
+                            String line;
+                            String jsonString="";
+
+
+
+                            try {
+                                url = new URL("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                                is = url.openStream();  // throws an IOException
+                                br = new BufferedReader(new InputStreamReader(is));
+
+                                while ((line = br.readLine()) != null) {
+                                    //  System.out.println(line);
+                                    jsonString+=line;
+                                    // getMessageData(line,idTarget);
+                                }
+
+                            } catch (MalformedURLException mue) {
+                                mue.printStackTrace();
+                            } catch (IOException ioe) {
+                                ioe.printStackTrace();
+                            } finally {
+                                try {
+                                    if (is != null) is.close();
+                                } catch (IOException ioe) {
+                                    // nothing to see here
+                                }
                             }
 
 
                            // JSONObject
-                            getMessageData(json.toString(),idTarget);
+                            getMessageData(jsonString,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
