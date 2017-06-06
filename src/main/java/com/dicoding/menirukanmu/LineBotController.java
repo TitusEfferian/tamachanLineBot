@@ -436,7 +436,7 @@ public class LineBotController
             System.out.println(response.code() + " " + response.message());
         }
 
-        return Integer.toString(response.code());
+        return response.body().toString();
     }
     private void leaveGR(String id, String type){
         try {
