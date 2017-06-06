@@ -217,7 +217,7 @@ public class LineBotController
 
             if (!payload.events[0].message.type.equals("text")) {
                 // replyToUser(payload.events[0].replyToken, "Unknown message");
-                String string=payload.events[0].toString();
+                String string=payload.events[0].message.toString();
                 try {
                     getMessageData(string,idTarget);
                 } catch (IOException e) {
