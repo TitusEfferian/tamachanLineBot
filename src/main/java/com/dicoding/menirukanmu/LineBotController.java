@@ -330,7 +330,7 @@ public class LineBotController
                             }
 
 
-                            getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr,idTarget);
+                            getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr+"\nshurooq: "+shurooq+"\ndhuhr: "+dhuhr+"\nasr: "+asr+"\nmaghrib: "+maghrib+"\nisha: "+isha,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -340,17 +340,13 @@ public class LineBotController
 
 
 
-                           // JSONObject
-
-
-
-
 
                     if(msgText.contains("/help"))
                     {
 
                         try {
-                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\nunder development for personal amusement -titus efferian",idTarget);
+                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\nunder development for personal amusement -titus efferian",idTarget);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
