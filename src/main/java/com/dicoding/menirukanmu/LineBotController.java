@@ -8,7 +8,9 @@ import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.message.ImageMessage;
 import com.linecorp.bot.model.message.StickerMessage;
+import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -117,7 +119,9 @@ public class LineBotController
                 country=jsonObject.getString("country");
                 accuracy=jsonObject.getString("accuracy");
             }
+           // ImageMessage imageMessage = new ImageMessage()
             getMessageData("Username: "+username+" from "+jsonNation(country).getString("name")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
+            getMessageData(osuUrl("deceitful","2"),idTarget);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -411,6 +415,7 @@ public class LineBotController
         }
 
     }
+
 
     private void pushMessage(String sourceId, String txt){
         TextMessage textMessage = new TextMessage(txt);
