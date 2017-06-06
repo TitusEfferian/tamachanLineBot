@@ -327,9 +327,8 @@ public class LineBotController
                     }
                     if(msgText.contains("/sticker"))
                     {
-                        StickerMessage stickerMessage = new StickerMessage("1","1");
                         try {
-                            getMessageData(String.valueOf(stickerMessage),idTarget);
+                            getMessageDataForSticker(idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -366,6 +365,10 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
+    private void getMessageDataForSticker(String targetID) throws  IOException
+    {
+        pushSticker(targetID);
+    }
 
 
     private void replyToUser(String rToken, String messageToUser){
@@ -383,6 +386,24 @@ public class LineBotController
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
+    }
+
+    private void pushSticker(String sourceID)
+    {
+        StickerMessage sticker = new StickerMessage("1","1");
+        PushMessage pushMessage = new PushMessage(sourceID,sticker);
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .pushMessage(pushMessage)
+                    .execute();
+            System.out.println(response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+
     }
 
     private void pushMessage(String sourceId, String txt){
