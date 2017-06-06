@@ -9,6 +9,7 @@ import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
 import org.json.JSONArray;
@@ -334,6 +335,15 @@ public class LineBotController
                         }
 
                     }
+                    if(msgText.contains("/hello"))
+                    {
+                        //162a37b7350d4aaaa9f2c0df18bf3a54
+                        try {
+                            getMessageData(idTarget.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
 
@@ -403,6 +413,29 @@ public class LineBotController
         }
     }
 
+    private void profile()
+    {
+
+        Response<UserProfileResponse> response =
+                null;
+        try {
+            response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .getProfile(p)
+                    .execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (response.isSuccessful()) {
+            UserProfileResponse profile = response.body();
+            System.out.println(profile.getDisplayName());
+            System.out.println(profile.getPictureUrl());
+            System.out.println(profile.getStatusMessage());
+        } else {
+            System.out.println(response.code() + " " + response.message());
+        }
+    }
     private void leaveGR(String id, String type){
         try {
             if (type.equals("group")){
