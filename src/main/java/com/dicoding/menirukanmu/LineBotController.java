@@ -426,14 +426,8 @@ public class LineBotController
         }
     }
 
-    private void pushSticker(String sourceID)
+    private void response(PushMessage pushMessage)
     {
-
-
-        Random random = new Random();
-
-        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(17)+1));
-        PushMessage pushMessage = new PushMessage(sourceID,sticker);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
@@ -445,6 +439,16 @@ public class LineBotController
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
+    }
+    private void pushSticker(String sourceID)
+    {
+
+
+        Random random = new Random();
+
+        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(17)+1));
+        PushMessage pushMessage = new PushMessage(sourceID,sticker);
+        response(pushMessage);
 
     }
 
