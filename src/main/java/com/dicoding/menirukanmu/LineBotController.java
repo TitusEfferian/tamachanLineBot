@@ -8,6 +8,7 @@ import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.message.StickerMessage;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -170,8 +171,6 @@ public class LineBotController
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
 
-
-
         String msgText = " ";
         String idTarget = " ";
         String eventType = payload.events[0].type;
@@ -215,7 +214,6 @@ public class LineBotController
                             JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
 
                             String weather = json.get("weather").toString();
-
 
                             //variable
                             String message="";
@@ -327,6 +325,10 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/sticker"))
+                    {
+                        StickerMessage stickerMessage = new StickerMessage("1","1");
+                    }
 
                     if(msgText.contains("/help"))
                     {
@@ -363,6 +365,7 @@ public class LineBotController
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
+
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                 .create(lChannelAccessToken)
@@ -390,6 +393,7 @@ public class LineBotController
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
+
     }
 
     private String profile(String userId)
