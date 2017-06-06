@@ -341,6 +341,7 @@ public class LineBotController
                         try {
                            // getMessageData("debug",idTarget);
                             getMessageData("hello "+profile(payload.events[0].message.id),idTarget);
+                            getMessageData(idTarget.toString(),idTarget);
                           //  profile(payload.events[0].message.id);
                         } catch (IOException e) {
                             e.printStackTrace();
