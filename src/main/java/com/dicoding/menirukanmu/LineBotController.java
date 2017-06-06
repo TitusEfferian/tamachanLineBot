@@ -302,9 +302,38 @@ public class LineBotController
                     }
                     if(msgText.contains("/ramadhan"))
                     {
-                        try {
+                        URL url;
+                        InputStream is = null;
+                        BufferedReader br;
+                        String line;
+                        String jsonString = "";
 
-                            getMessageData(ramadhanUrl(),idTarget);
+
+                        try {
+                            url = new URL("http://muslimsalat.com/monthly.json");
+                            is = url.openStream();  // throws an IOException
+                            br = new BufferedReader(new InputStreamReader(is));
+
+                            while ((line = br.readLine()) != null) {
+                                //  System.out.println(line);
+                                jsonString += line;
+                                // getMessageData(line,idTarget);
+                            }
+
+                        } catch (MalformedURLException mue) {
+                            mue.printStackTrace();
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        } finally {
+                            try {
+                                if (is != null) is.close();
+                            } catch (IOException ioe) {
+                                // nothing to see here
+                            }
+
+                        }
+                        try {
+                            getMessageData(jsonString,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
