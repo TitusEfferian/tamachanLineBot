@@ -311,8 +311,6 @@ public class LineBotController
                         String asr="";
                         String maghrib="";
                         String isha="";
-
-
                         String title = "";
                         try {
                             JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
@@ -333,7 +331,7 @@ public class LineBotController
 
 
                            // JSONObject
-                            getMessageData(dateFor,idTarget);
+                            getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
