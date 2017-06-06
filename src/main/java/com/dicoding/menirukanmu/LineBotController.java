@@ -300,7 +300,7 @@ public class LineBotController
                     if(msgText.contains("/puasa"))
                     {
                         //5db94b590c066277ad540f984a288bac
-                        String string = msgText.toString().toLowerCase();
+                        String string = msgText.toString();
                         String[] parts = string.split(" ");
 
                         String part2 = parts[1];
