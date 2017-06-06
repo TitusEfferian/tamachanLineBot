@@ -35,6 +35,7 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Random;
 
 import retrofit2.Response;
 
@@ -393,8 +394,9 @@ public class LineBotController
     {
 
 
+        Random random = new Random();
 
-        StickerMessage sticker = new StickerMessage("1","1");
+        StickerMessage sticker = new StickerMessage(Integer.toString(random.nextInt(2)+1),Integer.toString(random.nextInt(431)+1));
         PushMessage pushMessage = new PushMessage(sourceID,sticker);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
