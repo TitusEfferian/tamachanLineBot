@@ -45,9 +45,6 @@ public class LineBotController
 
     public String osuUrl(String nickname,String mode)
     {
-
-
-
         URL url;
         InputStream is = null;
         BufferedReader br;
@@ -280,7 +277,23 @@ public class LineBotController
                         }*/
                         //osuUrl(part2,"3");
                         try {
-                            getMessageData(osuUrl(part2,"3").toString(),idTarget);
+                            String username="";
+                            String countryRank="";
+                            String pprank="";
+                            String country="";
+                            String accuracy="";
+
+                            JSONArray jsonArray=new JSONArray(osuUrl(part2,"3"));
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(a);
+                                username=jsonObject.getString("username");
+                                countryRank=jsonObject.getString("pp_country_rank");
+                                pprank=jsonObject.getString("pp_rank");
+                                country=jsonObject.getString("country");
+                                accuracy=jsonObject.getString("accuracy");
+                            }
+                            getMessageData(username,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
