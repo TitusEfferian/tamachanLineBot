@@ -250,9 +250,6 @@ public class LineBotController
                             //array
                             JSONArray arr = new JSONArray(weather);
 
-
-
-
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
                             {
@@ -302,37 +299,12 @@ public class LineBotController
                     }
                     if(msgText.contains("/puasa"))
                     {
-                        URL url;
-                        InputStream is = null;
-                        BufferedReader br;
-                        String line;
-                        String jsonString = "";
-
-
                         try {
-                            url = new URL("http://muslimsalat.com/monthly.json");
-                            is = url.openStream();  // throws an IOException
-                            br = new BufferedReader(new InputStreamReader(is));
-
-                            while ((line = br.readLine()) != null) {
-                                //  System.out.println(line);
-                                //jsonString += line;
-                                 getMessageData(line,idTarget);
-                            }
-
-                        } catch (MalformedURLException mue) {
-                            mue.printStackTrace();
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        } finally {
-                            try {
-                                if (is != null) is.close();
-                            } catch (IOException ioe) {
-                                // nothing to see here
-                            }
-
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/monthly.json");
+                            getMessageData(json.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-
 
                     }
 
