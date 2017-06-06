@@ -79,7 +79,7 @@ public class LineBotController
 
         return jsonString;
     }
-    public void jsonResult(String msgText,String idTarget)
+    public void jsonResult(String msgText,String idTarget,String mode,String osuMode)
     {
         String string = msgText.toString();
         String[] parts = string.split(" ");
@@ -91,7 +91,7 @@ public class LineBotController
             String country="";
             String accuracy="";
 
-            JSONArray jsonArray=new JSONArray(osuUrl(part2,"3"));
+            JSONArray jsonArray=new JSONArray(osuUrl(part2,mode));
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(a);
@@ -101,7 +101,7 @@ public class LineBotController
                 country=jsonObject.getString("country");
                 accuracy=jsonObject.getString("accuracy");
             }
-            getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
+            getMessageData("Username: "+username+" from "+country+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -252,59 +252,19 @@ public class LineBotController
                     }
                     if(msgText.contains("/mania"))
                     {
-
-                       // String string = msgText.toString();
-                       // String[] parts = string.split(" ");
-                       // String part2 = parts[1];
-                        /*
-                        URL url;
-                        InputStream is = null;
-                        BufferedReader br;
-                        String line;
-                        String jsonString="";
-                        String username="";
-                        String countryRank="";
-                        String pprank="";
-                        String country="";
-                        String accuracy="";
-
-
-
-                        try {
-                            url = new URL("https://osu.ppy.sh/api/get_user?u="+part2+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f&m=3");
-                            is = url.openStream();  // throws an IOException
-                            br = new BufferedReader(new InputStreamReader(is));
-
-                            while ((line = br.readLine()) != null) {
-                                //  System.out.println(line);
-                                jsonString+=line;
-                               // getMessageData(line,idTarget);
-                            }
-                            JSONArray jsonArray=new JSONArray(jsonString);
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
-                                JSONObject jsonObject = jsonArray.getJSONObject(a);
-                                username=jsonObject.getString("username");
-                                countryRank=jsonObject.getString("pp_country_rank");
-                                pprank=jsonObject.getString("pp_rank");
-                                country=jsonObject.getString("country");
-                                accuracy=jsonObject.getString("accuracy");
-                            }
-                            getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
-                        } catch (MalformedURLException mue) {
-                            mue.printStackTrace();
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        } finally {
-                            try {
-                                if (is != null) is.close();
-                            } catch (IOException ioe) {
-                                // nothing to see here
-                            }
-                        }*/
-                        //osuUrl(part2,"3");
-                        jsonResult(msgText.toLowerCase().toString(),idTarget);
-
+                        jsonResult(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania");
+                    }
+                    if(msgText.contains("/ctb"))
+                    {
+                        jsonResult(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
+                    }
+                    if(msgText.contains("/taiko"))
+                    {
+                        jsonResult(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
+                    }
+                    if(msgText.contains("/std"))
+                    {
+                        jsonResult(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
                     }
 
                     if(msgText.contains("/help"))
