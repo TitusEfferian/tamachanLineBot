@@ -148,6 +148,15 @@ public class LineBotController
 
                             //array
                             JSONArray arr = new JSONArray(weather);
+                            JSONArray jsonArray=new JSONArray(list);
+
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(a);
+                                String main = "";
+                                main=jsonObject.getString("main");
+                                test+=main;
+                            }
 
                             boolean counter = false;
                             for(int i=0;i<arr.length();i++)
@@ -168,7 +177,7 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-                                getMessageData("fvk",idTarget);
+                                getMessageData(test,idTarget);
                             }
                             else
                             {
