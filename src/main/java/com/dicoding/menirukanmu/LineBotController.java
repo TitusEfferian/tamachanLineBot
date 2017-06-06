@@ -335,12 +335,12 @@ public class LineBotController
                         }
 
                     }
-                    if(msgText.contains("/hello"))
+                    if(msgText.contains("hello"))
                     {
                         //162a37b7350d4aaaa9f2c0df18bf3a54
                         try {
-                            getMessageData("debug",idTarget);
-                            getMessageData("hello"+profile(payload.events[0].message.id),idTarget);
+                           // getMessageData("debug",idTarget);
+                            getMessageData("hello "+profile(payload.events[0].message.id),idTarget);
                           //  profile(payload.events[0].message.id);
                         } catch (IOException e) {
                             e.printStackTrace();
