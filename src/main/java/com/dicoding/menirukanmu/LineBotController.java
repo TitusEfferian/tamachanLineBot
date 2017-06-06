@@ -422,7 +422,7 @@ public class LineBotController
             response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .getProfile(p)
+                    .getProfile("<user_id>")
                     .execute();
         } catch (IOException e) {
             e.printStackTrace();
