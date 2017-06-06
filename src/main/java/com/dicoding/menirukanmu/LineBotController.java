@@ -415,8 +415,7 @@ public class LineBotController
     private String profile(String userId)
     {
 
-        Response<UserProfileResponse> response =
-                null;
+        Response<UserProfileResponse> response = null;
 
         try {
             response = LineMessagingServiceBuilder
@@ -436,7 +435,7 @@ public class LineBotController
             System.out.println(response.code() + " " + response.message());
         }
 
-        return response.body().toString();
+        return response.body().getDisplayName();
     }
     private void leaveGR(String id, String type){
         try {
