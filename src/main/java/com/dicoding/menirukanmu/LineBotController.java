@@ -119,7 +119,7 @@ public class LineBotController
                 country=jsonObject.getString("country");
                 accuracy=jsonObject.getString("accuracy");
             }
-           // ImageMessage imageMessage = new ImageMessage()
+
             getMessageData("Username: "+username+" from "+jsonNation(country).getString("name")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
           // getMessageData(osuUrl("deceitful","2"),idTarget);
         } catch (IOException e) {
@@ -334,6 +334,15 @@ public class LineBotController
                             getMessageData("Hello "+profile(payload.events[0].source.userId)+" can i help you? just type /help",idTarget);
 
                           //  profile(payload.events[0].message.id);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(msgText.contains("love live"))
+                    {
+                        try {
+                            getMessageData("did i hear love live????",idTarget);
+                            ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
