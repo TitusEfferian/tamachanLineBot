@@ -304,9 +304,13 @@ public class LineBotController
                         String[] parts = string.split(" ");
 
                         String part2 = parts[1];
+
+                        String title = "";
                         try {
                             JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            getMessageData(json.toString(),idTarget);
+                            title = json.getString("title");
+                           // JSONObject
+                            getMessageData(title,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
