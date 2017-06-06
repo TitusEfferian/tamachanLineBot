@@ -345,7 +345,7 @@ public class LineBotController
                     {
                         try {
                             getMessageData("did i hear love live????",idTarget);
-                           getMessageDataForImage(idTarget);
+                             getMessageDataForImage(idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -413,8 +413,9 @@ public class LineBotController
     }
     private void pushImageMessage(String sourceId)
     {
-        ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
-       // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
+        ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
+
+        // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
        response(pushMessage);
     }
