@@ -272,20 +272,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/kiblat"))
-                    {
-                        try {
-                            JSONObject jsonObject = readJsonFromUrl("http://muslimsalat.com/daily.json?key=5db94b590c066277ad540f984a288bac");
-                            String qibla_direction=jsonObject.getString("qibla_direction");
 
-                            getMessageData(jsonObject.toString(),idTarget);
-                            getMessageData(qibla_direction,idTarget);
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
                     //osu
                     if(msgText.contains("/mania"))
                     {
@@ -316,11 +303,12 @@ public class LineBotController
                         String asr="";
                         String maghrib="";
                         String isha="";
+                        String qibla_direction="";
 
                         try {
                             JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
-
+                            qibla_direction=json.getString("qibla_direction");
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
@@ -335,6 +323,7 @@ public class LineBotController
 
 
                             getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr+"\nshurooq: "+shurooq+"\ndhuhr: "+dhuhr+"\nasr: "+asr+"\nmaghrib: "+maghrib+"\nisha: "+isha+"\n -http://muslimsalat.com-",idTarget);
+                            getMessageDataForImage(idTarget,"http://muslimsalat.com/qibla_compass/200/"+qibla_direction+".png");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -400,9 +389,9 @@ public class LineBotController
     {
         pushSticker(targetID);
     }
-    private void getMessageDataForImage(String targetId,URL url)throws  IOException
+    private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
-        pushImageMessage(targetId,url);
+        pushImageMessage(targetId,string);
     }
 
 
@@ -423,10 +412,10 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void pushImageMessage(String sourceId,URL url)
+    private void pushImageMessage(String sourceId,String string)
     {
        // ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
-        ImageMessage imageMessage = new ImageMessage(url.toString(),url.toString());
+        ImageMessage imageMessage = new ImageMessage(string,string);
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
        response(pushMessage);
     }
