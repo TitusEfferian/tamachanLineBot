@@ -420,6 +420,7 @@ public class LineBotController
 
         Response<UserProfileResponse> response =
                 null;
+        UserProfileResponse profile = response.body();
         try {
             response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
@@ -430,14 +431,14 @@ public class LineBotController
             e.printStackTrace();
         }
         if (response.isSuccessful()) {
-            UserProfileResponse profile = response.body();
+
             System.out.println(profile.getDisplayName());
             System.out.println(profile.getPictureUrl());
             System.out.println(profile.getStatusMessage());
         } else {
             System.out.println(response.code() + " " + response.message());
         }
-        return  userId;
+        return  profile.getDisplayName();
     }
     private void leaveGR(String id, String type){
         try {
