@@ -340,7 +340,7 @@ public class LineBotController
                         //162a37b7350d4aaaa9f2c0df18bf3a54
                         try {
                            // getMessageData("debug",idTarget);
-                            getMessageData(profile(payload.events[0].message.id),idTarget);
+                            getMessageData(profile(payload.events[0].source.userId),idTarget);
 
                           //  profile(payload.events[0].message.id);
                         } catch (IOException e) {
