@@ -300,8 +300,12 @@ public class LineBotController
                     if(msgText.contains("/puasa"))
                     {
                         //5db94b590c066277ad540f984a288bac
+                        String string = msgText.toString().toLowerCase();
+                        String[] parts = string.split(" ");
+
+                        String part2 = parts[1];
                         try {
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/daily.json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
                             getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -311,6 +315,7 @@ public class LineBotController
 
                     if(msgText.contains("/help"))
                     {
+
                         try {
                             getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\nunder development for personal amusement -titus efferian",idTarget);
                         } catch (IOException e) {
