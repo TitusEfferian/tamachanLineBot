@@ -168,7 +168,7 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-                                getMessageData(list,idTarget);
+                                getMessageData("fvk",idTarget);
                             }
                             else
                             {
