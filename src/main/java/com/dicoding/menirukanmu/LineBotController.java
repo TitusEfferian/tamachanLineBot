@@ -188,7 +188,7 @@ public class LineBotController
                     if(msgText.contains("/osu"))
                     {
                         try {
-                            JSONObject json = readJsonFromUrl("https://osu.ppy.sh/api/get_user?u=doityourself-&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
+                            JSONObject json = readJsonFromUrl("http://api.wunderground.com/api/57dd9039b81a9c21/");
                             getMessageData(json.toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
