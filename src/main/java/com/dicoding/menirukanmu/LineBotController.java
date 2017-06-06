@@ -334,15 +334,6 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.equals("/random"))
-                    {
-                        Random random = new Random();
-                        try {
-                            getMessageData(Integer.toString(random.nextInt(430)+1),idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
 
                     if(msgText.contains("/help"))
@@ -405,7 +396,7 @@ public class LineBotController
 
         Random random = new Random();
 
-        StickerMessage sticker = new StickerMessage(Integer.toString(random.nextInt(2)+1),Integer.toString(random.nextInt(431)+1));
+        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(139)+1));
         PushMessage pushMessage = new PushMessage(sourceID,sticker);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
