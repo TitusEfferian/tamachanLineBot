@@ -43,6 +43,7 @@ public class LineBotController
 
 
 
+
     public String osuUrl(String nickname,String mode)
     {
         URL url;
@@ -79,7 +80,7 @@ public class LineBotController
 
         return jsonString;
     }
-    public void jsonResult(String msgText,String idTarget,String mode,String osuMode)
+    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
     {
         String string = msgText.toString();
         String[] parts = string.split(" ");
@@ -249,21 +250,32 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+                    //osu
                     if(msgText.contains("/mania"))
                     {
-                        jsonResult(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania");
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania");
                     }
                     if(msgText.contains("/ctb"))
                     {
-                        jsonResult(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
                     }
                     if(msgText.contains("/taiko"))
                     {
-                        jsonResult(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
                     }
                     if(msgText.contains("/std"))
                     {
-                        jsonResult(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
+                    }
+                    if(msgText.contains("/ramadhan"))
+                    {
+                        try {
+                            JSONObject jsonRamadhan = readJsonFromUrl("http://muslimsalat.com/monthly.json");
+                            getMessageData(jsonRamadhan.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     if(msgText.contains("/help"))
@@ -274,6 +286,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+
 
                 } else {
                     if (payload.events[0].source.type.equals("group")){
