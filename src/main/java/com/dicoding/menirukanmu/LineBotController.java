@@ -439,7 +439,7 @@ public class LineBotController
         } else {
             System.out.println(response.code() + " " + response.message());
         }
-        return  profile.getDisplayName();
+        return response.message();
     }
     private void leaveGR(String id, String type){
         try {
