@@ -121,7 +121,7 @@ public class LineBotController
             }
            // ImageMessage imageMessage = new ImageMessage()
             getMessageData("Username: "+username+" from "+jsonNation(country).getString("name")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
-            getMessageData(osuUrl("deceitful","2"),idTarget);
+          // getMessageData(osuUrl("deceitful","2"),idTarget);
         } catch (IOException e) {
             e.printStackTrace();
         }
