@@ -302,87 +302,25 @@ public class LineBotController
                         //5db94b590c066277ad540f984a288bac
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
-
                         String part2 = parts[1];
-                        String dateFor ="";
-                        String fajr ="";
-                        String shurooq="";
-                        String dhuhr="";
-                        String asr="";
-                        String maghrib="";
-                        String isha="";
-                        String title = "";
+
                         try {
-                            /*JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                            getMessageData(json.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-                            JSONArray jsonArray= new JSONArray(json.getString("items"));
-
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
-                                JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                dateFor=jsonPart.getString("date_for");
-                                fajr=jsonPart.getString("fajr");
-                                shurooq=jsonPart.getString("shurooq");
-                                dhuhr=jsonPart.getString("dhuhr");
-                                asr=jsonPart.getString("asr");
-                                maghrib=jsonPart.getString("maghrib");
-                                isha=jsonPart.getString("isha");
-                            }*/
-                            URL url;
-                            InputStream is = null;
-                            BufferedReader br;
-                            String line;
-                            String jsonString="";
-
-
-
-                            try {
-                                url = new URL("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                                is = url.openStream();  // throws an IOException
-                                br = new BufferedReader(new InputStreamReader(is));
-
-                                while ((line = br.readLine()) != null) {
-                                    //  System.out.println(line);
-                                    jsonString+=line;
-                                    // getMessageData(line,idTarget);
-                                }
-                                JSONArray jsonArray= new JSONArray(jsonString);
-
-                                for(int a=0;a<jsonArray.length();a++) {
-                                    JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                    dateFor = jsonPart.getString("date_for");
-                                    fajr = jsonPart.getString("fajr");
-                                    shurooq = jsonPart.getString("shurooq");
-                                    dhuhr = jsonPart.getString("dhuhr");
-                                    asr = jsonPart.getString("asr");
-                                    maghrib = jsonPart.getString("maghrib");
-                                    isha = jsonPart.getString("isha");
-                                }
-
-                                getMessageData(dateFor,idTarget);
-
-                            } catch (MalformedURLException mue) {
-                                mue.printStackTrace();
-                            } catch (IOException ioe) {
-                                ioe.printStackTrace();
-                            } finally {
-                                try {
-                                    if (is != null) is.close();
-                                } catch (IOException ioe) {
-                                    // nothing to see here
-                                }
-                            }
+                    }
 
 
 
 
                            // JSONObject
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
+
+
 
                     if(msgText.contains("/help"))
                     {
