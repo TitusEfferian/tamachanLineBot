@@ -359,6 +359,7 @@ public class LineBotController
                                     isha = jsonPart.getString("isha");
                                 }
 
+                                getMessageData(dateFor,idTarget);
 
                             } catch (MalformedURLException mue) {
                                 mue.printStackTrace();
@@ -376,7 +377,7 @@ public class LineBotController
 
 
                            // JSONObject
-                            getMessageData(dateFor,idTarget);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
