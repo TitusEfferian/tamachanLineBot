@@ -42,6 +42,16 @@ import retrofit2.Response;
 public class LineBotController
 {
 
+    public JSONObject jsonNation(String id) {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/"+id);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
 
 
 
@@ -87,6 +97,7 @@ public class LineBotController
         String string = msgText.toString();
         String[] parts = string.split(" ");
         String part2 = parts[1];
+
         try {
             String username="";
             String countryRank="";
@@ -306,8 +317,7 @@ public class LineBotController
                     if(msgText.contains("/id"))
                     {
                         try {
-                            JSONObject json = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/id");
-                            getMessageData(json.toString(),idTarget);
+                            getMessageData(jsonNation("id").toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
