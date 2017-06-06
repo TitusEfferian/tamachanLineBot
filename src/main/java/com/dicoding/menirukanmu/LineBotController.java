@@ -202,6 +202,8 @@ public class LineBotController
                         String username="";
                         String countryRank="";
                         String pprank="";
+                        String country="";
+                        String accuracy="";
 
 
                         try {
@@ -223,10 +225,12 @@ public class LineBotController
                                 username=jsonObject.getString("username");
                                 countryRank=jsonObject.getString("pp_country_rank");
                                 pprank=jsonObject.getString("pp_rank");
+                                country=jsonObject.getString("country");
+                                accuracy=jsonObject.getString("accuracy");
 
 
                             }
-                            getMessageData("Username: "+username+"\nCountry Rank: "+countryRank+"\nPP rank: "+pprank,idTarget);
+                            getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nPP rank: "+pprank+"\nAccuracy: "+accuracy+"%",idTarget);
                         } catch (MalformedURLException mue) {
                             mue.printStackTrace();
                         } catch (IOException ioe) {
