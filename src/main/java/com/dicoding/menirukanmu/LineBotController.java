@@ -43,7 +43,45 @@ public class LineBotController
 
 
 
+    public String osuUrl(String nickname,String mode)
+    {
 
+
+
+        URL url;
+        InputStream is = null;
+        BufferedReader br;
+        String line;
+        String jsonString="";
+
+
+
+        try {
+            url = new URL("https://osu.ppy.sh/api/get_user?u="+nickname+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f&m="+mode);
+            is = url.openStream();  // throws an IOException
+            br = new BufferedReader(new InputStreamReader(is));
+
+            while ((line = br.readLine()) != null) {
+                //  System.out.println(line);
+                jsonString+=line;
+                // getMessageData(line,idTarget);
+            }
+
+           } catch (MalformedURLException mue) {
+            mue.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (is != null) is.close();
+            } catch (IOException ioe) {
+                // nothing to see here
+            }
+        }
+
+
+        return jsonString;
+    }
 
 
 
@@ -190,10 +228,11 @@ public class LineBotController
                     }
                     if(msgText.contains("/mania"))
                     {
+
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
                         String part2 = parts[1];
-
+                        /*
                         URL url;
                         InputStream is = null;
                         BufferedReader br;
@@ -204,6 +243,7 @@ public class LineBotController
                         String pprank="";
                         String country="";
                         String accuracy="";
+
 
 
                         try {
@@ -220,15 +260,11 @@ public class LineBotController
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
-
-
                                 username=jsonObject.getString("username");
                                 countryRank=jsonObject.getString("pp_country_rank");
                                 pprank=jsonObject.getString("pp_rank");
                                 country=jsonObject.getString("country");
                                 accuracy=jsonObject.getString("accuracy");
-
-
                             }
                             getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
                         } catch (MalformedURLException mue) {
@@ -241,13 +277,19 @@ public class LineBotController
                             } catch (IOException ioe) {
                                 // nothing to see here
                             }
+                        }*/
+                        //osuUrl(part2,"3");
+                        try {
+                            getMessageData(osuUrl(part2,"3").toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
 
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list : /weather [city name] \n develop for personal amusement",idTarget);
+                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n develop for personal amusement",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
