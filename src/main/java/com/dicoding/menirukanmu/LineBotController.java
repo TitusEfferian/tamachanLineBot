@@ -272,6 +272,19 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/kiblat"))
+                    {
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("http://muslimsalat.com/daily.json?key=5db94b590c066277ad540f984a288bac");
+                            String qibla_direction=jsonObject.getString("qibla_direction");
+
+                            getMessageData(qibla_direction,idTarget);
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     //osu
                     if(msgText.contains("/mania"))
                     {
@@ -343,7 +356,7 @@ public class LineBotController
                     {
                         try {
                             getMessageData("did i hear love live????",idTarget);
-                            getMessageDataForImage(idTarget);
+                           // getMessageDataForImage(idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -386,9 +399,9 @@ public class LineBotController
     {
         pushSticker(targetID);
     }
-    private void getMessageDataForImage(String targetId)throws  IOException
+    private void getMessageDataForImage(String targetId,URL url)throws  IOException
     {
-        pushImageMessage(targetId);
+        pushImageMessage(targetId,url);
     }
 
 
@@ -409,21 +422,12 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void pushImageMessage(String sourceId)
+    private void pushImageMessage(String sourceId,URL url)
     {
-        ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+       // ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+        ImageMessage imageMessage = new ImageMessage(url.toString(),url.toString());
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
-        try {
-            Response<BotApiResponse> response = LineMessagingServiceBuilder
-                    .create(lChannelAccessToken)
-                    .build()
-                    .pushMessage(pushMessage)
-                    .execute();
-            System.out.println(response.code() + " " + response.message());
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        }
+       response(pushMessage);
     }
 
     private void response(PushMessage pushMessage)
@@ -514,4 +518,14 @@ public class LineBotController
         }
     }
 }
+
+
+//kairos
+
+/*App name
+personal's App
+App ID
+59a354d5
+Key
+4eea450f6518a2d5cbb2291e1b5fbd39*/
 
