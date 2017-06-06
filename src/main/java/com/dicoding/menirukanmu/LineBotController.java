@@ -217,13 +217,11 @@ public class LineBotController
 
             if (!payload.events[0].message.type.equals("text")) {
                 // replyToUser(payload.events[0].replyToken, "Unknown message");
-                if (payload.events[0].message.text.equals("sticker"))
-                {
-                    try {
-                        getMessageData("don't have sticker :(",idTarget);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                String string=payload.events[0].toString();
+                try {
+                    getMessageData(string,idTarget);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             } else {
                 msgText = payload.events[0].message.text;
