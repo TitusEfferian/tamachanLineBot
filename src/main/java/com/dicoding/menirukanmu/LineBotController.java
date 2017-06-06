@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
@@ -187,11 +188,30 @@ public class LineBotController
                     }
                     if(msgText.contains("/osu"))
                     {
+                        URL url;
+                        InputStream is = null;
+                        BufferedReader br;
+                        String line;
+
                         try {
-                            JSONObject json = readJsonFromUrl("http://api.wunderground.com/api/57dd9039b81a9c21/");
-                            getMessageData(json.toString(),idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            url = new URL("http://stackoverflow.com/");
+                            is = url.openStream();  // throws an IOException
+                            br = new BufferedReader(new InputStreamReader(is));
+
+                            while ((line = br.readLine()) != null) {
+                              //  System.out.println(line);
+                                getMessageData(line,idTarget);
+                            }
+                        } catch (MalformedURLException mue) {
+                            mue.printStackTrace();
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        } finally {
+                            try {
+                                if (is != null) is.close();
+                            } catch (IOException ioe) {
+                                // nothing to see here
+                            }
                         }
                     }
 
