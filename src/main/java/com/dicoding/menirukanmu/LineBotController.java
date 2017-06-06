@@ -230,7 +230,7 @@ public class LineBotController
 
 
                             }
-                            getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nPP rank: "+pprank+"\nAccuracy: "+accuracy+"%",idTarget);
+                            getMessageData("Username: "+username+" from "+country+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
                         } catch (MalformedURLException mue) {
                             mue.printStackTrace();
                         } catch (IOException ioe) {
