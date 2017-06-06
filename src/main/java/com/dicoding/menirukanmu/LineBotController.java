@@ -348,10 +348,6 @@ public class LineBotController
                         }
                     }
 
-
-
-
-
                     if(msgText.contains("/help"))
                     {
 
@@ -439,7 +435,7 @@ public class LineBotController
         } else {
             System.out.println(response.code() + " " + response.message());
         }
-        return response.message();
+        return response.message().toString();
     }
     private void leaveGR(String id, String type){
         try {
