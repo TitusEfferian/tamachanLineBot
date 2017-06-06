@@ -194,7 +194,7 @@ public class LineBotController
                         String line;
 
                         try {
-                            url = new URL("http://stackoverflow.com/");
+                            url = new URL("https://osu.ppy.sh/api/get_user?u=doityourself-&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
                             is = url.openStream();  // throws an IOException
                             br = new BufferedReader(new InputStreamReader(is));
 
