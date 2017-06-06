@@ -45,6 +45,8 @@ public class LineBotController
 
 
 
+
+
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -186,20 +188,24 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/osu"))
+                    if(msgText.contains("/mania"))
                     {
+                        String string = msgText.toString();
+                        String[] parts = string.split(" ");
+                        String part2 = parts[1];
+
                         URL url;
                         InputStream is = null;
                         BufferedReader br;
                         String line;
 
                         try {
-                            url = new URL("https://osu.ppy.sh/api/get_user?u=doityourself-&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
+                            url = new URL("https://osu.ppy.sh/api/get_user?u="+part2+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
                             is = url.openStream();  // throws an IOException
                             br = new BufferedReader(new InputStreamReader(is));
 
                             while ((line = br.readLine()) != null) {
-                              //  System.out.println(line);
+                                //  System.out.println(line);
                                 getMessageData(line,idTarget);
                             }
                         } catch (MalformedURLException mue) {
