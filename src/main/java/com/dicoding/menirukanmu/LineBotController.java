@@ -417,7 +417,7 @@ public class LineBotController
 
         Response<UserProfileResponse> response =
                 null;
-        UserProfileResponse profile = response.body();
+
         try {
             response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
@@ -428,7 +428,7 @@ public class LineBotController
             e.printStackTrace();
         }
         if (response.isSuccessful()) {
-
+            UserProfileResponse profile = response.body();
             System.out.println(profile.getDisplayName());
             System.out.println(profile.getPictureUrl());
             System.out.println(profile.getStatusMessage());
