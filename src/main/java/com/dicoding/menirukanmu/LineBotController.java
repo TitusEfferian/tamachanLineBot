@@ -334,6 +334,15 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.equals("/random"))
+                    {
+                        Random random = new Random();
+                        try {
+                            getMessageData(Integer.toString(random.nextInt(430)+1),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                     if(msgText.contains("/help"))
