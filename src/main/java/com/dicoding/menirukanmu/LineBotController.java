@@ -137,6 +137,7 @@ public class LineBotController
 
                             String weather = json.get("weather").toString();
 
+
                             //variable
                             String message="";
 
@@ -144,6 +145,8 @@ public class LineBotController
                             //jsonobject
                             JSONObject jsonSys = json.getJSONObject("sys");
                             String country = jsonSys.getString("country");
+                            JSONObject jsonCity = jsonForeCast.getJSONObject("city");
+                            String city = jsonCity.getString("name");
 
                             //array
                             JSONArray arr = new JSONArray(weather);
@@ -170,7 +173,7 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-                                getMessageData(jsonForeCast.get("message").toString(),idTarget);
+                                getMessageData(city,idTarget);
                             }
                             else
                             {
