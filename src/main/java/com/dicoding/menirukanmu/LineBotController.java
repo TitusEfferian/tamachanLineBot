@@ -346,6 +346,19 @@ public class LineBotController
                                     jsonString+=line;
                                     // getMessageData(line,idTarget);
                                 }
+                                JSONArray jsonArray= new JSONArray(jsonString);
+
+                                for(int a=0;a<jsonArray.length();a++) {
+                                    JSONObject jsonPart = jsonArray.getJSONObject(a);
+                                    dateFor = jsonPart.getString("date_for");
+                                    fajr = jsonPart.getString("fajr");
+                                    shurooq = jsonPart.getString("shurooq");
+                                    dhuhr = jsonPart.getString("dhuhr");
+                                    asr = jsonPart.getString("asr");
+                                    maghrib = jsonPart.getString("maghrib");
+                                    isha = jsonPart.getString("isha");
+                                }
+
 
                             } catch (MalformedURLException mue) {
                                 mue.printStackTrace();
@@ -360,8 +373,10 @@ public class LineBotController
                             }
 
 
+
+
                            // JSONObject
-                            getMessageData(jsonString,idTarget);
+                            getMessageData(dateFor,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
