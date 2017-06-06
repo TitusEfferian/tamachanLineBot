@@ -329,7 +329,7 @@ public class LineBotController
                     {
                         StickerMessage stickerMessage = new StickerMessage("1","1");
                         try {
-                            getMessageData(stickerMessage.toString(),idTarget);
+                            getMessageData(String.valueOf(stickerMessage),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -366,6 +366,7 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
+
 
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
