@@ -393,7 +393,7 @@ public class LineBotController
     {
 
 
-        StickerMessage sticker = new StickerMessage("1",Double.toString(Math.random()*430+1));
+        StickerMessage sticker = new StickerMessage(Double.toString(Math.random()*2+1),Double.toString(Math.random()*430+1));
         PushMessage pushMessage = new PushMessage(sourceID,sticker);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
