@@ -303,12 +303,12 @@ public class LineBotController
                         String asr="";
                         String maghrib="";
                         String isha="";
-                        String qibla_direction="";
+
 
                         try {
                             JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
-                            qibla_direction=json.getString("qibla_direction");
+
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
@@ -323,7 +323,6 @@ public class LineBotController
 
 
                             getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr+"\nshurooq: "+shurooq+"\ndhuhr: "+dhuhr+"\nasr: "+asr+"\nmaghrib: "+maghrib+"\nisha: "+isha+"\n -http://muslimsalat.com-",idTarget);
-                            getMessageDataForImage(idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -346,7 +345,7 @@ public class LineBotController
                     {
                         try {
                             getMessageData("did i hear love live????",idTarget);
-                           // getMessageDataForImage(idTarget);
+                           getMessageDataForImage(idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -414,8 +413,8 @@ public class LineBotController
     }
     private void pushImageMessage(String sourceId)
     {
-       // ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
-        ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
+        ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+       // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
        response(pushMessage);
     }
