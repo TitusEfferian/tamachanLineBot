@@ -198,6 +198,7 @@ public class LineBotController
                         InputStream is = null;
                         BufferedReader br;
                         String line;
+                        JSONObject jsonObject = null;
 
                         try {
                             url = new URL("https://osu.ppy.sh/api/get_user?u="+part2+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
@@ -206,8 +207,10 @@ public class LineBotController
 
                             while ((line = br.readLine()) != null) {
                                 //  System.out.println(line);
-                                getMessageData(line,idTarget);
+                                jsonObject.getJSONObject(line);
+                               // getMessageData(line,idTarget);
                             }
+                            getMessageData(jsonObject.toString(),idTarget);
                         } catch (MalformedURLException mue) {
                             mue.printStackTrace();
                         } catch (IOException ioe) {
