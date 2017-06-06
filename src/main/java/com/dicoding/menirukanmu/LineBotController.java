@@ -300,7 +300,7 @@ public class LineBotController
                     {
                         jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
                     }
-                    if(msgText.contains("/ramadhan"))
+                    if(msgText.contains("/puasa"))
                     {
                         URL url;
                         InputStream is = null;
