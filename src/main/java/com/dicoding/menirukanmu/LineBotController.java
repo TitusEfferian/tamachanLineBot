@@ -115,7 +115,7 @@ public class LineBotController
                 country=jsonObject.getString("country");
                 accuracy=jsonObject.getString("accuracy");
             }
-            getMessageData("Username: "+username+" from "+country+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
+            getMessageData("Username: "+username+" from "+jsonNation(country).getString("nativeName")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -314,14 +314,7 @@ public class LineBotController
                         }
 
                     }
-                    if(msgText.contains("/id"))
-                    {
-                        try {
-                            getMessageData(jsonNation("id").toString(),idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+
                     if(msgText.contains("hello"))
                     {
                         //162a37b7350d4aaaa9f2c0df18bf3a54
