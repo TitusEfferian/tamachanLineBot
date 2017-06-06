@@ -395,8 +395,8 @@ public class LineBotController
 
 
         Random random = new Random();
-
-        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(139)+1));
+   
+        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(21)+1));
         PushMessage pushMessage = new PushMessage(sourceID,sticker);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
