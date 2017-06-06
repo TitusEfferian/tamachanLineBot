@@ -199,10 +199,12 @@ public class LineBotController
                         BufferedReader br;
                         String line;
                         String jsonString="";
-                        JSONObject jsonObject = null;
+                        String username="";
+                        String countryRank="";
+
 
                         try {
-                            url = new URL("https://osu.ppy.sh/api/get_user?u="+part2+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f");
+                            url = new URL("https://osu.ppy.sh/api/get_user?u="+part2+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f&m=3");
                             is = url.openStream();  // throws an IOException
                             br = new BufferedReader(new InputStreamReader(is));
 
@@ -211,7 +213,18 @@ public class LineBotController
                                 jsonString+=line;
                                // getMessageData(line,idTarget);
                             }
-                            getMessageData(jsonString,idTarget);
+                            JSONArray jsonArray=new JSONArray(jsonString);
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(a);
+
+
+                                username=jsonObject.getString("username");
+                                countryRank=jsonObject.getString("pp_country_rank");
+
+
+                            }
+                            getMessageData("Username: "+username+"\nCountry Rank "+countryRank+".",idTarget);
                         } catch (MalformedURLException mue) {
                             mue.printStackTrace();
                         } catch (IOException ioe) {
