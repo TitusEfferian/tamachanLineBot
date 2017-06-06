@@ -15,6 +15,7 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
+import com.sun.org.apache.bcel.internal.generic.PUSH;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -342,7 +343,8 @@ public class LineBotController
                     {
                         try {
                             getMessageData("did i hear love live????",idTarget);
-                            ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+                            getMessageDataForImage(idTarget);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -384,6 +386,11 @@ public class LineBotController
     {
         pushSticker(targetID);
     }
+    private void getMessageDataForImage(String targetId)throws  IOException
+    {
+        pushImageMessage(targetId);
+    }
+
 
 
     private void replyToUser(String rToken, String messageToUser){
@@ -397,6 +404,22 @@ public class LineBotController
                 .replyMessage(replyMessage)
                 .execute();
             System.out.println("Reply Message: " + response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+    }
+    private void pushImageMessage(String sourceId)
+    {
+        ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+        PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .pushMessage(pushMessage)
+                    .execute();
+            System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
