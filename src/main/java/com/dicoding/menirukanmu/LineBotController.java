@@ -304,21 +304,23 @@ public class LineBotController
                         String[] parts = string.split(" ");
                         String part2 = parts[1];
                         String date_for="";
+                        String fajr="";
 
 
                         try {
                             JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            JSONArray jsonArray = new JSONArray(json.getString("items"));
+                            JSONArray jsonArray = new JSONArray(json.get("items").toString());
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
                                 date_for=jsonObject.getString("date_for");
+                                fajr=jsonObject.getString("fajr");
 
                             }
 
 
-                            getMessageData(json.get("state").toString()+","+json.get("country").toString()+"\n"+date_for,idTarget);
+                            getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+date_for,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
