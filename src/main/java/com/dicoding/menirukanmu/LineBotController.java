@@ -238,7 +238,6 @@ public class LineBotController
                             if(counter)
                             {
                                 getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-                                getMessageData(city,idTarget);
                             }
                             else
                             {
@@ -270,7 +269,7 @@ public class LineBotController
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n develop for personal amusement",idTarget);
+                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n under development for personal amusement",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
