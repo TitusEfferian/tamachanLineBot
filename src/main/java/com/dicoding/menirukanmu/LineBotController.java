@@ -195,6 +195,14 @@ public class LineBotController
 
             if (!payload.events[0].message.type.equals("text")) {
                 // replyToUser(payload.events[0].replyToken, "Unknown message");
+                if(payload.events[0].message.type.equals("sticker"))
+                {
+                    try {
+                        getMessageDataForSticker(idTarget);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             } else {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
@@ -325,14 +333,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/sticker"))
-                    {
-                        try {
-                            getMessageDataForSticker(idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+
 
                     if(msgText.contains("/help"))
                     {
