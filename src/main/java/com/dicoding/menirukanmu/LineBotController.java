@@ -328,6 +328,11 @@ public class LineBotController
                     if(msgText.contains("/sticker"))
                     {
                         StickerMessage stickerMessage = new StickerMessage("1","1");
+                        try {
+                            getMessageData(stickerMessage.toString(),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     if(msgText.contains("/help"))
