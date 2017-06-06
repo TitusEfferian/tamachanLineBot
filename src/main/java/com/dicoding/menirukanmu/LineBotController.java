@@ -198,6 +198,7 @@ public class LineBotController
                         InputStream is = null;
                         BufferedReader br;
                         String line;
+                        String jsonString="";
                         JSONObject jsonObject = null;
 
                         try {
@@ -207,10 +208,10 @@ public class LineBotController
 
                             while ((line = br.readLine()) != null) {
                                 //  System.out.println(line);
-                                jsonObject.getJSONObject(line);
+                                jsonString+=line;
                                // getMessageData(line,idTarget);
                             }
-                            getMessageData(jsonObject.toString(),idTarget);
+                            getMessageData(jsonString,idTarget);
                         } catch (MalformedURLException mue) {
                             mue.printStackTrace();
                         } catch (IOException ioe) {
