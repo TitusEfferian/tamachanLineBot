@@ -269,7 +269,7 @@ public class LineBotController
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n under development for personal amusement",idTarget);
+                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n under development for personal amusement -titus efferian",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
