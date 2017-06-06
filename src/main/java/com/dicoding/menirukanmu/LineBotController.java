@@ -42,40 +42,18 @@ import retrofit2.Response;
 public class LineBotController
 {
 
-    public String ramadhanUrl() {
-        URL url;
-        InputStream is = null;
-        BufferedReader br;
-        String line;
-        String jsonString = "";
+    public String nationID(String id)
+    {
 
-
+        String string="";
         try {
-            url = new URL("http://muslimsalat.com/monthly.json");
-            is = url.openStream();  // throws an IOException
-            br = new BufferedReader(new InputStreamReader(is));
-
-            while ((line = br.readLine()) != null) {
-                //  System.out.println(line);
-                jsonString += line;
-                // getMessageData(line,idTarget);
-            }
-
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (IOException ioe) {
-                // nothing to see here
-            }
-
+            JSONObject jsonObject = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/"+id);
+            string=jsonObject.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return jsonString;
+        return string;
     }
-
 
 
     public String osuUrl(String nickname,String mode)
@@ -116,6 +94,7 @@ public class LineBotController
     }
     public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
     {
+
         String string = msgText.toString();
         String[] parts = string.split(" ");
         String part2 = parts[1];
@@ -217,12 +196,6 @@ public class LineBotController
 
             if (!payload.events[0].message.type.equals("text")) {
                 // replyToUser(payload.events[0].replyToken, "Unknown message");
-                String string=payload.events[0].message.toString();
-                try {
-                    getMessageData(string,idTarget);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             } else {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
@@ -340,6 +313,10 @@ public class LineBotController
                             e.printStackTrace();
                         }
 
+                    }
+                    if(msgText.contains("/id"))
+                    {
+                        nationID("ID");
                     }
                     if(msgText.contains("hello"))
                     {
