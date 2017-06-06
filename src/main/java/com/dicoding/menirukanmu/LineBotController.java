@@ -306,7 +306,7 @@ public class LineBotController
 
                         try {
                             JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            getMessageData(json.toString(),idTarget);
+                            getMessageData(json.get("state").toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
