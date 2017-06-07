@@ -405,6 +405,7 @@ public class LineBotController
                         String seller_name = "";
                         String name = "";
                         String url="";
+                        String imagesUrl="";
                         while (m.find()) {
 
                             hasil = m.group(1);
@@ -428,6 +429,8 @@ public class LineBotController
                                     negative = jsonPart.getInt("seller_negative_feedback");
                                     seller_name = jsonPart.getString("seller_name");
                                     url=jsonPart.getString("url");
+                                    imagesUrl=jsonPart.getString("images");
+
 
                                 }
                             if(seller_name == "" && price ==0)
@@ -435,8 +438,9 @@ public class LineBotController
                                 getMessageData("don't know",idTarget);
                             }
                             else {
-                                getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating" + Integer.toString(negative) + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
+                                getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                 getMessageData(url,idTarget);
+                                getMessageDataForImage(imagesUrl,imagesUrl);
                             }
 
                             } catch(IOException e){
@@ -483,9 +487,9 @@ public class LineBotController
     {
         pushSticker(targetID);
     }
-    private void getMessageDataForImage(String targetId)throws  IOException
+    private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
-        pushImageMessage(targetId);
+        pushImageMessage(targetId,string);
     }
 
 
@@ -506,9 +510,9 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void pushImageMessage(String sourceId)
+    private void pushImageMessage(String sourceId,String string)
     {
-        ImageMessage imageMessage = new ImageMessage("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg","https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+        ImageMessage imageMessage = new ImageMessage(string,string);
 
         // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
