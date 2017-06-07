@@ -61,6 +61,40 @@ public class LineBotController
     }
 
 
+    public String bukalapakUrl(String produk)
+    {
+        URL url;
+        InputStream is = null;
+        BufferedReader br;
+        String line;
+        String jsonString="";
+
+
+
+        try {
+            url = new URL("https://api.bukalapak.com/v2/products.json?keywords="+produk+"&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
+            is = url.openStream();  // throws an IOException
+            br = new BufferedReader(new InputStreamReader(is));
+
+            while ((line = br.readLine()) != null) {
+                //  System.out.println(line);
+                jsonString+=line;
+                // getMessageData(line,idTarget);
+            }
+
+        } catch (MalformedURLException mue) {
+            mue.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (is != null) is.close();
+            } catch (IOException ioe) {
+                // nothing to see here
+            }
+        }
+        return jsonString;
+    }
 
     public String osuUrl(String nickname,String mode)
     {
@@ -369,32 +403,9 @@ public class LineBotController
                             hasil=m.group(1);
 
                         }
+
                         try {
-                            JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
-                           /* JSONArray jsonArray = new JSONArray(json.get("products").toString());
-                            String sellerName="";
-                            String positifRating="";
-                            String negativeRating="";
-                            String price ="";
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
-                                JSONObject jsonObject = jsonArray.getJSONObject(a);
-                                sellerName=jsonObject.getString("sellername");
-                                price=jsonObject.getString("price");
-                                positifRating=jsonObject.getString("seller_positive_feedback");
-                                negativeRating=jsonObject.getString("seller_negative_feedback");
-
-                            }*/
-                           JSONArray jsonArray = new JSONArray(json.get("products").toString());
-                           for(int a=0;a<jsonArray.length();a++)
-                           {
-                               JSONObject jsonObject=jsonArray.getJSONObject(a);
-                               getMessageData(jsonObject.getString("price"),idTarget);
-                           }
-                          // getMessageData("Seller Name: "+sellerName+"\nPositive Rating: "+positifRating+"\nNegative Rating: "+negativeRating+"\nprice: "+price,idTarget);
-                            getMessageData(json.get("status").toString(),idTarget);
-                           //getMessageData(jsonArray.toString(),idTarget);
-
+                            getMessageData(bukalapakUrl(hasil),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
