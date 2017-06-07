@@ -488,10 +488,9 @@ public class LineBotController
                         try {
                             jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
-                            getMessageData(info.get("display_id").toString(),idTarget);
-
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
+
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
@@ -499,14 +498,8 @@ public class LineBotController
                                 result=jsonPart.getString("url");
 
                             }
+                            getMessageData(info.get("thumbnail").toString(),idTarget);
                            getMessageData(result,idTarget);
-
-
-
-
-
-
-
 
                         } catch (IOException e) {
                             e.printStackTrace();
