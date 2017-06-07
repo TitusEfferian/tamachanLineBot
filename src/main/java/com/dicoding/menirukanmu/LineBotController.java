@@ -248,7 +248,8 @@ public class LineBotController
                 }*/
             } else {
                 msgText = payload.events[0].message.text;
-                msgText = msgText.toLowerCase();
+
+               // msgText = msgText.toLowerCase();
 
 
 
@@ -454,11 +455,10 @@ public class LineBotController
 
                         try {
                             String splitterString = splitter(msgText+";","/video (.*?);","/video");
-                            JSONObject jsonObject =readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=RKCB5mBstSk");
+                            JSONObject jsonObject =readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+splitterString);
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
-                            getMessageData(splitterString,idTarget);
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
