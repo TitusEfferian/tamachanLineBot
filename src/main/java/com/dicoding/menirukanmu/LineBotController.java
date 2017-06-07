@@ -560,6 +560,8 @@ public class LineBotController
     private void pushImageTamachan(String source)
     {
         ImageMessage imageMessage=new ImageMessage("http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg","http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
+        PushMessage pushMessage = new PushMessage(source,imageMessage);
+        response(pushMessage);
     }
 
     private void response(PushMessage pushMessage)
