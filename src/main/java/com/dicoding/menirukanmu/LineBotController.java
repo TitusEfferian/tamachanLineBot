@@ -491,15 +491,8 @@ public class LineBotController
                             getMessageData(info.get("acodec").toString(),idTarget);
 
 
-                            JSONArray jsonArray = new JSONArray(info.get("url").toString());
-                            String message="";
-
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
-                                JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                message=jsonPart.getString("url");
-                                getMessageData(message,idTarget);
-                            }
+                            JSONObject jsonUrl = new JSONObject(info.get("url").toString());
+                            getMessageData(jsonUrl.toString(),idTarget);
 
 
 
