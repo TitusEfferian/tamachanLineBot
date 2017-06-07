@@ -450,7 +450,7 @@ public class LineBotController
                             else {
                                 getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) +"\nName: "+name+"\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                 getMessageData(url,idTarget);
-                                getMessageData(imagesUrl,idTarget);
+                                getMessageDataForImage(idTarget,imagesUrl);
 
                                // getMessageData(jsonImages.getString(0),idTarget);
 
