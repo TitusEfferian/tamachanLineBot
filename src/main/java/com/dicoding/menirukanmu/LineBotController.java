@@ -385,7 +385,7 @@ public class LineBotController
                     }
 
                     if(msgText.contains("/bukalapak")) {
-                        String string = msgText.toString();
+                        String string = msgText.toString()+";";
                         String hasil = "";
 
                         if(!string.substring(string.length()-1).equals(";"))
