@@ -490,17 +490,14 @@ public class LineBotController
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             getMessageData(info.get("display_id").toString(),idTarget);
 
-                            String string = jsonObject.toString();
+                            JSONArray jsonArray = new JSONArray(info.get("formats").toString());
 
-                            Pattern p = Pattern.compile("uploader(.*?)},");
-                            Matcher m = p.matcher(string);
-
-                            while (m.find()) {
-                                regexString = m.group(1);
-                                // hasil = hasil.replaceAll(" ", "%20");
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonPart = jsonArray.getJSONObject(a);
+                                getMessageData(jsonPart.getString("format_id"),idTarget);
                             }
 
-                            getMessageData(regexString,idTarget);
 
 
 
