@@ -371,10 +371,10 @@ public class LineBotController
                         }
                         try {
                             JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
-                            
+
 
                            // getMessageData("Seller Name: "+sellerName+"\nPositive Rating: "+positifRating+"\nNegative Rating: "+negativeRating+"\nprice: "+price,idTarget);
-                            getMessageData(json.get("status").toString(),idTarget);
+                            getMessageData(json.get("banner").toString(),idTarget);
                            // getMessageData(sellerName,idTarget);
 
                         } catch (IOException e) {
