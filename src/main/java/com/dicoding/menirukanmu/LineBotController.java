@@ -370,7 +370,7 @@ public class LineBotController
 
                         }
                         try {
-                            JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
+                            JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
                            /* JSONArray jsonArray = new JSONArray(json.get("products").toString());
                             String sellerName="";
                             String positifRating="";
