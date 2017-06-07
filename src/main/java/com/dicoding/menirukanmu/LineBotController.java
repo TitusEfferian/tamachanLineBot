@@ -370,7 +370,7 @@ public class LineBotController
 
                         }
                         try {
-                            JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=2&per_page=1");
+                            JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=2&per_page=1");
                             getMessageData(json.get("status").toString(),idTarget);
                             getMessageData(hasil,idTarget);
                         } catch (IOException e) {
