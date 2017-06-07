@@ -393,8 +393,12 @@ public class LineBotController
                     }
                     if(msgText.contains("/bukalapak"))
                     {
+                        String string = msgText.toString();
+                        String[] parts = string.split(" ");
+
+                        String part2 = parts[1];
                         String hasil = "";
-                        String string=msgText.toLowerCase().toLowerCase();
+                     //   String string=msgText.toLowerCase().toLowerCase();
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(string);
@@ -410,7 +414,7 @@ public class LineBotController
 
 
                                // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
-                                JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=1&top_seller=1&per_page=1");
+                                JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+part2+"&page=1&top_seller=1&per_page=1");
                                 JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
 
                                 for (int a = 0; a < jsonArray.length(); a++) {
