@@ -401,12 +401,8 @@ public class LineBotController
                         while (m.find()) {
 
 
-                            //hasil=m.group(1);
-                            try {
-                                getMessageData(m.group(1).toString(),idTarget);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            hasil=m.group(1).toString();
+
                         }
                         int price=0;
                         int positive=0;
@@ -428,8 +424,8 @@ public class LineBotController
                                 seller_name=jsonPart.getString("seller_name");
 
                             }
-                            //getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
-                            getMessageData(string,idTarget);
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
+                           
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
