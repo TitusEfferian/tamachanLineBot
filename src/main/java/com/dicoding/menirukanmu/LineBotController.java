@@ -456,7 +456,7 @@ public class LineBotController
                     {
 
                         try {
-                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\n/bukalapak [product_name]; dont forget the semicolon\nunder development for personal amusement -titus efferian",idTarget);
+                            getMessageData("command list :\n/weather [city name];\n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\n/bukalapak [product_name];\ndont forget the semicolon\nunder development for personal amusement -titus efferian",idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
