@@ -454,9 +454,8 @@ public class LineBotController
 
                     if(msgText.contains("/help"))
                     {
-
                         try {
-                            getMessageData("command list :\n/weather [city name];\n/[osu_mode] [nickname] eg : /mania jakads;\n/puasa [city_name]\n/bukalapak [product_name];\ndont forget the semicolon\n\nunder development for personal amusement -titus efferian",idTarget);
+                            getMessageData("command list :\n/weather [city name];\n/[osu_mode] [nickname] eg : /mania jakads;\n/puasa [city_name]\n/bukalapak [product_name];\nbot leave for kick out this shit\n\ndont forget the semicolon\n\nunder development for personal amusement -titus efferian",idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
