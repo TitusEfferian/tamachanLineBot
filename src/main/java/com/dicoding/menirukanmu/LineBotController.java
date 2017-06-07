@@ -450,10 +450,21 @@ public class LineBotController
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
 
-                        getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
+                            if(jsonObject.getString("info")!="") {
+                                getMessageData(jsonObject.getString("info"), idTarget);
+                            }
+                            else
+                            {
+                                getMessageData("error",idTarget);
+                            }
 
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-
+                        //getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
                         //getVideoData(idTarget,"");
                     }
 
