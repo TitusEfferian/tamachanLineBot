@@ -395,43 +395,42 @@ public class LineBotController
                         String string = msgText.toString();
                         String hasil = "";
 
-                        /*if(string.substring(string.length()-1)!=";")
+                        if(!string.substring(string.length()-1).equals(";"))
                         {
                             try {
                                 getMessageData("you forgot the semicolon; eg: /bukalapak productName;",idTarget);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }*/
-
-
-
-                        Pattern p = Pattern.compile("/bukalapak (.*?);");
-                        Matcher m = p.matcher(string);
-
-                        int price = 0;
-                        int positive = 0;
-                        int negative = 0;
-                        String seller_name = "";
-                        String url="";
-                        String name="";
-                        String imagesUrl="";
-
-                        while (m.find()) {
-
-                            hasil = m.group(1);
-                            hasil = hasil.replaceAll(" ", "%20");
-
-
                         }
-                        try {
+                        else {
 
 
-                            // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
-                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + hasil + "&page=1&top_seller=1&per_page=1");
-                            JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
-                           // JSONArray jsonImages = new JSONArray(jsonObject.get("images").toString());
+                            Pattern p = Pattern.compile("/bukalapak (.*?);");
+                            Matcher m = p.matcher(string);
 
+                            int price = 0;
+                            int positive = 0;
+                            int negative = 0;
+                            String seller_name = "";
+                            String url = "";
+                            String name = "";
+                            String imagesUrl = "";
+
+                            while (m.find()) {
+
+                                hasil = m.group(1);
+                                hasil = hasil.replaceAll(" ", "%20");
+
+
+                            }
+                            try {
+
+
+                                // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
+                                JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + hasil + "&page=1&top_seller=1&per_page=1");
+                                JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
+                                // JSONArray jsonImages = new JSONArray(jsonObject.get("images").toString());
 
 
                                 for (int a = 0; a < jsonArray.length(); a++) {
@@ -439,36 +438,33 @@ public class LineBotController
 
                                     JSONArray jsonImages = new JSONArray(jsonPart.get("images").toString());
 
-                                    imagesUrl=jsonImages.getString(0);
+                                    imagesUrl = jsonImages.getString(0);
 
 
                                     price = jsonPart.getInt("price");
                                     positive = jsonPart.getInt("seller_positive_feedback");
                                     negative = jsonPart.getInt("seller_negative_feedback");
                                     seller_name = jsonPart.getString("seller_name");
-                                    url=jsonPart.getString("url");
-                                    name=jsonPart.getString("name");
-
-
+                                    url = jsonPart.getString("url");
+                                    name = jsonPart.getString("name");
 
 
                                 }
-                            if(seller_name == "" && price ==0)
-                            {
-                                getMessageData("don't know",idTarget);
-                            }
-                            else {
-                                getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) +"\nName: "+name+"\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
-                                getMessageData(url,idTarget);
-                                getMessageDataForImage(idTarget,imagesUrl);
+                                if (seller_name == "" && price == 0) {
+                                    getMessageData("don't know", idTarget);
+                                } else {
+                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
+                                    getMessageData(url, idTarget);
+                                    getMessageDataForImage(idTarget, imagesUrl);
 
-                               // getMessageData(jsonImages.getString(0),idTarget);
+                                    // getMessageData(jsonImages.getString(0),idTarget);
 
-                            }
+                                }
 
-                            } catch(IOException e){
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        }
 
 
                         }
