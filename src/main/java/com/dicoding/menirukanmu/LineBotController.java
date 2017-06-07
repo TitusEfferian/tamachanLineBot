@@ -453,7 +453,7 @@ public class LineBotController
                         JSONObject jsonObject = null;
 
                         try {
-                            jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
+                            jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=pKXU9haPykE");
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
@@ -464,7 +464,6 @@ public class LineBotController
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                                 result=jsonPart.getString("url");
-
                             }
                            getVideoData(idTarget,result,info.get("thumbnail").toString());
                             //getMessageData(hasil,idTarget);
@@ -485,7 +484,7 @@ public class LineBotController
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list :\n/weather [city name];\n/[osu_mode] [nickname] eg : /mania jakads;\n/puasa [city_name]\n/bukalapak [product_name];\n/yt youtubelink\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
