@@ -394,6 +394,7 @@ public class LineBotController
                     if(msgText.contains("/bukalapak"))
                     {
                         String hasil = "";
+                        String string=msgText.toLowerCase().toLowerCase();
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(msgText.toLowerCase().toString());
@@ -424,7 +425,7 @@ public class LineBotController
 
                             }
                             getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
-                            getMessageData(hasil,idTarget);
+                            getMessageData(string,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
