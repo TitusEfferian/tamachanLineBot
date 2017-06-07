@@ -410,7 +410,7 @@ public class LineBotController
 
 
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
+                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
 
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
 
@@ -423,7 +423,7 @@ public class LineBotController
                                 seller_name=jsonPart.getString("seller_name");
 
                             }
-                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating: "+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
