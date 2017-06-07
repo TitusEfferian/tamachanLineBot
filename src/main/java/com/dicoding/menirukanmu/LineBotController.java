@@ -317,19 +317,19 @@ public class LineBotController
                     //osu
                     if(msgText.contains("/mania"))
                     {
-                        jsonResultForOsu(splitter(msgText,"/mania (.*?);","/mania"),idTarget,"3","osu!Mania");
+                        jsonResultForOsu(splitter(msgText+";","/mania (.*?);","/mania"),idTarget,"3","osu!Mania");
                     }
                     if(msgText.contains("/ctb"))
                     {
-                        jsonResultForOsu(splitter(msgText,"/ctb (.*?);","/ctb"),idTarget,"2","Catch the Beat");
+                        jsonResultForOsu(splitter(msgText+";","/ctb (.*?);","/ctb"),idTarget,"2","Catch the Beat");
                     }
                     if(msgText.contains("/taiko"))
                     {
-                        jsonResultForOsu(splitter(msgText,"/taiko (.*?);","/taiko"),idTarget,"1","Taiko");
+                        jsonResultForOsu(splitter(msgText+";","/taiko (.*?);","/taiko"),idTarget,"1","Taiko");
                     }
                     if(msgText.contains("/std"))
                     {
-                        jsonResultForOsu(splitter(msgText,"/std (.*?);","/std"),idTarget,"0","Osu Standard!");
+                        jsonResultForOsu(splitter(msgText+";","/std (.*?);","/std"),idTarget,"0","Osu Standard!");
                     }
                     if(msgText.contains("/puasa"))
                     {
