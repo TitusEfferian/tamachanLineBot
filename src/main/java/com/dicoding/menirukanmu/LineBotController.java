@@ -429,10 +429,7 @@ public class LineBotController
 
                                     JSONArray jsonImages = new JSONArray(jsonPart.get("images").toString());
 
-                                    for(int b=0;b<jsonImages.length();b++)
-                                    {
-                                        imagesUrl=jsonImages.getString(b);
-                                    }
+                                    imagesUrl=jsonImages.getString(0);
 
 
                                     price = jsonPart.getInt("price");
