@@ -434,7 +434,7 @@ public class LineBotController
                                     seller_name = jsonPart.getString("seller_name");
                                     url=jsonPart.getString("url");
                                     name=jsonPart.getString("name");
-                                    imagesUrl[a]=jsonPart.getJSONArray("images").toString();
+
 
 
 
@@ -446,7 +446,7 @@ public class LineBotController
                             else {
                                 getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) +"\nName: "+name+"\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                 getMessageData(url,idTarget);
-                                getMessageData(imagesUrl[0],idTarget);
+
                                // getMessageData(jsonImages.getString(0),idTarget);
 
                             }
