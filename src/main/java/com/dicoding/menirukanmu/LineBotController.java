@@ -394,12 +394,8 @@ public class LineBotController
                     if(msgText.contains("/bukalapak"))
                     {
                         String string = msgText.toString();
-                        String[] parts = string.split(" ");
-
-
-                        String part2 = parts[1];
                         String hasil = "";
-                     //   String string=msgText.toLowerCase().toLowerCase();
+                    
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(string);
@@ -432,7 +428,7 @@ public class LineBotController
 
                             }
                             getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
-                          
+
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -445,7 +441,7 @@ public class LineBotController
                     {
 
                         try {
-                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\nunder development for personal amusement -titus efferian",idTarget);
+                            getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\n/bukalapak [product_name]; dont forget the semicolon\nunder development for personal amusement -titus efferian",idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
