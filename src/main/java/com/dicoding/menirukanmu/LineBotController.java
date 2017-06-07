@@ -403,6 +403,11 @@ public class LineBotController
                             hasil=m.group(1);
 
                         }
+                        int price=0;
+                        int positive=0;
+                        int negative=0;
+                        String seller_name="";
+
 
                         try {
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
@@ -412,8 +417,13 @@ public class LineBotController
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                getMessageData(Integer.toString(jsonPart.getInt("price")),idTarget);
+                                price=jsonPart.getInt("price");
+                                positive=jsonPart.getInt("seller_positive_feedback");
+                                negative=jsonPart.getInt("seller_negative_feedback");
+                                seller_name=jsonPart.getString("seller_name");
+
                             }
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
