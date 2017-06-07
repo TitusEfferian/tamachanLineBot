@@ -83,6 +83,39 @@ public class LineBotController
     }
 
 
+    public String youtubeUrl(String string)
+    {
+        URL url;
+        InputStream is = null;
+        BufferedReader br;
+        String line;
+        String jsonString="";
+        try {
+            url = new URL(string);
+            is = url.openStream();  // throws an IOException
+            br = new BufferedReader(new InputStreamReader(is));
+
+            while ((line = br.readLine()) != null) {
+                //  System.out.println(line);
+                jsonString+=line;
+                // getMessageData(line,idTarget);
+            }
+
+        } catch (MalformedURLException mue) {
+            mue.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (is != null) is.close();
+            } catch (IOException ioe) {
+                // nothing to see here
+            }
+        }
+
+
+        return jsonString;
+    }
 
     public String osuUrl(String nickname,String mode)
     {
@@ -450,14 +483,15 @@ public class LineBotController
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
 
+
+                        JSONObject jsonObject = new JSONObject(youtubeUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA"));
+
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
-
-                            getMessageData(Integer.toString(jsonObject.getInt("abr")),idTarget);
-
+                            getMessageData(jsonObject.getString("acodec"),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
 
                         //getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
                         //getVideoData(idTarget,"");
