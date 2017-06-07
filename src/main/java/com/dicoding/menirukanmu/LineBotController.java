@@ -83,39 +83,7 @@ public class LineBotController
     }
 
 
-    public String youtubeUrl(String string)
-    {
-        URL url;
-        InputStream is = null;
-        BufferedReader br;
-        String line;
-        String jsonString="";
-        try {
-            url = new URL(string);
-            is = url.openStream();  // throws an IOException
-            br = new BufferedReader(new InputStreamReader(is));
 
-            while ((line = br.readLine()) != null) {
-                //  System.out.println(line);
-                jsonString+=line;
-                // getMessageData(line,idTarget);
-            }
-
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (IOException ioe) {
-                // nothing to see here
-            }
-        }
-
-
-        return jsonString;
-    }
 
     public String osuUrl(String nickname,String mode)
     {
@@ -481,8 +449,15 @@ public class LineBotController
                     if(msgText.contains("/video"))
                     {
 
-                        String hasil = splitter(msgText+";","/video (.*?);","/video");
+                        String hasil="";
+                        //String hasil = splitter(msgText+";","/video (.*?);","/video");
                         JSONObject jsonObject = null;
+
+                        Pattern p = Pattern.compile("/video (.*?);");
+                        Matcher m = p.matcher(msgText+";");
+                        while (m.find()) {
+                            hasil = m.group(1);
+                        }
                         try {
                             jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+hasil);
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
