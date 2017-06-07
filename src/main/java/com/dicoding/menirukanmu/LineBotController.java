@@ -48,9 +48,9 @@ import retrofit2.Response;
 @RequestMapping(value="/linebot")
 public class LineBotController
 {
-    public String splitter(String msgText,String splitter) {
+    public String splitter(String msgText,String splitter,String content) {
         String hasil = "";
-        if (msgText.contains("/bukalapak")) {
+        if (msgText.contains(content)) {
             String string = msgText.toString();
 
                 Pattern p = Pattern.compile(splitter);
@@ -483,7 +483,7 @@ public class LineBotController
                     if(msgText.contains("/splitter"))
                     {
                         try {
-                            getMessageData(splitter(msgText,"/splitter (.*?);"),idTarget);
+                            getMessageData(splitter(msgText,"/splitter (.*?);","/splitter"),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
