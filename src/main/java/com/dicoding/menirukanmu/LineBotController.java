@@ -488,7 +488,7 @@ public class LineBotController
                         try {
                             jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
-                            getMessageData(info.get("acodec").toString(),idTarget);
+                            getMessageData(info.get("display_id").toString(),idTarget);
 
 
                             JSONObject jsonUrl = new JSONObject(info.get("url").toString());
