@@ -50,19 +50,26 @@ public class LineBotController
 {
     public String splitter(String msgText,String splitter,String content) {
         String hasil = "";
-        if (msgText.contains(content)) {
-            String string = msgText.toString();
+        if(!msgText.substring(msgText.length()-1).equals(";"))
+        {
+            return null;
+        }
+        else {
+            if (msgText.contains(content)) {
+                String string = msgText.toString();
 
                 Pattern p = Pattern.compile(splitter);
                 Matcher m = p.matcher(string);
 
                 while (m.find()) {
                     hasil = m.group(1);
-                   // hasil = hasil.replaceAll(" ", "%20");
+                    // hasil = hasil.replaceAll(" ", "%20");
                 }
             }
+            return hasil;
+        }
 
-        return hasil;
+
     }
 
 
@@ -282,13 +289,18 @@ public class LineBotController
                                     counter = true;
                                 }
                             }
-                            if(counter)
+                            if(splitter(msgText,part2,"/weather")==null)
                             {
-                                getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
+                                getMessageData("you forgot the semicolon; eg:/weather cityName;",idTarget);
                             }
                             else
                             {
-                                getMessageData("don't know",idTarget);
+                                if (counter) {
+                                    getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
+                                }
+                                else {
+                                    getMessageData("dont know",idTarget);
+                                }
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
