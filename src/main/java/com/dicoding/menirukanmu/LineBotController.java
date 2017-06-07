@@ -8,10 +8,7 @@ import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
-import com.linecorp.bot.model.message.ImageMessage;
-import com.linecorp.bot.model.message.StickerMessage;
-import com.linecorp.bot.model.message.TemplateMessage;
-import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.*;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
@@ -446,10 +443,26 @@ public class LineBotController
                                 e.printStackTrace();
                             }
                         }
+                    }
 
+                    if(msgText.contains("/video"))
+                    {
 
+                        String hasil = splitter(msgText+";","/video (.*?);","/video");
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+hasil);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            getMessageData(hasil,idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
 
+
+                        //getVideoData(idTarget,"");
+                    }
 
 
                     if(msgText.contains("/help"))
@@ -500,6 +513,10 @@ public class LineBotController
     {
         pushImageMessage(targetId,string);
     }
+    private void getVideoData(String targetId,String videoString,String imageString)
+    {
+        pushVideoMessage(targetId,videoString,imageString);
+    }
 
 
 
@@ -519,6 +536,12 @@ public class LineBotController
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
+    }
+    private void pushVideoMessage(String sourceId,String videoString,String imageString)
+    {
+        VideoMessage videoMessage = new VideoMessage(videoString,imageString);
+        PushMessage pushMessage = new PushMessage(sourceId,videoMessage);
+        response(pushMessage);
     }
     private void pushImageMessage(String sourceId,String string)
     {
