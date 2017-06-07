@@ -419,7 +419,7 @@ public class LineBotController
                             // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + hasil + "&page=1&top_seller=1&per_page=1");
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
-                            JSONArray jsonImages = new JSONArray(jsonObject.get("images").toString());
+                           // JSONArray jsonImages = new JSONArray(jsonObject.get("images").toString());
 
 
 
@@ -443,7 +443,7 @@ public class LineBotController
                             else {
                                 getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) +"\nName: "+name+"\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                 getMessageData(url,idTarget);
-                                getMessageData(jsonImages.getString(0),idTarget);
+                               // getMessageData(jsonImages.getString(0),idTarget);
 
                             }
 
