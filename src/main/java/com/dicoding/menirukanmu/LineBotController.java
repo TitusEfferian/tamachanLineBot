@@ -39,6 +39,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Response;
 
@@ -357,9 +359,20 @@ public class LineBotController
                     }
                     if(msgText.contains("/bukalapak"))
                     {
+                        String hasil = "";
+
+                        Pattern p =Pattern.compile("/bukalapak (.*?);");
+                        Matcher m =p.matcher(msgText.toLowerCase().toString());
+                        while (m.find()) {
+
+
+                            hasil=m.group(1);
+
+                        }
                         try {
                             JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=2&per_page=1");
                             getMessageData(json.get("status").toString(),idTarget);
+                            getMessageData(hasil,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
