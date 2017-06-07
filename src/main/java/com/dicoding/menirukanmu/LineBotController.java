@@ -486,8 +486,8 @@ public class LineBotController
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         try {
-                            getMessageData("my name is Tamachan, i'm the one who gonna beat hibiki!",idTarget);
-                            getMessageDataForImage(idTarget,"http://img06.deviantart.net/acb8/i/2016/132/9/8/persona_5_futaba_by_nayuta1056-da28gib.png");
+                            getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                            getMessageDataForImage(idTarget,"http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
