@@ -58,7 +58,7 @@ public class LineBotController
 
                 while (m.find()) {
                     hasil = m.group(1);
-                    hasil = hasil.replaceAll(" ", "%20");
+                   // hasil = hasil.replaceAll(" ", "%20");
                 }
             }
 
@@ -80,40 +80,6 @@ public class LineBotController
     }
 
 
-    public String bukalapakUrl(String produk)
-    {
-        URL url;
-        InputStream is = null;
-        BufferedReader br;
-        String line;
-        String jsonString="";
-
-
-
-        try {
-            url = new URL("https://api.bukalapak.com/v2/products.json?keywords="+produk+"&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
-            is = url.openStream();  // throws an IOException
-            br = new BufferedReader(new InputStreamReader(is));
-
-            while ((line = br.readLine()) != null) {
-                //  System.out.println(line);
-                jsonString+=line;
-                // getMessageData(line,idTarget);
-            }
-
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (IOException ioe) {
-                // nothing to see here
-            }
-        }
-        return jsonString;
-    }
 
     public String osuUrl(String nickname,String mode)
     {
@@ -277,10 +243,9 @@ public class LineBotController
                 if (!msgText.contains("bot leave")){
                     if(msgText.contains("/weather"))
                     {
-                        String string = msgText.toString();
-                        String[] parts = string.split(" ");
 
-                        String part2 = parts[1];
+
+                       String part2 = splitter(msgText,"/weather (.*?);","/weather");
                         try {
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
@@ -476,14 +441,6 @@ public class LineBotController
                         try {
                             getMessageData("command list : /weather [city name] \n/[osu_mode] [nickname] eg : /mania jakads\n/puasa [city_name]\n/bukalapak [product_name]; dont forget the semicolon\nunder development for personal amusement -titus efferian",idTarget);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if(msgText.contains("/splitter"))
-                    {
-                        try {
-                            getMessageData(splitter(msgText,"/splitter (.*?);","/splitter"),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
