@@ -499,8 +499,8 @@ public class LineBotController
                                 regexString = m.group(1);
                                 // hasil = hasil.replaceAll(" ", "%20");
                             }
-                            JSONObject jsonLast = new JSONObject(regexString.toString());
-                            getMessageData(jsonLast.toString(),idTarget);
+                           
+                            getMessageData(regexString,idTarget);
 
 
 
