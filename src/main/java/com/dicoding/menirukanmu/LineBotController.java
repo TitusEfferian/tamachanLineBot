@@ -457,7 +457,7 @@ public class LineBotController
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
-                            getMessageData(hasil,idTarget);
+                            getMessageData(msgText+";",idTarget);
 
 
                             for(int a=0;a<jsonArray.length();a++)
