@@ -481,6 +481,14 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/tamachan"))
+                    {
+                        try {
+                            getMessageDataForImage(idTarget,"http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                 } else {
