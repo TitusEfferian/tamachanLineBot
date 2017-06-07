@@ -126,34 +126,41 @@ public class LineBotController
     public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
     {
 
-
-
-        try {
-            String username="";
-            String countryRank="";
-            String pprank="";
-            String country="";
-            String accuracy="";
-
-            JSONArray jsonArray=new JSONArray(osuUrl(msgText,mode));
-            for(int a=0;a<jsonArray.length();a++)
-            {
-                JSONObject jsonObject = jsonArray.getJSONObject(a);
-                username=jsonObject.getString("username");
-                countryRank=jsonObject.getString("pp_country_rank");
-                pprank=jsonObject.getString("pp_rank");
-                country=jsonObject.getString("country");
-                accuracy=jsonObject.getString("accuracy");
+        if(msgText==null)
+        {
+            try {
+                getMessageData("you forgot the semicolon; eg: /mania nickname;",idTarget);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            if(username=="")
-            {
-                getMessageData("don't know",idTarget);
-            }
+        }
+        else {
 
-            getMessageData("Username: "+username+" from "+jsonNation(country).getString("name")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
-          // getMessageData(osuUrl("deceitful","2"),idTarget);
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                String username = "";
+                String countryRank = "";
+                String pprank = "";
+                String country = "";
+                String accuracy = "";
+
+                JSONArray jsonArray = new JSONArray(osuUrl(msgText, mode));
+                for (int a = 0; a < jsonArray.length(); a++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(a);
+                    username = jsonObject.getString("username");
+                    countryRank = jsonObject.getString("pp_country_rank");
+                    pprank = jsonObject.getString("pp_rank");
+                    country = jsonObject.getString("country");
+                    accuracy = jsonObject.getString("accuracy");
+                }
+                if (username == "") {
+                    getMessageData("don't know", idTarget);
+                }
+
+                getMessageData("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", idTarget);
+                // getMessageData(osuUrl("deceitful","2"),idTarget);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -311,15 +318,15 @@ public class LineBotController
                     }
                     if(msgText.contains("/ctb"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
+                        jsonResultForOsu(splitter(msgText,"/ctb (.*?);","/ctb"),idTarget,"2","Catch the Beat");
                     }
                     if(msgText.contains("/taiko"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
+                        jsonResultForOsu(splitter(msgText,"/taiko (.*?);","/taiko"),idTarget,"1","Taiko");
                     }
                     if(msgText.contains("/std"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
+                        jsonResultForOsu(splitter(msgText,"/std (.*?);","/std"),idTarget,"0","Osu Standard!");
                     }
                     if(msgText.contains("/puasa"))
                     {
