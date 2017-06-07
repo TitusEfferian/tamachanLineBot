@@ -482,14 +482,13 @@ public class LineBotController
                     {
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
-
-                        String regexString ="";
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+hasil);
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
+                            getMessageData(hasil,idTarget);
 
 
                             for(int a=0;a<jsonArray.length();a++)
@@ -499,7 +498,7 @@ public class LineBotController
 
                             }
                           // getVideoData(idTarget,result,info.get("thumbnail").toString());
-                            getMessageData(hasil,idTarget);
+                            //getMessageData(hasil,idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
