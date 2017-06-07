@@ -1136,9 +1136,10 @@ public class LineBotController
                                 "  \"url\": \"https://www.youtube.com/watch?v=7g6ruRV_pUA\"\n" +
                                 "}";
                         JSONObject jsonObject = new JSONObject(string);
+                        JSONObject info = new JSONObject(jsonObject.get("info").toString());
 
                         try {
-                            getMessageData(jsonObject.get("acodec").toString(),idTarget);
+                            getMessageData(info.get("acodec").toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
