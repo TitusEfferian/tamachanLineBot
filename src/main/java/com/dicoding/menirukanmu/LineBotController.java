@@ -416,14 +416,27 @@ public class LineBotController
 
                         }
                         try {
-                            getMessageData(hasil,idTarget);
+
+
+
+                            // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
+                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
+                            JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
+
+                            for (int a = 0; a < jsonArray.length(); a++) {
+                                JSONObject jsonPart = jsonArray.getJSONObject(a);
+                                price = jsonPart.getInt("price");
+                                positive = jsonPart.getInt("seller_positive_feedback");
+                                negative = jsonPart.getInt("seller_negative_feedback");
+                                seller_name = jsonPart.getString("seller_name");
+
+                            }
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
+                            getMessageData(string, idTarget);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-
-
-
 
                     }
 
