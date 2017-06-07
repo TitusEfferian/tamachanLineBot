@@ -490,7 +490,7 @@ public class LineBotController
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             getMessageData(info.get("display_id").toString(),idTarget);
 
-                            String string = info.toString();
+                            String string = jsonObject.toString();
 
                             Pattern p = Pattern.compile("uploader(.*?)},");
                             Matcher m = p.matcher(string);
@@ -499,7 +499,7 @@ public class LineBotController
                                 regexString = m.group(1);
                                 // hasil = hasil.replaceAll(" ", "%20");
                             }
-                           
+
                             getMessageData(regexString,idTarget);
 
 
