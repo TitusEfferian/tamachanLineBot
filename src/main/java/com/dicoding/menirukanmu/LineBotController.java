@@ -397,7 +397,7 @@ public class LineBotController
                         String string=msgText.toLowerCase().toLowerCase();
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
-                        Matcher m =p.matcher(msgText.toLowerCase().toString());
+                        Matcher m =p.matcher(string);
                         while (m.find()) {
 
 
