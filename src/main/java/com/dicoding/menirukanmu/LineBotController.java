@@ -455,6 +455,7 @@ public class LineBotController
 
 
                             getMessageData(jsonObject.get("ext").toString(),idTarget);
+                            getMessageData(hasil,idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
