@@ -482,19 +482,11 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/tamachan"))
-                    {
 
-                        try {
-                            getMessageDataForImage(idTarget,"http://static.zerochan.net/Sakura.Futaba.%28Persona.5%29.full.2042643.jpg");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
 
                 } else {
-                    String imagesUrl ="http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg";
+                    String imagesUrl ="http://s3.zerochan.net/Sakura.Futaba.%28Persona.5%29.240.2054309.jpg";
                     if (payload.events[0].source.type.equals("group")){
                         try {
                             getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
