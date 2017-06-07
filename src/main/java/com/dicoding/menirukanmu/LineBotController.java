@@ -451,14 +451,12 @@ public class LineBotController
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+hasil);
+                            getMessageData(jsonObject.get("abr").toString(),idTarget);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        try {
-                            getMessageData(hasil,idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
 
 
                         //getVideoData(idTarget,"");
