@@ -393,7 +393,7 @@ public class LineBotController
                     }
                     if(msgText.contains("/bukalapak"))
                     {
-                        String hasil = "";
+                        String hasil = msgText.toLowerCase().toString();
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(msgText.toLowerCase().toString());
