@@ -190,7 +190,7 @@ public class LineBotController
     @Autowired
     @Qualifier("com.linecorp.channel_secret")
     String lChannelSecret;
-    
+
     @Autowired
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
@@ -450,11 +450,8 @@ public class LineBotController
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
 
-                        try {
-                            getMessageData(hasil,idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
+
 
 
                         //getVideoData(idTarget,"");
@@ -495,7 +492,7 @@ public class LineBotController
 
             }
         }
-         
+
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
