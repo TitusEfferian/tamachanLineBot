@@ -456,9 +456,6 @@ public class LineBotController
                                     getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                     getMessageData(url, idTarget);
                                     getMessageDataForImage(idTarget, imagesUrl);
-
-                                    // getMessageData(jsonImages.getString(0),idTarget);
-
                                 }
 
                             } catch (IOException e) {
@@ -483,7 +480,12 @@ public class LineBotController
                     }
                     if(msgText.contains("/tamachan"))
                     {
-                       getTamachan(idTarget);
+                        try {
+                            getMessageData("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg",idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        getTamachan(idTarget);
                     }
 
 
