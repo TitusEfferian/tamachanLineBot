@@ -398,18 +398,7 @@ public class LineBotController
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(string);
-                        while (m.find()) {
 
-
-                            hasil+=m.group(1).toString();
-                            try {
-                                getMessageData(hasil,idTarget);
-                            
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
                         int price=0;
                         int positive=0;
                         int negative=0;
@@ -417,6 +406,9 @@ public class LineBotController
 
 
                         try {
+                            while (m.find()) {
+                                hasil+=m.group(1).toString();
+                            }
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
 
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
