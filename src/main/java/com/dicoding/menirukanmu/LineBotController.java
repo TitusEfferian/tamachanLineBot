@@ -407,7 +407,14 @@ public class LineBotController
                         try {
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=1&top_seller=1&per_page=1&u=67287:lXymG93y83m6RHzZV5FY");
 
-                            getMessageData(jsonObject.getString("price"),idTarget);
+                            JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
+
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonPart = jsonArray.getJSONObject(a);
+                                getMessageData(Integer.toString(jsonPart.getInt("price")),idTarget);
+                            }
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
