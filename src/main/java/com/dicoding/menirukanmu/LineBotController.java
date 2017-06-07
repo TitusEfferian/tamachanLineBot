@@ -395,7 +395,7 @@ public class LineBotController
                     {
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
-                        String debug ="asus zenfone 3 max";
+                        String debug ="asus%20zenfone%203";
 
                         String part2 = parts[1];
                         String hasil = "";
