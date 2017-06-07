@@ -391,53 +391,57 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/bukalapak"))
-                    {
+                    if(msgText.contains("/bukalapak")) {
                         String string = msgText.toString();
                         String hasil = "";
 
 
-                        Pattern p =Pattern.compile("/bukalapak (.*?);");
-                        Matcher m =p.matcher(string);
+                        Pattern p = Pattern.compile("/bukalapak (.*?);");
+                        Matcher m = p.matcher(string);
 
-                        int price=0;
-                        int positive=0;
-                        int negative=0;
-                        String seller_name="";
-                        String name="";
+                        int price = 0;
+                        int positive = 0;
+                        int negative = 0;
+                        String seller_name = "";
+                        String name = "";
                         while (m.find()) {
 
                             hasil = m.group(1);
-                            hasil=hasil.replaceAll(" ","%20");
+                            hasil = hasil.replaceAll(" ", "%20");
 
 
                         }
                         try {
 
 
-
                             // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
-                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
+                            JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + hasil + "&page=1&top_seller=1&per_page=1");
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
 
+                            if (jsonObject.get("products").toString() == "") {
+                                getMessageData("don't know...", idTarget);
+                            } else {
+
+                                for (int a = 0; a < jsonArray.length(); a++) {
+                                    JSONObject jsonPart = jsonArray.getJSONObject(a);
 
 
-                            for (int a = 0; a < jsonArray.length(); a++) {
-                                JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                price = jsonPart.getInt("price");
-                                positive = jsonPart.getInt("seller_positive_feedback");
-                                negative = jsonPart.getInt("seller_negative_feedback");
-                                seller_name = jsonPart.getString("seller_name");
+                                    price = jsonPart.getInt("price");
+                                    positive = jsonPart.getInt("seller_positive_feedback");
+                                    negative = jsonPart.getInt("seller_negative_feedback");
+                                    seller_name = jsonPart.getString("seller_name");
 
+                                }
+                                getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating" + Integer.toString(negative) + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                             }
-                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price)+"\n",idTarget);
-                      
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch(IOException e){
+                                e.printStackTrace();
+                            }
+
+
                         }
 
-                    }
 
 
                     if(msgText.contains("/help"))
