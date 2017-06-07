@@ -123,12 +123,11 @@ public class LineBotController
 
         return jsonString;
     }
-    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
+    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode,String part2)
     {
 
-        String string = msgText.toString();
-        String[] parts = string.split(" ");
-        String part2 = parts[1];
+
+
 
         try {
             String username="";
@@ -309,20 +308,14 @@ public class LineBotController
                     //osu
                     if(msgText.contains("/mania"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania");
+
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania",splitter(msgText,"/mania (.*?);","/mania"));
                     }
                     if(msgText.contains("/ctb"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat",splitter(msgText,"/ctb (.*?);","/ctb"));
                     }
-                    if(msgText.contains("/taiko"))
-                    {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
-                    }
-                    if(msgText.contains("/std"))
-                    {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
-                    }
+               
                     if(msgText.contains("/puasa"))
                     {
                         //5db94b590c066277ad540f984a288bac
