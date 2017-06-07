@@ -404,6 +404,7 @@ public class LineBotController
                         int negative = 0;
                         String seller_name = "";
                         String name = "";
+                        String url="";
                         while (m.find()) {
 
                             hasil = m.group(1);
@@ -422,12 +423,11 @@ public class LineBotController
                                 for (int a = 0; a < jsonArray.length(); a++) {
                                     JSONObject jsonPart = jsonArray.getJSONObject(a);
 
-
-
                                     price = jsonPart.getInt("price");
                                     positive = jsonPart.getInt("seller_positive_feedback");
                                     negative = jsonPart.getInt("seller_negative_feedback");
                                     seller_name = jsonPart.getString("seller_name");
+                                    url=jsonPart.getString("url");
 
                                 }
                             if(seller_name == "" && price ==0)
@@ -436,6 +436,7 @@ public class LineBotController
                             }
                             else {
                                 getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating" + Integer.toString(negative) + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
+                                getMessageData(url,idTarget);
                             }
 
                             } catch(IOException e){
