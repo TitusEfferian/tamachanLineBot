@@ -483,6 +483,15 @@ public class LineBotController
                         }
                     }
 
+                    if(msgText.contains("/tamachan"))
+                    {
+                        try {
+                            getMessageDataForImage(idTarget,"http://s3.zerochan.net/Sakura.Futaba.%28Persona.5%29.240.2054309.jpg");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
 
 
                 } else {
