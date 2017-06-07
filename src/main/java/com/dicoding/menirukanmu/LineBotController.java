@@ -288,13 +288,16 @@ public class LineBotController
                                     counter = true;
                                 }
                             }
-                            if(counter)
+                            if(part2==null)
                             {
-                                getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
+                                getMessageData("you forgot the semicolon; eg: /weather cityName;",idTarget);
                             }
-                            else
-                            {
-                                getMessageData("don't know",idTarget);
+                            else {
+                                if (counter) {
+                                    getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
+                                } else {
+                                    getMessageData("don't know", idTarget);
+                                }
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
