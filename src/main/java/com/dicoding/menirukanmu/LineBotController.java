@@ -395,7 +395,7 @@ public class LineBotController
                     {
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
-                        String debug ="asus%20zenfone%203";
+
 
                         String part2 = parts[1];
                         String hasil = "";
@@ -408,31 +408,22 @@ public class LineBotController
                         int positive=0;
                         int negative=0;
                         String seller_name="";
+                        while (m.find()) {
 
+                            hasil = m.group(1);
+                            hasil=hasil.replaceAll(" ","%20");
+                            try {
+                                getMessageData(hasil,idTarget);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
-                        try {
-
-
-
-                               // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
-                                JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+part2+"&page=1&top_seller=1&per_page=1");
-                                JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
-
-                                for (int a = 0; a < jsonArray.length(); a++) {
-                                    JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                    price = jsonPart.getInt("price");
-                                    positive = jsonPart.getInt("seller_positive_feedback");
-                                    negative = jsonPart.getInt("seller_negative_feedback");
-                                    seller_name = jsonPart.getString("seller_name");
-
-                                }
-                                getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
-                                getMessageData(string, idTarget);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
 
+
+
+
+                       
                     }
 
 
