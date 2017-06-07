@@ -483,17 +483,24 @@ public class LineBotController
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
 
-
+                        String regexString ="";
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             getMessageData(info.get("display_id").toString(),idTarget);
 
+                            String string = info.toString();
 
-                            JSONObject jsonUrl = new JSONObject(info.get("url").toString());
-                            getMessageData(jsonUrl.toString(),idTarget);
+                            Pattern p = Pattern.compile("uploader(.*?)},");
+                            Matcher m = p.matcher(string);
 
+                            while (m.find()) {
+                                regexString = m.group(1);
+                                // hasil = hasil.replaceAll(" ", "%20");
+                            }
+                            JSONObject jsonLast = new JSONObject(regexString.toString());
+                            getMessageData(jsonLast.toString(),idTarget);
 
 
 
