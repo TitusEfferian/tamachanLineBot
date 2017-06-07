@@ -483,11 +483,7 @@ public class LineBotController
                     }
                     if(msgText.contains("/tamachan"))
                     {
-                        try {
-                            getMessageDataForImage(idTarget,"http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                       getTamachan(idTarget);
                     }
 
 
@@ -523,13 +519,14 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
-    private void getMessageDataForSticker(String targetID) throws  IOException
-    {
-        pushSticker(targetID);
-    }
+
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
         pushImageMessage(targetId,string);
+    }
+    private void getTamachan(String sourceId)
+    {
+        pushImageTamachan(sourceId);
     }
 
 
@@ -558,6 +555,10 @@ public class LineBotController
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
        response(pushMessage);
     }
+    private void pushImageTamachan(String source)
+    {
+        ImageMessage imageMessage=new ImageMessage("http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg","http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
+    }
 
     private void response(PushMessage pushMessage)
     {
@@ -573,14 +574,6 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void pushSticker(String sourceID)
-    {
-        Random random = new Random();
-        StickerMessage sticker = new StickerMessage("1",Integer.toString(random.nextInt(17)+1));
-        PushMessage pushMessage = new PushMessage(sourceID,sticker);
-        response(pushMessage);
-    }
-
 
     private void pushMessage(String sourceId, String txt){
         TextMessage textMessage = new TextMessage(txt);
