@@ -486,7 +486,7 @@ public class LineBotController
                     {
 
                         try {
-                            getMessageDataForImage(idTarget,"https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+                            getMessageDataForImage(idTarget,"http://static.zerochan.net/Sakura.Futaba.%28Persona.5%29.full.2042643.jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
