@@ -482,7 +482,7 @@ public class LineBotController
                     {
 
                         try {
-                            getTamachan(idTarget);
+                            getMessageData(idTarget,"https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -526,10 +526,7 @@ public class LineBotController
     {
         pushImageMessage(targetId,string);
     }
-    private void getTamachan(String sourceId)throws  IOException
-    {
-        pushImageTamachan(sourceId);
-    }
+
 
 
 
@@ -556,12 +553,6 @@ public class LineBotController
         // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
         PushMessage pushMessage=new PushMessage(sourceId,imageMessage);
        response(pushMessage);
-    }
-    private void pushImageTamachan(String source)
-    {
-        ImageMessage imageMessage=new ImageMessage("http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg","http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
-        PushMessage pushMessage = new PushMessage(source,imageMessage);
-        response(pushMessage);
     }
 
     private void response(PushMessage pushMessage)
