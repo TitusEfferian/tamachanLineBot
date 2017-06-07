@@ -142,6 +142,7 @@ public class LineBotController
                 String pprank = "";
                 String country = "";
                 String accuracy = "";
+                String userid="";
 
                 JSONArray jsonArray = new JSONArray(osuUrl(msgText, mode));
                 for (int a = 0; a < jsonArray.length(); a++) {
@@ -151,12 +152,14 @@ public class LineBotController
                     pprank = jsonObject.getString("pp_rank");
                     country = jsonObject.getString("country");
                     accuracy = jsonObject.getString("accuracy");
+                    userid =jsonObject.getString("user_id");
                 }
                 if (username == "") {
                     getMessageData("don't know", idTarget);
                 }
 
                 getMessageData("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", idTarget);
+                getMessageDataForImage(idTarget,"https://a.ppy.sh/"+userid);
                 // getMessageData(osuUrl("deceitful","2"),idTarget);
             } catch (IOException e) {
                 e.printStackTrace();
