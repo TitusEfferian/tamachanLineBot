@@ -412,18 +412,19 @@ public class LineBotController
 
                             hasil = m.group(1);
                             hasil=hasil.replaceAll(" ","%20");
-                            try {
-                                getMessageData(hasil,idTarget);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
 
+
+                        }
+                        try {
+                            getMessageData(hasil,idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
 
 
 
 
-                       
+
                     }
 
 
