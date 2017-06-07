@@ -16,6 +16,7 @@ import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
 import com.sun.org.apache.bcel.internal.generic.PUSH;
+import netscape.javascript.JSObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -404,6 +405,7 @@ public class LineBotController
                         int positive=0;
                         int negative=0;
                         String seller_name="";
+                        String name="";
                         while (m.find()) {
 
                             hasil = m.group(1);
@@ -418,7 +420,15 @@ public class LineBotController
                             // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
-                           
+                            JSONArray jsonArray2 = new JSONArray(jsonObject.get("tag_pages"));
+
+                            for(int a=0;a<jsonArray2.length();a++)
+                            {
+                                JSONObject jsonPart = jsonArray2.getJSONObject(a);
+                                name=jsonPart.getString("name");
+
+                            }
+
 
                             for (int a = 0; a < jsonArray.length(); a++) {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
@@ -428,8 +438,8 @@ public class LineBotController
                                 seller_name = jsonPart.getString("seller_name");
 
                             }
-                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price)+"\n"+jsonObject.get("url").toString(),idTarget);
-
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price)+"\n",idTarget);
+                            getMessageData("\n"+name,idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
