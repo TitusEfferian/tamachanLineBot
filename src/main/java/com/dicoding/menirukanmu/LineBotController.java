@@ -452,13 +452,7 @@ public class LineBotController
 
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
-                            if(jsonObject.getString("info")!="") {
-                                getMessageData(jsonObject.getString("info"), idTarget);
-                            }
-                            else
-                            {
-                                getMessageData("error",idTarget);
-                            }
+                           getMessageData(jsonObject.getString("abr"),idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
