@@ -378,7 +378,7 @@ public class LineBotController
 
                         try {
                            // JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+"/daily/07-06-2017.json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+"/daily/08-06-2017.json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
 
                             for(int a=0;a<jsonArray.length();a++)
@@ -482,15 +482,6 @@ public class LineBotController
                     {
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
-
-
-                        JSONObject jsonObject = new JSONObject(youtubeUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA"));
-
-                        try {
-                            getMessageData(jsonObject.getString("acodec"),idTarget);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
 
 
                         //getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
