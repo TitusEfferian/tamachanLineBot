@@ -123,9 +123,8 @@ public class LineBotController
 
         return jsonString;
     }
-    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode,String part2)
+    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
     {
-
 
 
 
@@ -136,7 +135,7 @@ public class LineBotController
             String country="";
             String accuracy="";
 
-            JSONArray jsonArray=new JSONArray(osuUrl(part2,mode));
+            JSONArray jsonArray=new JSONArray(osuUrl(msgText,mode));
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(a);
@@ -308,14 +307,20 @@ public class LineBotController
                     //osu
                     if(msgText.contains("/mania"))
                     {
-
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"3","osu!Mania",splitter(msgText,"/mania (.*?);","/mania"));
+                        jsonResultForOsu(splitter(msgText,"/mania (.*?);","/mania"),idTarget,"3","osu!Mania");
                     }
                     if(msgText.contains("/ctb"))
                     {
-                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat",splitter(msgText,"/ctb (.*?);","/ctb"));
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"2","Catch the Beat");
                     }
-               
+                    if(msgText.contains("/taiko"))
+                    {
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"1","Taiko");
+                    }
+                    if(msgText.contains("/std"))
+                    {
+                        jsonResultForOsu(msgText.toLowerCase().toString(),idTarget,"0","Osu Standard!");
+                    }
                     if(msgText.contains("/puasa"))
                     {
                         //5db94b590c066277ad540f984a288bac
