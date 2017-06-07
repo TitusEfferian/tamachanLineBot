@@ -391,7 +391,7 @@ public class LineBotController
 
                            // getMessageData("Seller Name: "+sellerName+"\nPositive Rating: "+positifRating+"\nNegative Rating: "+negativeRating+"\nprice: "+price,idTarget);
                             getMessageData(json.get("status").toString(),idTarget);
-                            getMessageData(sellerName,idTarget);
+                           // getMessageData(sellerName,idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
