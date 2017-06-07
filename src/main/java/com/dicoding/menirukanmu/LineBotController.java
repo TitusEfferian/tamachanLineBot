@@ -498,7 +498,8 @@ public class LineBotController
                                 result=jsonPart.getString("url");
 
                             }
-                           getVideoData(idTarget,result,info.get("thumbnail").toString());
+                          // getVideoData(idTarget,result,info.get("thumbnail").toString());
+                            getMessageData(hasil,idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
