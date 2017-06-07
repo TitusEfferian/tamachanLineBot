@@ -48,6 +48,25 @@ import retrofit2.Response;
 @RequestMapping(value="/linebot")
 public class LineBotController
 {
+    public String splitter(String msgText,String splitter) {
+        String hasil = "";
+        if (msgText.contains("/bukalapak")) {
+            String string = msgText.toString();
+
+                Pattern p = Pattern.compile(splitter);
+                Matcher m = p.matcher(string);
+
+                while (m.find()) {
+                    hasil = m.group(1);
+                    hasil = hasil.replaceAll(" ", "%20");
+                }
+            }
+
+        return hasil;
+    }
+
+
+
 
     public JSONObject jsonNation(String id) {
         JSONObject jsonObject = null;
@@ -364,9 +383,6 @@ public class LineBotController
                                 getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr+"\nshurooq: "+shurooq+"\ndhuhr: "+dhuhr+"\nasr: "+asr+"\nmaghrib: "+maghrib+"\nisha: "+isha+"\n -http://muslimsalat.com-",idTarget);
 
                             }
-
-
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -385,16 +401,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    /*if(msgText.contains("love live"))
-                    {
-                        try {
-                            getMessageData("did i hear love live????",idTarget);
-                             getMessageDataForImage(idTarget);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }*/
                     if(msgText.contains("/bukalapak")) {
                         String string = msgText.toString();
                         String hasil = "";
@@ -422,21 +429,12 @@ public class LineBotController
                             String imagesUrl = "";
 
                             while (m.find()) {
-
                                 hasil = m.group(1);
                                 hasil = hasil.replaceAll(" ", "%20");
-
-
                             }
                             try {
-
-
-                                // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
                                 JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + hasil + "&page=1&top_seller=1&per_page=1");
                                 JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
-                                // JSONArray jsonImages = new JSONArray(jsonObject.get("images").toString());
-
-
                                 for (int a = 0; a < jsonArray.length(); a++) {
                                     JSONObject jsonPart = jsonArray.getJSONObject(a);
 
@@ -482,8 +480,14 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-
-
+                    if(msgText.contains("/splitter"))
+                    {
+                        try {
+                            getMessageData(splitter(msgText,"/splitter (.*?);"),idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                 } else {
