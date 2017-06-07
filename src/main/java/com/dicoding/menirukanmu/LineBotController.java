@@ -66,10 +66,9 @@ public class LineBotController
                     // hasil = hasil.replaceAll(" ", "%20");
                 }
             }
-            return hasil;
         }
 
-
+        return hasil;
     }
 
 
@@ -289,18 +288,13 @@ public class LineBotController
                                     counter = true;
                                 }
                             }
-                            if(splitter(msgText,part2,"/weather")==null)
+                            if(counter)
                             {
-                                getMessageData("you forgot the semicolon; eg:/weather cityName;",idTarget);
+                                getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
                             }
                             else
                             {
-                                if (counter) {
-                                    getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
-                                }
-                                else {
-                                    getMessageData("dont know",idTarget);
-                                }
+                                getMessageData("don't know",idTarget);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
