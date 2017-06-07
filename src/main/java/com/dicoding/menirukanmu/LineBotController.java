@@ -376,8 +376,6 @@ public class LineBotController
                             String positifRating="";
                             String negativeRating="";
                             String price ="";
-
-
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
@@ -387,10 +385,9 @@ public class LineBotController
                                 negativeRating=jsonObject.getString("seller_negative_feedback");
 
                             }
-
-                           getMessageData("Seller Name: "+sellerName+"\nPositive Rating: "+positifRating+"\nNegative Rating: "+negativeRating+"\nprice: "+price,idTarget);
-                            //getMessageData(json.get("banner").toString(),idTarget);
-                           // getMessageData(sellerName,idTarget);
+                          // getMessageData("Seller Name: "+sellerName+"\nPositive Rating: "+positifRating+"\nNegative Rating: "+negativeRating+"\nprice: "+price,idTarget);
+                            getMessageData(json.get("banner").toString(),idTarget);
+                           getMessageData(jsonArray.toString(),idTarget);
 
                         } catch (IOException e) {
                             e.printStackTrace();
