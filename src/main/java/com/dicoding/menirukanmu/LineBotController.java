@@ -423,8 +423,8 @@ public class LineBotController
                                 seller_name=jsonPart.getString("seller_name");
 
                             }
-                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating: "+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
-
+                           // getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating: "+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
+                            getMessageData(hasil,idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
