@@ -259,7 +259,7 @@ public class LineBotController
                     {
 
 
-                       String part2 = splitter(msgText,"/weather (.*?);","/weather");
+                       String part2 = splitter(msgText+";","/weather (.*?);","/weather");
                         try {
 
                             JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
