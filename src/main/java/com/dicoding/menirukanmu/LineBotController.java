@@ -393,7 +393,7 @@ public class LineBotController
                     }
                     if(msgText.contains("/bukalapak"))
                     {
-                        String hasil = msgText.toLowerCase().toString();
+                        String hasil = msgText.toString();
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(msgText.toLowerCase().toString());
@@ -423,7 +423,7 @@ public class LineBotController
                                 seller_name=jsonPart.getString("seller_name");
 
                             }
-                            getMessageData(hasil,idTarget);
+                           // getMessageData(hasil,idTarget);
                             getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
 
                         } catch (IOException e) {
