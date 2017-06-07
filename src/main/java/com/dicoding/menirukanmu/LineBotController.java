@@ -395,7 +395,7 @@ public class LineBotController
                     {
                         String string = msgText.toString();
                         String hasil = "";
-                    
+
 
                         Pattern p =Pattern.compile("/bukalapak (.*?);");
                         Matcher m =p.matcher(string);
@@ -418,6 +418,7 @@ public class LineBotController
                             // JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=" + m.group(1).toString() + "&page=1&top_seller=1&per_page=1");
                             JSONObject jsonObject = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords="+hasil+"&page=1&top_seller=1&per_page=1");
                             JSONArray jsonArray = new JSONArray(jsonObject.get("products").toString());
+                            JSONArray jsonArray2 = new JSONArray(jsonObject.get(""))
 
                             for (int a = 0; a < jsonArray.length(); a++) {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
@@ -427,7 +428,7 @@ public class LineBotController
                                 seller_name = jsonPart.getString("seller_name");
 
                             }
-                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price),idTarget);
+                            getMessageData("Seller Name: "+seller_name+"\nPositive Rating: "+Integer.toString(positive)+"\nNegative Rating"+Integer.toString(negative)+"\nPrice: Rp. "+Integer.toString(price)+"\n"+jsonObject.get("url").toString(),idTarget);
 
 
                         } catch (IOException e) {
