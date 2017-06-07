@@ -450,11 +450,11 @@ public class LineBotController
                     {
 
 
-                        JSONObject jsonObject = null;
+
 
                         try {
                             String splitterString = splitter(msgText+";","/video (.*?);","/video");
-                            jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
+                            JSONObject jsonObject =new JSONObject(readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=np9AW0bWdfg&t=336s"));
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
