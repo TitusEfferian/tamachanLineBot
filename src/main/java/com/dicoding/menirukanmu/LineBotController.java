@@ -482,6 +482,17 @@ public class LineBotController
                     {
 
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
+                        String video="";
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=7g6ruRV_pUA");
+                            JSONArray jsonArray = new JSONArray(jsonObject.get("categories").toString());
+                            video = jsonArray.getString(0);
+                            getMessageData(video,idTarget);
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
 
                         //getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
