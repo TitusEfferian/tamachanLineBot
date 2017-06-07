@@ -449,12 +449,11 @@ public class LineBotController
                     if(msgText.contains("/video"))
                     {
 
-
                         String hasil = splitter(msgText+";","/video (.*?);","/video");
                         JSONObject jsonObject = null;
 
                         try {
-                            jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=QssQip_BVZ4");
+                            jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=https://www.youtube.com/watch?v=pKXU9haPykE");
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
