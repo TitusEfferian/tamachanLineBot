@@ -156,6 +156,10 @@ public class LineBotController
                 country=jsonObject.getString("country");
                 accuracy=jsonObject.getString("accuracy");
             }
+            if(username=="")
+            {
+                getMessageData("don't know",idTarget);
+            }
 
             getMessageData("Username: "+username+" from "+jsonNation(country).getString("name")+"\nMode: "+osuMode+"\nCountry Rank: "+countryRank+"\nGlobal Rank: "+pprank+"\nAccuracy: "+Math.round(Double.parseDouble(accuracy))+"%",idTarget);
           // getMessageData(osuUrl("deceitful","2"),idTarget);
@@ -482,7 +486,7 @@ public class LineBotController
                     {
 
                         try {
-                            getMessageData(idTarget,"https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
+                            getMessageDataForImage(idTarget,"https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
