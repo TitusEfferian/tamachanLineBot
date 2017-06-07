@@ -359,7 +359,7 @@ public class LineBotController
                     {
                         try {
                             JSONObject json = readJsonFromUrl("https://api.bukalapak.com/v2/products.json?keywords=asus%20zenfone%203&page=2&per_page=1");
-                            getMessageData(json.toString(),idTarget);
+                            getMessageData(json.get("status").toString(),idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
