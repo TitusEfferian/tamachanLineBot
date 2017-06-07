@@ -484,15 +484,22 @@ public class LineBotController
 
 
                 } else {
+                    String imagesUrl ="http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg";
                     if (payload.events[0].source.type.equals("group")){
                         try {
                             getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-                            getMessageDataForImage(idTarget,"http://www.005.tv/uploads/allimg/160711/144J63334-20.jpg");
+                            getMessageDataForImage(idTarget,imagesUrl);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
+                        try {
+                            getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                            getMessageDataForImage(idTarget,imagesUrl);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
