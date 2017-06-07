@@ -381,7 +381,7 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("love live"))
+                    /*if(msgText.contains("love live"))
                     {
                         try {
                             getMessageData("did i hear love live????",idTarget);
@@ -390,7 +390,7 @@ public class LineBotController
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
+                    }*/
                     if(msgText.contains("/bukalapak")) {
                         String string = msgText.toString();
                         String hasil = "";
