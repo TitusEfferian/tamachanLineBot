@@ -404,7 +404,7 @@ public class LineBotController
                             hasil+=m.group(1).toString();
                             try {
                                 getMessageData(hasil,idTarget);
-                                getMessageData(m.group(1),idTarget);
+                            
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
