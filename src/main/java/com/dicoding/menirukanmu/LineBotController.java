@@ -495,7 +495,7 @@ public class LineBotController
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                getMessageData(jsonPart.getString("format_id"),idTarget);
+                                getMessageData(jsonPart.getString("url"),idTarget);
                             }
 
 
