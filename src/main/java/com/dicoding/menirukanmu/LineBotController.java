@@ -480,12 +480,12 @@ public class LineBotController
                     }
                     if(msgText.contains("/tamachan"))
                     {
+
                         try {
-                            getMessageData("https://bisakimiadotcom.files.wordpress.com/2015/03/trash.jpg",idTarget);
+                            getTamachan(idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        getTamachan(idTarget);
                     }
 
 
@@ -526,7 +526,7 @@ public class LineBotController
     {
         pushImageMessage(targetId,string);
     }
-    private void getTamachan(String sourceId)
+    private void getTamachan(String sourceId)throws  IOException
     {
         pushImageTamachan(sourceId);
     }
