@@ -12,6 +12,7 @@ import com.linecorp.bot.model.message.*;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
+
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.regexp.internal.RE;
 import org.json.JSONArray;
@@ -492,9 +493,12 @@ public class LineBotController
 
                         if (msgText.contains("/debug")) {
 
+
+
+
                             try {
                                 debug("debug1",idTarget);
-                                debug("debug2",idTarget);
+                                getMessageDataForImage(idTarget,"https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -571,6 +575,7 @@ public class LineBotController
     }*/
 
     private void replyToUser(String sourceId, String txt){
+
 
         TextMessage textMessage = new TextMessage(txt);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
