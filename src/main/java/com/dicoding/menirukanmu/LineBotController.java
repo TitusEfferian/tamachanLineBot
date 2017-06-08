@@ -50,15 +50,12 @@ import retrofit2.Response;
 
 @RestController
 @RequestMapping(value="/linebot")
-public class LineBotController
-{
-    public String splitter(String msgText,String splitter,String content) {
+public class LineBotController {
+    public String splitter(String msgText, String splitter, String content) {
         String hasil = "";
-        if(!msgText.substring(msgText.length()-1).equals(";"))
-        {
+        if (!msgText.substring(msgText.length() - 1).equals(";")) {
             return null;
-        }
-        else {
+        } else {
             if (msgText.contains(content)) {
                 String string = msgText.toString();
 
@@ -76,12 +73,10 @@ public class LineBotController
     }
 
 
-
-
     public JSONObject jsonNation(String id) {
         JSONObject jsonObject = null;
         try {
-            jsonObject = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/"+id);
+            jsonObject = readJsonFromUrl("https://restcountries.eu/rest/v2/alpha/" + id);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,30 +85,26 @@ public class LineBotController
     }
 
 
-
-
-    public String osuUrl(String nickname,String mode)
-    {
+    public String osuUrl(String nickname, String mode) {
         URL url;
         InputStream is = null;
         BufferedReader br;
         String line;
-        String jsonString="";
-
+        String jsonString = "";
 
 
         try {
-            url = new URL("https://osu.ppy.sh/api/get_user?u="+nickname+"&k=37967304c711a663eb326dcf8b41e1a5987e2b7f&m="+mode);
+            url = new URL("https://osu.ppy.sh/api/get_user?u=" + nickname + "&k=37967304c711a663eb326dcf8b41e1a5987e2b7f&m=" + mode);
             is = url.openStream();  // throws an IOException
             br = new BufferedReader(new InputStreamReader(is));
 
             while ((line = br.readLine()) != null) {
                 //  System.out.println(line);
-                jsonString+=line;
+                jsonString += line;
                 // getMessageData(line,idTarget);
             }
 
-           } catch (MalformedURLException mue) {
+        } catch (MalformedURLException mue) {
             mue.printStackTrace();
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -128,18 +119,16 @@ public class LineBotController
 
         return jsonString;
     }
-    public void jsonResultForOsu(String msgText,String idTarget,String mode,String osuMode)
-    {
 
-        if(msgText==null)
-        {
+    public void jsonResultForOsu(String msgText, String idTarget, String mode, String osuMode) {
+
+        if (msgText == null) {
             try {
-                getMessageData("you forgot the semicolon; eg: /mania nickname;",idTarget);
+                getMessageData("you forgot the semicolon; eg: /mania nickname;", idTarget);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
 
             try {
                 String username = "";
@@ -147,7 +136,7 @@ public class LineBotController
                 String pprank = "";
                 String country = "";
                 String accuracy = "";
-                String userid="";
+                String userid = "";
 
                 JSONArray jsonArray = new JSONArray(osuUrl(msgText, mode));
                 for (int a = 0; a < jsonArray.length(); a++) {
@@ -157,21 +146,20 @@ public class LineBotController
                     pprank = jsonObject.getString("pp_rank");
                     country = jsonObject.getString("country");
                     accuracy = jsonObject.getString("accuracy");
-                    userid =jsonObject.getString("user_id");
+                    userid = jsonObject.getString("user_id");
                 }
                 if (username == "") {
                     getMessageData("don't know", idTarget);
                 }
 
                 getMessageData("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", idTarget);
-                getMessageDataForImage(idTarget,"https://a.ppy.sh/"+userid);
+                getMessageDataForImage(idTarget, "https://a.ppy.sh/" + userid);
                 // getMessageData(osuUrl("deceitful","2"),idTarget);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
 
     private static String readAll(Reader rd) throws IOException {
@@ -195,6 +183,7 @@ public class LineBotController
             is.close();
         }
     }
+
     @Autowired
     @Qualifier("com.linecorp.channel_secret")
     String lChannelSecret;
@@ -203,47 +192,45 @@ public class LineBotController
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
 
-    @RequestMapping(value="/callback", method=RequestMethod.POST)
+    @RequestMapping(value = "/callback", method = RequestMethod.POST)
     public ResponseEntity<String> callback(
-        @RequestHeader("X-Line-Signature") String aXLineSignature,
-        @RequestBody String aPayload)
-    {
-        final String text=String.format("The Signature is: %s",
-            (aXLineSignature!=null && aXLineSignature.length() > 0) ? aXLineSignature : "N/A");
+            @RequestHeader("X-Line-Signature") String aXLineSignature,
+            @RequestBody String aPayload) {
+        final String text = String.format("The Signature is: %s",
+                (aXLineSignature != null && aXLineSignature.length() > 0) ? aXLineSignature : "N/A");
         System.out.println(text);
-        final boolean valid=new LineSignatureValidator(lChannelSecret.getBytes()).validateSignature(aPayload.getBytes(), aXLineSignature);
+        final boolean valid = new LineSignatureValidator(lChannelSecret.getBytes()).validateSignature(aPayload.getBytes(), aXLineSignature);
         System.out.println("The signature is: " + (valid ? "valid" : "tidak valid"));
-        if(aPayload!=null && aPayload.length() > 0)
-        {
+        if (aPayload != null && aPayload.length() > 0) {
             System.out.println("Payload: " + aPayload);
         }
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
 
-        String videoMsgTxt ="";
+        String videoMsgTxt = "";
         String msgText = " ";
         String idTarget = " ";
-      // String idToken = payload.events[0].replyToken;
+        // String idToken = payload.events[0].replyToken;
         String eventType = payload.events[0].type;
 
 
-        if (eventType.equals("join")){
-            if (payload.events[0].source.type.equals("group")){
+        if (eventType.equals("join")) {
+            if (payload.events[0].source.type.equals("group")) {
                 replyToUser(payload.events[0].replyToken, "Hello Group");
 
 
             }
-            if (payload.events[0].source.type.equals("room")){
+            if (payload.events[0].source.type.equals("room")) {
                 replyToUser(payload.events[0].replyToken, "Hello Room");
-                replyToUser(payload.events[0].replyToken,"hello my room");
+                replyToUser(payload.events[0].replyToken, "hello my room");
             }
-        } else if (eventType.equals("message")){
-            if (payload.events[0].source.type.equals("group")){
+        } else if (eventType.equals("message")) {
+            if (payload.events[0].source.type.equals("group")) {
                 idTarget = payload.events[0].replyToken;
-            } else if (payload.events[0].source.type.equals("room")){
+            } else if (payload.events[0].source.type.equals("room")) {
                 idTarget = payload.events[0].replyToken;
-            } else if (payload.events[0].source.type.equals("user")){
+            } else if (payload.events[0].source.type.equals("user")) {
                 idTarget = payload.events[0].replyToken;
             }
 
@@ -263,24 +250,20 @@ public class LineBotController
                 msgText = msgText.toLowerCase();
 
 
+                if (!msgText.contains("bot leave")) {
+                    if (msgText.contains("/weather")) {
 
 
-
-                if (!msgText.contains("bot leave")){
-                    if(msgText.contains("/weather"))
-                    {
-
-
-                       String part2 = splitter(msgText+";","/weather (.*?);","/weather");
+                        String part2 = splitter(msgText + ";", "/weather (.*?);", "/weather");
                         try {
 
-                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q="+part2+"&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
+                            JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=" + part2 + "&APPID=fe18035f6b83c8b163d1a7a8ef934a75");
                             JSONObject jsonForeCast = readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q=jakarta&appid=fe18035f6b83c8b163d1a7a8ef934a75");
 
                             String weather = json.get("weather").toString();
 
                             //variable
-                            String message="";
+                            String message = "";
 
 
                             //jsonobject
@@ -293,26 +276,22 @@ public class LineBotController
                             JSONArray arr = new JSONArray(weather);
 
                             boolean counter = false;
-                            for(int i=0;i<arr.length();i++)
-                            {
-                                JSONObject jsonPart =arr.getJSONObject(i);
-                                String main ="";
-                                String description="";
+                            for (int i = 0; i < arr.length(); i++) {
+                                JSONObject jsonPart = arr.getJSONObject(i);
+                                String main = "";
+                                String description = "";
 
                                 main = jsonPart.getString("main");
                                 description = jsonPart.getString("description");
 
-                                if(main != "" && description!="")
-                                {
-                                    message+=main+": "+description;
+                                if (main != "" && description != "") {
+                                    message += main + ": " + description;
                                     counter = true;
                                 }
                             }
-                            if(part2==null)
-                            {
-                                getMessageData("you forgot the semicolon; eg: /weather cityName;",idTarget);
-                            }
-                            else {
+                            if (part2 == null) {
+                                getMessageData("you forgot the semicolon; eg: /weather cityName;", idTarget);
+                            } else {
                                 if (counter) {
                                     getMessageData("current weather on " + part2 + "," + country + " is " + message, idTarget);
                                 } else {
@@ -327,54 +306,48 @@ public class LineBotController
                     }
 
                     //osu
-                    if(msgText.contains("/mania"))
-                    {
-                        jsonResultForOsu(splitter(msgText+";","/mania (.*?);","/mania"),idTarget,"3","osu!Mania");
+                    if (msgText.contains("/mania")) {
+                        jsonResultForOsu(splitter(msgText + ";", "/mania (.*?);", "/mania"), idTarget, "3", "osu!Mania");
                     }
-                    if(msgText.contains("/ctb"))
-                    {
-                        jsonResultForOsu(splitter(msgText+";","/ctb (.*?);","/ctb"),idTarget,"2","Catch the Beat");
+                    if (msgText.contains("/ctb")) {
+                        jsonResultForOsu(splitter(msgText + ";", "/ctb (.*?);", "/ctb"), idTarget, "2", "Catch the Beat");
                     }
-                    if(msgText.contains("/taiko"))
-                    {
-                        jsonResultForOsu(splitter(msgText+";","/taiko (.*?);","/taiko"),idTarget,"1","Taiko");
+                    if (msgText.contains("/taiko")) {
+                        jsonResultForOsu(splitter(msgText + ";", "/taiko (.*?);", "/taiko"), idTarget, "1", "Taiko");
                     }
-                    if(msgText.contains("/std"))
-                    {
-                        jsonResultForOsu(splitter(msgText+";","/std (.*?);","/std"),idTarget,"0","Osu Standard!");
+                    if (msgText.contains("/std")) {
+                        jsonResultForOsu(splitter(msgText + ";", "/std (.*?);", "/std"), idTarget, "0", "Osu Standard!");
                     }
-                    if(msgText.contains("/puasa"))
-                    {
+                    if (msgText.contains("/puasa")) {
                         //5db94b590c066277ad540f984a288bac
                         String string = msgText.toString();
                         String[] parts = string.split(" ");
                         String part2 = parts[1];
-                        String date_for="";
-                        String fajr="";
-                        String shurooq ="";
-                        String dhuhr="";
-                        String asr="";
-                        String maghrib="";
-                        String isha="";
+                        String date_for = "";
+                        String fajr = "";
+                        String shurooq = "";
+                        String dhuhr = "";
+                        String asr = "";
+                        String maghrib = "";
+                        String isha = "";
 
 
                         try {
-                           // JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/"+part2+"/daily/08-06-2017.json?key=5db94b590c066277ad540f984a288bac");
+                            // JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/" + part2 + "/daily/08-06-2017.json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
 
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
+                            for (int a = 0; a < jsonArray.length(); a++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(a);
-                                date_for=jsonObject.getString("date_for");
-                                fajr=jsonObject.getString("fajr");
-                                shurooq=jsonObject.getString("shurooq");
-                                dhuhr=jsonObject.getString("dhuhr");
-                                asr=jsonObject.getString("asr");
-                                maghrib=jsonObject.getString("maghrib");
-                                isha=jsonObject.getString("isha");
+                                date_for = jsonObject.getString("date_for");
+                                fajr = jsonObject.getString("fajr");
+                                shurooq = jsonObject.getString("shurooq");
+                                dhuhr = jsonObject.getString("dhuhr");
+                                asr = jsonObject.getString("asr");
+                                maghrib = jsonObject.getString("maghrib");
+                                isha = jsonObject.getString("isha");
 
-                                getMessageData(json.get("state").toString()+", "+json.get("country").toString()+"\n"+"date: "+date_for+"\nfajr: "+fajr+"\nshurooq: "+shurooq+"\ndhuhr: "+dhuhr+"\nasr: "+asr+"\nmaghrib: "+maghrib+"\nisha: "+isha+"\n -http://muslimsalat.com-",idTarget);
+                                getMessageData(json.get("state").toString() + ", " + json.get("country").toString() + "\n" + "date: " + date_for + "\nfajr: " + fajr + "\nshurooq: " + shurooq + "\ndhuhr: " + dhuhr + "\nasr: " + asr + "\nmaghrib: " + maghrib + "\nisha: " + isha + "\n -http://muslimsalat.com-", idTarget);
 
                             }
                         } catch (IOException e) {
@@ -383,32 +356,29 @@ public class LineBotController
 
                     }
 
-                    if(msgText.contains("hello"))
-                    {
+                    if (msgText.contains("hello")) {
                         //162a37b7350d4aaaa9f2c0df18bf3a54
                         try {
-                           // getMessageData("debug",idTarget);
-                            getMessageData("Hello "+profile(payload.events[0].source.userId)+" can i help you? just type /help",idTarget);
+                            // getMessageData("debug",idTarget);
+                            getMessageData("Hello " + profile(payload.events[0].source.userId) + " can i help you? just type /help", idTarget);
 
-                          //  profile(payload.events[0].message.id);
+                            //  profile(payload.events[0].message.id);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
 
-                    if(msgText.contains("/bukalapak")) {
-                        String string = msgText.toString()+";";
+                    if (msgText.contains("/bukalapak")) {
+                        String string = msgText.toString() + ";";
                         String hasil = "";
 
-                        if(!string.substring(string.length()-1).equals(";"))
-                        {
+                        if (!string.substring(string.length() - 1).equals(";")) {
                             try {
-                                getMessageData("you forgot the semicolon; eg: /bukalapak productName;",idTarget);
+                                getMessageData("you forgot the semicolon; eg: /bukalapak productName;", idTarget);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }
-                        else {
+                        } else {
 
 
                             Pattern p = Pattern.compile("/bukalapak (.*?);");
@@ -449,34 +419,32 @@ public class LineBotController
                                 if (seller_name == "" && price == 0) {
                                     getMessageData("don't know", idTarget);
                                 } else {
-                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n"+url, idTarget);
+                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n" + url, idTarget);
                                     getMessageDataForImage(payload.events[0].replyToken, imagesUrl);
                                 }
 
                             } catch (IOException e) {
                                 e.printStackTrace();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+                            }
                         }
                     }
 
-                    if(videoMsgTxt.contains("/video"))
-                    {
+                    if (videoMsgTxt.contains("/video")) {
                         try {
-                            String splitterString = splitter(videoMsgTxt+";","/video (.*?);","/video");
-                            JSONObject jsonObject =readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+splitterString);
+                            String splitterString = splitter(videoMsgTxt + ";", "/video (.*?);", "/video");
+                            JSONObject jsonObject = readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url=" + splitterString);
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
-                            String result ="";
+                            String result = "";
 
 
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
+                            for (int a = 0; a < jsonArray.length(); a++) {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                result=jsonPart.getString("url");
+                                result = jsonPart.getString("url");
 
                             }
-                                    replyVideoMessage(payload.events[0].replyToken,result,info.get("thumbnail").toString());
-                                   // getVideoData(idTarget, result, info.get("thumbnail").toString());
+                            replyVideoMessage(payload.events[0].replyToken, result, info.get("thumbnail").toString());
+                            // getVideoData(idTarget, result, info.get("thumbnail").toString());
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -485,36 +453,34 @@ public class LineBotController
                     }
 
 
-                    if(msgText.contains("/help"))
-                    {
+                    if (msgText.contains("/help")) {
                         try {
-                           // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                              getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org",payload.events[0].replyToken);
+                            // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
 
-                        if (msgText.contains("/debug")) {
+                    if (msgText.contains("/debug")) {
 
-                           test(idTarget,Arrays.asList(new TextMessage("hai"),new TextMessage("anjing")));
-                        }
-
+                        test(idTarget, Arrays.asList(new TextMessage("hai"), new TextMessage("anjing")));
+                    }
 
 
                 } else {
-                    String imagesUrl ="https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
-                   if (payload.events[0].source.type.equals("group")){
+                    String imagesUrl = "https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
+                    if (payload.events[0].source.type.equals("group")) {
 
-                           // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-                          //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
+                        // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                        //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
 
 
                         leaveGR(payload.events[0].source.groupId, "group");
-                    } else if (payload.events[0].source.type.equals("room")){
-                            replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                    } else if (payload.events[0].source.type.equals("room")) {
+                        replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!", idTarget);
                         try {
-                            getMessageDataForImage(idTarget,imagesUrl);
+                            getMessageDataForImage(idTarget, imagesUrl);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -536,14 +502,13 @@ public class LineBotController
         }
     }*/
 
-    private void debug(String message,String targetId)throws IOException
-    {
-       this.replyToUser(targetId,message);
+    private void debug(String message, String targetId) throws IOException {
+        this.replyToUser(targetId, message);
     }
-    private void getMessageData(String message,String targetId) throws  IOException
-    {
 
-            replyToUser(targetId,message);
+    private void getMessageData(String message, String targetId) throws IOException {
+
+        replyToUser(targetId, message);
 
     }/*
     private void getMessageDataForImage(String targetId,String string)throws  IOException
@@ -567,11 +532,10 @@ public class LineBotController
     }*/
 
 
-    private void test(String sourceId, List text)
-    {
-        List<TextMessage>textMessageList=new ArrayList<TextMessage>(text);
-        for(TextMessage t:textMessageList) {
-            ReplyMessage replyMessage = new ReplyMessage(sourceId, textMessageList.get(Integer.parseInt(t.toString())));
+    private void test(String sourceId, List text) {
+        List<TextMessage> textMessageList = new ArrayList<TextMessage>(text);
+        for (int a = 0; a < 1; a++) {
+            ReplyMessage replyMessage = new ReplyMessage(sourceId, textMessageList.get(a));
             try {
                 Response<BotApiResponse> response = LineMessagingServiceBuilder
                         .create(lChannelAccessToken)
@@ -584,8 +548,9 @@ public class LineBotController
                 e.printStackTrace();
             }
         }
-
     }
+
+
 
 
 
