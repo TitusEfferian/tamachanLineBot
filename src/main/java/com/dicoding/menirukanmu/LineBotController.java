@@ -566,7 +566,7 @@ public class LineBotController
     }*/
 
 
-    private void test(String sourceId, List<TextMessage>text)
+    private void test(String sourceId, List<Message>text)
     {
 
       //  TextMessage textMessage = new TextMessage(text);
