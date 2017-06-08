@@ -464,13 +464,9 @@ public class LineBotController
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                                 result=jsonPart.getString("url");
                             }
-                            if(result=="")
-                            {
-                                getMessageData("the video can't be obtained due to age restriction or blocked in some country by youtube",idTarget);
-                            }
-                            else {
                                 getVideoData(idTarget, result, info.get("thumbnail").toString());
-                            }
+                            getMessageData(result,idTarget);
+
 
 
                         } catch (IOException e) {
