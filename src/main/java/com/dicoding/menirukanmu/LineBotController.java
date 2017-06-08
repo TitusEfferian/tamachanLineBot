@@ -495,7 +495,7 @@ public class LineBotController
 
                         if (msgText.contains("/debug")) {
 
-                           test(idTarget,Arrays.asList(new TextMessage("hai")));
+                           test(idTarget,Arrays.asList(new TextMessage("hai"),new TextMessage("anjing")));
                         }
 
 
