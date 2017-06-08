@@ -441,9 +441,8 @@ public class LineBotController
                                 if (seller_name == "" && price == 0) {
                                     getMessageData("don't know", idTarget);
                                 } else {
-                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
-                                    getMessageData(url, idTarget);
-                                    getMessageDataForImage(idTarget, imagesUrl);
+                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n"+url, idTarget);
+                                    getMessageDataForImage(payload.events[0].replyToken, imagesUrl);
                                 }
 
                             } catch (IOException e) {
@@ -503,16 +502,10 @@ public class LineBotController
 
                            // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
                           //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
-                        try {
-                            getMessageDataForImage(idTarget,imagesUrl);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
 
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
-
                             replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
                         try {
                             getMessageDataForImage(idTarget,imagesUrl);
