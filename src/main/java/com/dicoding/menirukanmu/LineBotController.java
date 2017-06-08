@@ -217,7 +217,7 @@ public class LineBotController
 
         String videoMsgTxt ="";
         String msgText = " ";
-        String idTarget = payload.events[0].replyToken;
+        String idTarget = " ";
       // String idToken = payload.events[0].replyToken;
         String eventType = payload.events[0].type;
 
@@ -231,14 +231,13 @@ public class LineBotController
                 replyToUser(payload.events[0].replyToken, "Hello Room");
             }
         } else if (eventType.equals("message")){
-            /*
             if (payload.events[0].source.type.equals("group")){
-                idTarget = payload.events[0].source.groupId;
+                idTarget = payload.events[0].replyToken;
             } else if (payload.events[0].source.type.equals("room")){
-                idTarget = payload.events[0].source.roomId;
+                idTarget = payload.events[0].replyToken;
             } else if (payload.events[0].source.type.equals("user")){
-                idTarget = payload.events[0].source.userId;
-            }*/
+                idTarget = payload.events[0].replyToken;
+            }
 
             if (!payload.events[0].message.type.equals("text")) {
                 // replyToUser(payload.events[0].replyToken, "Unknown message");
