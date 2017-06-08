@@ -472,6 +472,7 @@ public class LineBotController
                                 }
                                 else
                                 {
+                                    getMessageData(Boolean.toString(bool),idTarget);
                                     getMessageData("the video can't be obtain due to age restriction or blocked in some country",idTarget);
                                 }
 
