@@ -458,23 +458,18 @@ public class LineBotController
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
-                            boolean bool=false;
+                           
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                                 result=jsonPart.getString("url");
-                                bool=true;
+
                             }
-                                if(bool)
-                                {
+
                                     getVideoData(idTarget, result, info.get("thumbnail").toString());
-                                }
-                                else
-                                {
-                                    getMessageData(Boolean.toString(bool),idTarget);
-                                    getMessageData("the video can't be obtain due to age restriction or blocked in some country",idTarget);
-                                }
+
+
 
 
 
