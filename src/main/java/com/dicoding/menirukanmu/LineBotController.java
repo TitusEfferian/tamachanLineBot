@@ -15,12 +15,9 @@ import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
 
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-import com.sun.org.apache.regexp.internal.RE;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -31,23 +28,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import retrofit2.Response;
-import sun.rmi.runtime.Log;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -498,11 +493,7 @@ public class LineBotController
 
                         if (msgText.contains("/debug")) {
 
-                            try {
-                                debug("test",idTarget);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                          test(idTarget, Arrays.asList(new Message("hai","hai")));
 
                         }
 
@@ -572,10 +563,10 @@ public class LineBotController
         pushVideoMessage(targetId,videoString,imageString);
     }*/
 
-    private void test(String sourceId, String text)
+    private void test(String sourceId, List<Message> text)
     {
 
-        TextMessage textMessage = new TextMessage(text);
+        TextMessage textMessage = new TextMessage(text.toString());
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
