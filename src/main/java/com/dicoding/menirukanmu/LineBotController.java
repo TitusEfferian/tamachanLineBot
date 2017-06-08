@@ -443,6 +443,7 @@ public class LineBotController
                                 } else {
                                     getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                     getMessageData(url, idTarget);
+
                                     getMessageDataForImage(idTarget, imagesUrl);
                                 }
 
@@ -493,15 +494,10 @@ public class LineBotController
                     String imagesUrl ="https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
                     if (payload.events[0].source.type.equals("group")){
 
+                           // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                          //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
                         try {
-                            getMessageData("my name is meguri!, i'm the one who is going to beat hibiki!",idTarget);
-                            replyImageMessage(payload.events[0].replyToken,imagesUrl);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
-                        try {
-                            getMessageDataForImage(payload.events[0].replyToken,imagesUrl);
+                            getMessageDataForImage(idTarget,imagesUrl);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -548,12 +544,12 @@ public class LineBotController
     {
         replyVideoMessage(targetId,videoString,imageString);
     }*/
-
+    /*
 
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
-        replyImageMessage(targetId,string);
-    }
+        pushImageMessage(targetId,string);
+    }*/
     /*
     private void getVideoData(String targetId,String videoString,String imageString)
     {
@@ -582,10 +578,11 @@ public class LineBotController
         ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
         responseReply(replyMessage);
     }
-    private void replyImageMessage(String sourceId,String string)throws IOException
+    private void getMessageDataForImage(String sourceId,String string)throws IOException
     {
         ImageMessage imageMessage = new ImageMessage(string,string);
-         ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
+        // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
+        ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
         responseReply(replyMessage);
     }
     /*
