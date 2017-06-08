@@ -496,13 +496,9 @@ public class LineBotController
 
 
 
-                            try {
-                                getMessageDataForImage(idTarget,"https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
+                            
+                                test(idTarget,"hai");
 
-                                debug("debug1",idTarget);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
 
                         }
 
@@ -575,6 +571,24 @@ public class LineBotController
         pushVideoMessage(targetId,videoString,imageString);
     }*/
 
+    private String test(String sourceId,String text)
+    {
+        TextMessage textMessage = new TextMessage(text);
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
+            System.out.println(response.code() + " " + response.message());
+            return response.message();
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+        return null
+    }
     private void replyToUser(String sourceId, String txt){
 
 
