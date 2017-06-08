@@ -5,9 +5,11 @@ package com.dicoding.menirukanmu;
 
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
+
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.*;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +40,8 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -492,7 +497,13 @@ public class LineBotController
                     }
 
                         if (msgText.contains("/debug")) {
-                             test(idTarget,"test");
+
+                            try {
+                                debug("test",idTarget);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                         }
 
 
@@ -533,10 +544,7 @@ public class LineBotController
 
     private void debug(String message,String targetId)throws IOException
     {
-        if(message!=null)
-        {
-            replyToUser(targetId,message);
-        }
+       this.replyToUser(targetId,message);
     }
     private void getMessageData(String message,String targetId) throws  IOException
     {
@@ -564,8 +572,9 @@ public class LineBotController
         pushVideoMessage(targetId,videoString,imageString);
     }*/
 
-    private String test(String sourceId,String text)
+    private void test(String sourceId, String text)
     {
+
         TextMessage textMessage = new TextMessage(text);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
         try {
@@ -575,19 +584,25 @@ public class LineBotController
                     .replyMessage(replyMessage)
                     .execute();
             System.out.println(response.code() + " " + response.message());
-            return response.message();
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
-        return null;
-    }
-    private void replyToUser(String sourceId, String txt){
 
+    }
+
+    private void multipleReply(String sourceId,TextMessageContent content)throws Exception
+    {
+            String text = content.getText();
+
+    }
+
+    private void replyToUser(String sourceId, String txt){
 
         TextMessage textMessage = new TextMessage(txt);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
         try {
+
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
