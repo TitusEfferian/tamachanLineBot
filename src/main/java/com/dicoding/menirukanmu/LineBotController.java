@@ -491,10 +491,7 @@ public class LineBotController
                     }
 
                         if (msgText.contains("/debug")) {
-                           for(int a=0;a<3;a++)
-                           {
-                               replyToUser("test",idTarget);
-                           }
+
                         }
 
 
@@ -567,18 +564,20 @@ public class LineBotController
     }*/
 
     private void replyToUser(String sourceId, String txt){
-        TextMessage textMessage = new TextMessage(txt);
-        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
-        try {
-            Response<BotApiResponse> response = LineMessagingServiceBuilder
-                    .create(lChannelAccessToken)
-                    .build()
-                    .replyMessage(replyMessage)
-                    .execute();
-            System.out.println(response.code() + " " + response.message());
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
+        while(txt!="") {
+            TextMessage textMessage = new TextMessage(txt);
+            ReplyMessage replyMessage = new ReplyMessage(sourceId, textMessage);
+            try {
+                Response<BotApiResponse> response = LineMessagingServiceBuilder
+                        .create(lChannelAccessToken)
+                        .build()
+                        .replyMessage(replyMessage)
+                        .execute();
+                System.out.println(response.code() + " " + response.message());
+            } catch (IOException e) {
+                System.out.println("Exception is raised ");
+                e.printStackTrace();
+            }
         }
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
