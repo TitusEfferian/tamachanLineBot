@@ -563,6 +563,7 @@ public class LineBotController
     {
         VideoMessage videoMessage = new VideoMessage(videoString,imageString);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
+        responseReply(replyMessage);
     }
 
     private void pushVideoMessage(String sourceId,String videoString,String imageString)
