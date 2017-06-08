@@ -499,18 +499,22 @@ public class LineBotController
                             e.printStackTrace();
                         }
                         //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
-                     
+                        try {
                             getMessageDataForImage(idTarget,imagesUrl);
-
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
 
                             replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-
+                        try {
                             getMessageDataForImage(idTarget,imagesUrl);
-
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
 
                         leaveGR(payload.events[0].source.roomId, "room");
@@ -543,12 +547,12 @@ public class LineBotController
     {
         replyVideoMessage(targetId,videoString,imageString);
     }*/
-    /*
+
 
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
-        pushImageMessage(targetId,string);
-    }*/
+        replyImageMessage(targetId,string);
+    }
     /*
     private void getVideoData(String targetId,String videoString,String imageString)
     {
@@ -577,7 +581,7 @@ public class LineBotController
         ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
         responseReply(replyMessage);
     }
-    private void getMessageDataForImage(String sourceId,String string)
+    private void replyImageMessage(String sourceId,String string)throws IOException
     {
         ImageMessage imageMessage = new ImageMessage(string,string);
          ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
