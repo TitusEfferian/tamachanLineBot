@@ -444,7 +444,7 @@ public class LineBotController
                                     getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                     getMessageData(url, idTarget);
 
-                                    getMessageDataForImage(idToken, imagesUrl);
+                                    getMessageDataForImage(idTarget, imagesUrl);
                                 }
 
                             } catch (IOException e) {
@@ -483,7 +483,7 @@ public class LineBotController
                     {
                         try {
                            // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                              getMessageData("command list :\\n/weather city name\\n/osu_mode nickname eg : /mania jakads;\\n/puasa city_name\\n/bukalapak product_name\\n/video youtubelink;\\n\\nbot leave for kick out this shit\\n\\n\\nunder development for personal amusement\\n-titus efferian & kato@linuxsec.org",payload.events[0].replyToken);
+                              getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org",payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -495,16 +495,24 @@ public class LineBotController
                     if (payload.events[0].source.type.equals("group")){
 
                            // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-                            replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
-                           // getMessageDataForImage(idTarget,imagesUrl);
-                            replyImageMessage(idToken,imagesUrl);
+                          //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
+                        try {
+                            getMessageDataForImage(idTarget,imagesUrl);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
 
-                            replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idToken);
-                           // getMessageDataForImage(idTarget,imagesUrl);
-                            replyImageMessage(idToken,imagesUrl);
+                            replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
+                        try {
+                            getMessageDataForImage(idTarget,imagesUrl);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
 
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
