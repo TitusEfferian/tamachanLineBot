@@ -537,7 +537,7 @@ public class LineBotController
     {
         if(message!=null)
         {
-            pushMessage(targetId,message);
+            replyToUser(targetId,message);
         }
     }
     private void getMessageData(String message,String targetId) throws  IOException
