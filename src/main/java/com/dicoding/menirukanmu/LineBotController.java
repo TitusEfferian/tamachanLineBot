@@ -528,7 +528,7 @@ public class LineBotController
     {
         if(message!=null)
         {
-            replyToUser(targetId,message);
+            responseReply(targetId,message);
         }
     }
     private void getMessageDataForImage(String targetId,String string)throws  IOException
@@ -589,8 +589,10 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void responseReply(ReplyMessage replyMessage)
+    private void responseReply(String sourceID,String text)
     {
+        TextMessage textMessage = new TextMessage(text);
+        ReplyMessage replyMessage = new ReplyMessage(sourceID,textMessage);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
