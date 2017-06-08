@@ -443,7 +443,6 @@ public class LineBotController
                                 } else {
                                     getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                     getMessageData(url, idTarget);
-
                                     getMessageDataForImage(idTarget, imagesUrl);
                                 }
 
@@ -494,24 +493,24 @@ public class LineBotController
                     String imagesUrl ="https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
                     if (payload.events[0].source.type.equals("group")){
 
-                           // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-                          //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
                         try {
-                            getMessageDataForImage(idTarget,imagesUrl);
+                            getMessageData("my name is meguri!, i'm the one who is going to beat hibiki!",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
+                     
+                            getMessageDataForImage(idTarget,imagesUrl);
+
 
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
 
                             replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
-                        try {
+
                             getMessageDataForImage(idTarget,imagesUrl);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
 
 
                         leaveGR(payload.events[0].source.roomId, "room");
@@ -578,11 +577,10 @@ public class LineBotController
         ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
         responseReply(replyMessage);
     }
-    private void getMessageDataForImage(String sourceId,String string)throws IOException
+    private void getMessageDataForImage(String sourceId,String string)
     {
         ImageMessage imageMessage = new ImageMessage(string,string);
-        // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
-        ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
+         ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
         responseReply(replyMessage);
     }
     /*
