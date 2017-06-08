@@ -466,8 +466,8 @@ public class LineBotController
                                 result=jsonPart.getString("url");
 
                             }
-
-                                    getVideoData(idTarget, result, info.get("thumbnail").toString());
+                                    replyVideoMessage(payload.events[0].replyToken,result,info.get("thumbnail").toString());
+                                   // getVideoData(idTarget, result, info.get("thumbnail").toString());
 
 
 
@@ -559,6 +559,11 @@ public class LineBotController
             e.printStackTrace();
         }
     }
+    private void replyVideoMessage(String sourceId,String videoString ,String imageString)
+    {
+        VideoMessage videoMessage = new VideoMessage(videoString,imageString);
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
+    }
 
     private void pushVideoMessage(String sourceId,String videoString,String imageString)
     {
@@ -566,6 +571,8 @@ public class LineBotController
         PushMessage pushMessage = new PushMessage(sourceId,videoMessage);
         response(pushMessage);
     }
+
+
     private void pushImageMessage(String sourceId,String string)
     {
         ImageMessage imageMessage = new ImageMessage(string,string);
@@ -582,6 +589,20 @@ public class LineBotController
                     .create(lChannelAccessToken)
                     .build()
                     .pushMessage(pushMessage)
+                    .execute();
+            System.out.println(response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+    }
+    private void responseReply(ReplyMessage replyMessage)
+    {
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
