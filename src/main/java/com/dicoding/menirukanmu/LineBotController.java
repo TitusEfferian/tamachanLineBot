@@ -214,6 +214,7 @@ public class LineBotController
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
 
+        String videoMsgTxt ="";
         String msgText = " ";
         String idTarget = " ";
         String eventType = payload.events[0].type;
@@ -248,8 +249,10 @@ public class LineBotController
                 }*/
             } else {
                 msgText = payload.events[0].message.text;
+                videoMsgTxt = payload.events[0].message.text;
+                msgText = msgText.toLowerCase();
 
-               // msgText = msgText.toLowerCase();
+
 
 
 
@@ -447,14 +450,10 @@ public class LineBotController
                         }
                     }
 
-                    if(msgText.contains("/video"))
+                    if(videoMsgTxt.contains("/video"))
                     {
-
-
-
-
                         try {
-                            String splitterString = splitter(msgText+";","/video (.*?);","/video");
+                            String splitterString = splitter(videoMsgTxt+";","/video (.*?);","/video");
                             JSONObject jsonObject =readJsonFromUrl("http://megumin-yt.herokuapp.com/api/info?url="+splitterString);
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
@@ -472,12 +471,6 @@ public class LineBotController
                             e.printStackTrace();
                         }
 
-
-
-
-
-                        //getVideoData(idTarget,"https://youtu.be/7g6ruRV_pUA","https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
-                        //getVideoData(idTarget,"");
                     }
 
 
