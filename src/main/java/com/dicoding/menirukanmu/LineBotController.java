@@ -490,6 +490,11 @@ public class LineBotController
                     {
                         try {
                             getMessageData("hai",idTarget);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
                             getMessageData("hai juga",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
