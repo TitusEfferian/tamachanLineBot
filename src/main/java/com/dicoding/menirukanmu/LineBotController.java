@@ -488,8 +488,13 @@ public class LineBotController
                     }
                     if(msgText.contains("/debug"))
                     {
-                       debug("hai",idTarget);
-                       debug("hai juga",idTarget);
+                        try {
+                            debug("hai",idTarget);
+                            debug("hai juga",idTarget);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
 
