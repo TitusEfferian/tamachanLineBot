@@ -41,6 +41,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -533,16 +534,17 @@ public class LineBotController {
     }*/
 
 
-    private void test(String sourceId) {
+    private List<TextMessage> test(String sourceId) {
 
         List<TextMessage> messages = Arrays.asList(new TextMessage("hai"), new TextMessage("how are you"));
+
         for(int a=0;a< messages.size();a++){
 
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(new ReplyMessage(sourceId,messages.get(1)))
+                    .replyMessage(new ReplyMessage(sourceId,messages.get(a)))
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
@@ -551,6 +553,7 @@ public class LineBotController {
         }
 
         }
+        return messages;
 
     }
 
