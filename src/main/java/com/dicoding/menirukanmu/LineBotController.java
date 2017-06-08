@@ -41,6 +41,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import retrofit2.Response;
+import sun.rmi.runtime.Log;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -490,8 +491,10 @@ public class LineBotController
                     }
 
                         if (msgText.contains("/debug")) {
-                            replyToUser(payload.events[0].replyToken,"hai");
-                            replyToUser(payload.events[0].replyToken,"hai juga");
+                           for(int a=0;a<3;a++)
+                           {
+                               replyToUser("test",idTarget);
+                           }
                         }
 
 
