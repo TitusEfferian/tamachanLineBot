@@ -488,12 +488,12 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    while(true) {
+
                         if (msgText.contains("/debug")) {
-                            replyToUser(payload.events[0].replyToken,"hai");
+                            replyToUser(payload.events[0].source.userId,"hai");
                             replyToUser(payload.events[0].replyToken,"hai juga");
                         }
-                    }
+
 
 
                 } else {
