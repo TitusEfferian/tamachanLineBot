@@ -5,6 +5,5 @@ public class Message {
     public String id;
     public String text;
 
-    public Message(String hai, String hai1) {
-    }
+
 }

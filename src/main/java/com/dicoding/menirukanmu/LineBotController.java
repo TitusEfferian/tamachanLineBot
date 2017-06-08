@@ -4,6 +4,7 @@ package com.dicoding.menirukanmu;
 
 
 import com.google.gson.Gson;
+import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -39,6 +40,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -493,8 +495,7 @@ public class LineBotController
 
                         if (msgText.contains("/debug")) {
 
-                          test(idTarget, Arrays.asList(new Message("hai","hai")));
-
+                            replyToUser(idTarget,new String("hai","hai"));
                         }
 
 
@@ -563,10 +564,12 @@ public class LineBotController
         pushVideoMessage(targetId,videoString,imageString);
     }*/
 
-    private void test(String sourceId, List<Message> text)
+
+    private void test(String sourceId, String[] text)
     {
 
         TextMessage textMessage = new TextMessage(text.toString());
+
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
@@ -582,13 +585,10 @@ public class LineBotController
 
     }
 
-    private void multipleReply(String sourceId,TextMessageContent content)throws Exception
-    {
-            String text = content.getText();
 
-    }
 
     private void replyToUser(String sourceId, String txt){
+
 
         TextMessage textMessage = new TextMessage(txt);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
