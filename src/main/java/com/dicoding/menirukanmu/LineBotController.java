@@ -535,7 +535,7 @@ public class LineBotController
         {
             replyToUser(targetId,message);
         }
-    }
+    }/*
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
         replyImageMessage(targetId,string);
@@ -543,7 +543,7 @@ public class LineBotController
     private void getMessageDataForVideo(String targetId,String videoString,String imageString)throws  IOException
     {
         replyVideoMessage(targetId,videoString,imageString);
-    }
+    }*/
     /*
 
     private void getMessageDataForImage(String targetId,String string)throws  IOException
@@ -572,16 +572,15 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    private void replyVideoMessage(String sourceId,String videoString ,String imageString)
+    private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
         VideoMessage videoMessage = new VideoMessage(videoString,imageString);
         ReplyMessage replyMessage = new ReplyMessage(sourceId,videoMessage);
         responseReply(replyMessage);
     }
-    private void replyImageMessage(String sourceId,String string)
+    private void getMessageDataForImage(String sourceId,String string)throws IOException
     {
         ImageMessage imageMessage = new ImageMessage(string,string);
-
         // ImageMessage imageMessage = new ImageMessage("http://muslimsalat.com/qibla_compass/200/188.82.png","http://muslimsalat.com/qibla_compass/200/188.82.png");
         ReplyMessage replyMessage=new ReplyMessage(sourceId,imageMessage);
         responseReply(replyMessage);
