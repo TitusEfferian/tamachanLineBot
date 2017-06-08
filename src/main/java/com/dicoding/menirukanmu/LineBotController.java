@@ -489,7 +489,8 @@ public class LineBotController
                     if(msgText.contains("/debug"))
                     {
                         try {
-                            getMessageDataForImage(payload.events[0].replyToken,"https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
+                            getMessageData("hai",idTarget);
+                            getMessageData("hai juga",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
