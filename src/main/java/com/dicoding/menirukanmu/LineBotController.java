@@ -5,6 +5,7 @@ package com.dicoding.menirukanmu;
 
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.client.LineMessagingService;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -568,9 +569,8 @@ public class LineBotController
     private void test(String sourceId, List<TextMessage>text)
     {
 
-        TextMessage textMessage = new TextMessage(text.toString());
-
-        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
+      //  TextMessage textMessage = new TextMessage(text);
+        ReplyMessage replyMessage = new ReplyMessage(sourceId, (com.linecorp.bot.model.message.Message) text);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
