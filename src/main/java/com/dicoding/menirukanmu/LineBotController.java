@@ -458,7 +458,7 @@ public class LineBotController
                             JSONObject info = new JSONObject(jsonObject.get("info").toString());
                             JSONArray jsonArray = new JSONArray(info.get("formats").toString());
                             String result ="";
-                           
+
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
@@ -553,6 +553,7 @@ public class LineBotController
             e.printStackTrace();
         }
     }
+    
     private void pushVideoMessage(String sourceId,String videoString,String imageString)
     {
         VideoMessage videoMessage = new VideoMessage(videoString,imageString);
