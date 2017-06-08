@@ -526,11 +526,11 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }*/
-    private void debug(String message,String targetId)
+    private void debug(String message,String targetId)throws IOException
     {
         if(message!=null)
         {
-            replyToUser(targetId,message);
+            pushMessage(targetId,message);
         }
     }
     private void getMessageData(String message,String targetId) throws  IOException
