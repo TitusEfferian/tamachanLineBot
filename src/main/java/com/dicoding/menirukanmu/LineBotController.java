@@ -498,7 +498,7 @@ public class LineBotController
 
 
                 } else {
-                    String imagesUrl ="https://lh3.googleusercontent.com/fkE-fOMZowYuj0-Apctgz1Ni8GiVXAMAm_4hENBwqAjNUDj1JHtOe-w3VRUIIP_ryADoNaAqyud7hpQ=w1360-h613";
+                    String imagesUrl ="https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
                    if (payload.events[0].source.type.equals("group")){
 
                            // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
