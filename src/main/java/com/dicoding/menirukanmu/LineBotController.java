@@ -500,7 +500,7 @@ public class LineBotController
                         }
                         //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
                         try {
-                            getMessageDataForImage(idTarget,imagesUrl);
+                            getMessageDataForImage(payload.events[0].replyToken,imagesUrl);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
