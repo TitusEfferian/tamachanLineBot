@@ -479,12 +479,8 @@ public class LineBotController
 
                     if(msgText.contains("/help"))
                     {
-                        try {
-                           // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                              getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org",payload.events[0].replyToken);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                      debug("hai",idTarget);
+                      debug("hai juga",idTarget);
                     }
                     if(msgText.contains("/debug"))
                     {
@@ -535,6 +531,13 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }*/
+    private void debug(String message,String targetId)
+    {
+        if(message!=null)
+        {
+            replyToUser(targetId,message);
+        }
+    }
     private void getMessageData(String message,String targetId) throws  IOException
     {
         if(message!=null)
