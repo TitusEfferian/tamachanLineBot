@@ -571,7 +571,7 @@ public class LineBotController
     {
         List<TextMessage>textMessageList=new ArrayList<TextMessage>(text);
 
-        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessageList.get(0));
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessageList.get(1));
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
