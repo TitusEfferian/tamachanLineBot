@@ -536,13 +536,13 @@ public class LineBotController {
     private void test(String sourceId) {
 
         List<TextMessage> messages = Arrays.asList(new TextMessage("hai"), new TextMessage("how are you"));
-        for(TextMessage t:messages){
-       // ReplyMessage replyMessage = new ReplyMessage(sourceId, t);
+        for(int a=0;a< messages.size();a++){
+
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(new ReplyMessage(sourceId,t))
+                    .replyMessage(new ReplyMessage(sourceId,messages.get(a)))
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
