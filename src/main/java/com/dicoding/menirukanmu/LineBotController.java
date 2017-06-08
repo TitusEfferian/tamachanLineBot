@@ -542,15 +542,17 @@ public class LineBotController {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(new ReplyMessage(sourceId,messages.get(a)))
+                    .replyMessage(new ReplyMessage(sourceId,messages.get(1)))
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
-    }
+
         }
+
+    }
 
 
 
