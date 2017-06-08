@@ -441,9 +441,7 @@ public class LineBotController
                                 if (seller_name == "" && price == 0) {
                                     getMessageData("don't know", idTarget);
                                 } else {
-                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n"+url, idTarget);
-                                    getMessageData(url.toString(), idTarget);
-
+                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n", idTarget);
                                     getMessageDataForImage(idTarget, imagesUrl);
                                 }
 
