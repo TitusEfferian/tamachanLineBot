@@ -537,12 +537,12 @@ public class LineBotController {
 
         List<TextMessage> messages = Arrays.asList(new TextMessage("hai"), new TextMessage("how are you"));
         for(TextMessage t:messages){
-        ReplyMessage replyMessage = new ReplyMessage(sourceId, t);
+       // ReplyMessage replyMessage = new ReplyMessage(sourceId, t);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(replyMessage)
+                    .replyMessage(new ReplyMessage(sourceId,t))
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
