@@ -495,7 +495,7 @@ public class LineBotController
 
                         if (msgText.contains("/debug")) {
 
-                            replyToUser(idTarget,new String("hai","hai"));
+                           test(idTarget,Arrays.asList(new TextMessage("hai")));
                         }
 
 
@@ -565,7 +565,7 @@ public class LineBotController
     }*/
 
 
-    private void test(String sourceId, String[] text)
+    private void test(String sourceId, List<TextMessage>text)
     {
 
         TextMessage textMessage = new TextMessage(text.toString());
