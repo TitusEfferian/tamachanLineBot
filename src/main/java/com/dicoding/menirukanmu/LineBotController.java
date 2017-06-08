@@ -564,7 +564,7 @@ public class LineBotController
     }*/
 
     private void replyToUser(String sourceId, String txt){
-        while(txt!="") {
+
             TextMessage textMessage = new TextMessage(txt);
             ReplyMessage replyMessage = new ReplyMessage(sourceId, textMessage);
             try {
@@ -578,7 +578,7 @@ public class LineBotController
                 System.out.println("Exception is raised ");
                 e.printStackTrace();
             }
-        }
+        
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
