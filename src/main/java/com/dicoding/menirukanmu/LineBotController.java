@@ -497,8 +497,9 @@ public class LineBotController
 
 
                             try {
-                                debug("debug1",idTarget);
                                 getMessageDataForImage(idTarget,"https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613");
+
+                                debug("debug1",idTarget);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
