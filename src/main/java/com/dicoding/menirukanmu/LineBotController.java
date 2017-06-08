@@ -490,8 +490,8 @@ public class LineBotController
                     if(msgText.contains("/debug"))
                     {
                         try {
-                            debug("hai",payload.events[0].replyToken);
-                            debug("hai juga",payload.events[1].replyToken);
+                            debug("hai",payload.events[0].source.userId);
+                            debug("hai juga",payload.events[0].source.userId);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
