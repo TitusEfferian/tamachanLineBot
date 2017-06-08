@@ -225,7 +225,7 @@ public class LineBotController
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
                 replyToUser(payload.events[0].replyToken, "Hello Group");
-                replyToUser(payload.events[0].replyToken,".");
+
 
             }
             if (payload.events[0].source.type.equals("room")){
@@ -490,8 +490,8 @@ public class LineBotController
                     if(msgText.contains("/debug"))
                     {
                         try {
-                            debug("hai",idTarget);
-                            debug("hai juga",idTarget);
+                            debug("hai",payload.events[0].replyToken);
+                            debug("hai juga",payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -532,6 +532,7 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }*/
+
     private void debug(String message,String targetId)throws IOException
     {
         if(message!=null)
