@@ -225,6 +225,7 @@ public class LineBotController
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
                 replyToUser(payload.events[0].replyToken, "Hello Group");
+                replyToUser(payload.events[0].replyToken,".");
 
             }
             if (payload.events[0].source.type.equals("room")){
