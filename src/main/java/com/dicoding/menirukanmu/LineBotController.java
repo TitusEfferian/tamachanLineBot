@@ -492,14 +492,7 @@ public class LineBotController
                     }
 
                         if (msgText.contains("/debug")) {
-
-
-
-
-                            
-                                test(idTarget,"hai");
-
-
+                             test(idTarget,"test");
                         }
 
 
@@ -587,7 +580,7 @@ public class LineBotController
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
-        return null
+        return null;
     }
     private void replyToUser(String sourceId, String txt){
 
