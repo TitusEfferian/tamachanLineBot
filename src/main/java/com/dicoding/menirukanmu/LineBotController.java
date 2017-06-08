@@ -495,6 +495,7 @@ public class LineBotController
 
                         try {
                             getMessageData("my name is meguri!, i'm the one who is going to beat hibiki!",idTarget);
+                            replyImageMessage(payload.events[0].replyToken,imagesUrl);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
