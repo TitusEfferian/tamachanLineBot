@@ -490,7 +490,7 @@ public class LineBotController
                     }
 
                         if (msgText.contains("/debug")) {
-                            replyToUser(payload.events[0].source.userId,"hai");
+                            replyToUser(payload.events[0].replyToken,"hai");
                             replyToUser(payload.events[0].replyToken,"hai juga");
                         }
 
@@ -539,10 +539,9 @@ public class LineBotController
     }
     private void getMessageData(String message,String targetId) throws  IOException
     {
-        if(message!=null)
-        {
+
             replyToUser(targetId,message);
-        }
+
     }/*
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
