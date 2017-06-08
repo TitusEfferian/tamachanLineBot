@@ -491,7 +491,7 @@ public class LineBotController
                     {
                         try {
                             debug("hai",payload.events[0].replyToken);
-                            debug("hai juga",payload.events[0].replyToken);
+                            debug("hai juga",payload.events[1].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
