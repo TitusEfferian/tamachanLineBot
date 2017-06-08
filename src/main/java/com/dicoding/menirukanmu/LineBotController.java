@@ -39,6 +39,7 @@ import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -566,11 +567,11 @@ public class LineBotController
     }*/
 
 
-    private void test(String sourceId, List<Message>text)
+    private void test(String sourceId, List text)
     {
+        List<TextMessage>textMessageList=new ArrayList<TextMessage>(text);
 
-      //  TextMessage textMessage = new TextMessage(text);
-        ReplyMessage replyMessage = new ReplyMessage(sourceId, (com.linecorp.bot.model.message.Message) text);
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessageList.get(0));
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
