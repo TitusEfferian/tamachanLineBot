@@ -484,8 +484,8 @@ public class LineBotController
                     if(msgText.contains("/help"))
                     {
                         try {
-                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-
+                           // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
+                            getReplyMessageData("test",idTarget);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -524,7 +524,13 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
-
+    private void getReplyMessageData(String message,String targetId) throws  IOException
+    {
+        if(message!=null)
+        {
+            replyToUser(targetId,message);
+        }
+    }
     private void getMessageDataForImage(String targetId,String string)throws  IOException
     {
         pushImageMessage(targetId,string);
@@ -553,7 +559,7 @@ public class LineBotController
             e.printStackTrace();
         }
     }
-    
+
     private void pushVideoMessage(String sourceId,String videoString,String imageString)
     {
         VideoMessage videoMessage = new VideoMessage(videoString,imageString);
@@ -578,6 +584,20 @@ public class LineBotController
                     .pushMessage(pushMessage)
                     .execute();
             System.out.println(response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+    }
+    private void responseReply(ReplyMessage replyMessage)
+    {
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
+            System.out.println("Reply Message: " + response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
