@@ -556,17 +556,16 @@ public class LineBotController
         pushVideoMessage(targetId,videoString,imageString);
     }*/
 
-    private void replyToUser(String rToken, String messageToUser){
-        TextMessage textMessage = new TextMessage(messageToUser);
-        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
-
+    private void replyToUser(String sourceId, String txt){
+        TextMessage textMessage = new TextMessage(txt);
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,textMessage);
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
-                .create(lChannelAccessToken)
-                .build()
-                .replyMessage(replyMessage)
-                .execute();
-            System.out.println("Reply Message: " + response.code() + " " + response.message());
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
+            System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
