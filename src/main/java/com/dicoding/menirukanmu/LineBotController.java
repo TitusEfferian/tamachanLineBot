@@ -488,9 +488,11 @@ public class LineBotController
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/debug"))
-                    {
-
+                    while(true) {
+                        if (msgText.contains("/debug")) {
+                            replyToUser(payload.events[0].replyToken,"hai");
+                            replyToUser(payload.events[0].replyToken,"hai juga");
+                        }
                     }
 
 
