@@ -40,15 +40,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import retrofit2.Response;
+
+import static java.lang.Math.round;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -154,7 +154,7 @@ public class LineBotController {
                     getMessageData("don't know", idTarget);
                 }
 
-                replyForMessageContaintImages("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", "https://a.ppy.sh/"+userid,idTarget);
+                replyForMessageContaintImages("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + round(Double.parseDouble(accuracy)) + "%", "https://a.ppy.sh/"+userid,idTarget);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -407,10 +407,11 @@ public class LineBotController {
                             Double d = rates.getDouble(variable2.toUpperCase());
                            // long l = rates.getLong(variable2.toUpperCase());
                             DecimalFormat formatter = new DecimalFormat("#,###.00");
-                            String currencyResult = formatter.format(Math.floor((d*number)*100)/100);
+                          //  String currencyResult = formatter.format(Math.floor((d*number)*100)/100);
+                            String currency = NumberFormat.getNumberInstance(Locale.US).format(Math.floor((d*round(number))*100)/100);
 
-                            
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult);
+
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currency);
 
 
 
