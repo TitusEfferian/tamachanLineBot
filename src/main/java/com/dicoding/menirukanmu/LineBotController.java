@@ -657,7 +657,7 @@ public class LineBotController {
     private void templateMessage(String sourceid)
     {
         try {
-            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
+            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/pellboyy/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
@@ -685,6 +685,39 @@ public class LineBotController {
 
                             )),
                             new CarouselColumn(resultList.get(1), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/yingtze/"),
+
+                                    new PostbackAction("likes",
+
+                                            "hello こんにちは")
+
+                            )),
+                            new CarouselColumn(resultList.get(2), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/yingtze/"),
+
+                                    new PostbackAction("likes",
+
+                                            "hello こんにちは")
+
+                            )),
+                            new CarouselColumn(resultList.get(3), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/yingtze/"),
+
+                                    new PostbackAction("likes",
+
+                                            "hello こんにちは")
+
+                            )),
+                            new CarouselColumn(resultList.get(4), "yingtze", "yingtze", Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
