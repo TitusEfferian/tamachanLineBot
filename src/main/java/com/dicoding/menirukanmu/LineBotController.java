@@ -534,28 +534,24 @@ public class LineBotController {
     }*/
 
 
-    private List<TextMessage> test(String sourceId) {
+    private void test(String sourceId) {
+        
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,Arrays.asList(new TextMessage("a"),new TextMessage("b")));
 
-        List<TextMessage> messages = Arrays.asList(new TextMessage("hai"), new TextMessage("how are you"));
 
 
-        for(int a=0;a< messages.size();a++){
 
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(new ReplyMessage(sourceId,messages.get(0)))
+                    .replyMessage(replyMessage)
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
             e.printStackTrace();
         }
-
-        }
-        return messages;
-
     }
 
 
