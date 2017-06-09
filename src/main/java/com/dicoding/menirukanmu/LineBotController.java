@@ -679,30 +679,6 @@ public class LineBotController {
                                     new URIAction("Go to instagram",
 
                                             "https://www.instagram.com/"+url+"/")
-                            )),
-                            new CarouselColumn(resultList.get(1), "yingtze", "yingtze", Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-                            )),
-                            new CarouselColumn(resultList.get(2), "yingtze", "yingtze", Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-                            ))
-                            ,new CarouselColumn(resultList.get(3), "yingtze", "yingtze", Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-                            ))
-                            ,new CarouselColumn(resultList.get(4), "yingtze", "yingtze", Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
                             ))
                     ));
             TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
