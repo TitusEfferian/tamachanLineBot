@@ -390,7 +390,7 @@ public class LineBotController {
                             variable2=m2.group(1);
                         }
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1+"&symbols="+variable2);
+                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1.toUpperCase()+"&symbols="+variable2.toUpperCase());
                             replyToUser(idTarget,jsonObject.toString());
 
 
