@@ -414,7 +414,7 @@ public class LineBotController {
                            // String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber*2));
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult);
 
 
 
