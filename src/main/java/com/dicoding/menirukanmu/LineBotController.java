@@ -376,7 +376,7 @@ public class LineBotController {
 
                         String variable1="";
                         String variable2="";
-                        int number=0;
+                        double number=0;
 
                         Pattern pattern = Pattern.compile("/convert (.*?) ");
                         Matcher matcher = pattern.matcher(msgText);
