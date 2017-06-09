@@ -544,7 +544,8 @@ public class LineBotController {
                     {
                         try {
                             JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
-                            JSONObject jsonObject1 = new JSONObject(jsonObject.get("followed_by").toString());
+                            JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
+                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("followed_by").toString());
 
                             replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
 
