@@ -538,7 +538,8 @@ public class LineBotController {
                     }
                     if(msgText.contains("/debug"))
                     {
-                        templateMessage(idTarget);
+
+                        templateMessage(idTarget,splitter(msgText+";",("/debug (.?*)"),"/debug"));
                     }
                     if(msgText.contains("/instagram"))
                     {
@@ -654,10 +655,10 @@ public class LineBotController {
         }
 
     }
-    private void templateMessage(String sourceid)
+    private void templateMessage(String sourceid,String url)
     {
         try {
-            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
+            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"+/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
@@ -677,12 +678,31 @@ public class LineBotController {
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/")
+                            )),
+                            new CarouselColumn(resultList.get(1), "yingtze", "yingtze", Arrays.asList(
 
-                                    new PostbackAction("likes",
+                                    new URIAction("Go to instagram",
 
-                                            "hello こんにちは")
+                                            "https://www.instagram.com/"+url+"/")
+                            )),
+                            new CarouselColumn(resultList.get(2), "yingtze", "yingtze", Arrays.asList(
 
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/"+url+"/")
+                            ))
+                            ,new CarouselColumn(resultList.get(3), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/"+url+"/")
+                            ))
+                            ,new CarouselColumn(resultList.get(4), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/"+url+"/")
                             ))
                     ));
             TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
