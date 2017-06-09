@@ -403,11 +403,11 @@ public class LineBotController {
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1);
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
-                            float f = Float.parseFloat(rates.getInt(variable2)+"f");
+                            int i = Integer.parseInt(rates.getInt(variable2.toUpperCase())+"f");
 
 
                            // replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString(d*number));
-                            replyToUser(idTarget,Float.toString(f));
+                            replyToUser(idTarget,Float.toString(i));
 
 
                         } catch (IOException e) {
