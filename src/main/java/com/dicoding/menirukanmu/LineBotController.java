@@ -335,7 +335,7 @@ public class LineBotController {
 
                         try {
                             // JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/" + part2 + "/daily/08-06-2017.json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/" + part2 + "/daily/09-06-2017.json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
 
                             for (int a = 0; a < jsonArray.length(); a++) {
@@ -538,13 +538,14 @@ public class LineBotController {
 
         List<TextMessage> messages = Arrays.asList(new TextMessage("hai"), new TextMessage("how are you"));
 
+
         for(int a=0;a< messages.size();a++){
 
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lChannelAccessToken)
                     .build()
-                    .replyMessage(new ReplyMessage(sourceId,messages.get(a)))
+                    .replyMessage(new ReplyMessage(sourceId,messages.get(0)))
                     .execute();
             System.out.println(response.code() + " " + response.message());
         } catch (IOException e) {
@@ -556,6 +557,8 @@ public class LineBotController {
         return messages;
 
     }
+
+
 
 
 
