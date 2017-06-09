@@ -403,9 +403,9 @@ public class LineBotController {
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1.toUpperCase()+"&symbols="+variable2.toUpperCase());
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
-                           // int calculate = 0;
-                           // calculate=Integer.parseInt(rates.getString(variable2.toUpperCase()))*number;
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Integer.toString(number*rates.getInt(variable2.toUpperCase())));
+                            Double d = new Double(rates.getInt(variable2.toUpperCase()));
+
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString(d*number));
 
 
 
@@ -517,7 +517,7 @@ public class LineBotController {
                     if (msgText.contains("/help")) {
                         try {
                             // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/weekly anime\n/weekly couple\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/convert 10 USD to IDR\n/weekly anime\n/weekly couple\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
