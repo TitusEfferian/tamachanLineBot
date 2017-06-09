@@ -153,9 +153,8 @@ public class LineBotController {
                     getMessageData("don't know", idTarget);
                 }
 
-                getMessageData("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", idTarget);
-                getMessageDataForImage(idTarget, "https://a.ppy.sh/" + userid);
-                // getMessageData(osuUrl("deceitful","2"),idTarget);
+                replyForMessageContaintImages("Username: " + username + " from " + jsonNation(country).getString("name") + "\nMode: " + osuMode + "\nCountry Rank: " + countryRank + "\nGlobal Rank: " + pprank + "\nAccuracy: " + Math.round(Double.parseDouble(accuracy)) + "%", "https://a.ppy.sh/"+userid,idTarget);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -420,7 +419,7 @@ public class LineBotController {
                                 if (seller_name == "" && price == 0) {
                                     getMessageData("don't know", idTarget);
                                 } else {
-                                    replyForBukalapak("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n" + url, imagesUrl,idTarget);
+                                    replyForMessageContaintImages("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n" + url, imagesUrl,idTarget);
                                    // getMessageDataForImage(payload.events[0].replyToken, imagesUrl);
                                 }
 
@@ -463,11 +462,7 @@ public class LineBotController {
                         }
                     }
 
-                    if (msgText.contains("/debug")) {
 
-                       // test(idTarget, Arrays.asList(new TextMessage("hai"), new TextMessage("anjing")));
-
-                    }
 
 
                 } else {
@@ -534,7 +529,7 @@ public class LineBotController {
     }*/
 
 
-    private void replyForBukalapak(String textMessage,String imageUrl,String sourceId) {
+    private void replyForMessageContaintImages(String textMessage,String imageUrl,String sourceId) {
 
         ReplyMessage replyMessage = new ReplyMessage(sourceId,Arrays.asList(new TextMessage(textMessage),new ImageMessage(imageUrl,imageUrl)));
 
@@ -550,6 +545,7 @@ public class LineBotController {
             e.printStackTrace();
         }
     }
+
 
 
 
