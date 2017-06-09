@@ -169,8 +169,9 @@ public class LineBotController {
                 while(m.find())
                 {
                     temp=m.group(1);
+                    return  temp;
                 }
-                return  temp;
+                return null;
     }
 
     private static String readAll(Reader rd) throws IOException {
@@ -500,7 +501,7 @@ public class LineBotController {
                     if (msgText.contains("/help")) {
                         try {
                             // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/weekly anime\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/weekly anime\n/weekly couple\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
