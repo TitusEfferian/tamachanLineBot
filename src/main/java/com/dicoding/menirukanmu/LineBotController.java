@@ -549,7 +549,7 @@ public class LineBotController {
 
                             String sourceurl = "";
 
-                            JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
+                            JSONArray jsonArray = new JSONArray(jsonUser.get("nodes").toString());
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = new JSONObject(jsonArray.getJSONObject(a));
