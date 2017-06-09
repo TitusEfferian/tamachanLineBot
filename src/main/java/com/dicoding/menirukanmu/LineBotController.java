@@ -656,29 +656,15 @@ public class LineBotController {
 
                 Arrays.asList(
 
-                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/e35/c236.0.607.607/19050975_1783530481662292_3786096590062616576_n.jpg", "yingtze♥", "yingtze♥", Arrays.asList(
+                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg", "yingtze", "yingtze", Arrays.asList(
 
-                                new URIAction("yingtze♥",
+                                new URIAction("yingtze",
 
                                         "instagram.com/yingtze"),
 
                                 new PostbackAction("like",
 
                                         "like")
-
-                        )),
-
-                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg", "yingtze", "yingtze", Arrays.asList(
-
-                                new PostbackAction("言 hello2",
-
-                                        "hello こんにちは",
-
-                                        "hello こんにちは"),
-
-                                new MessageAction("Say message",
-
-                                        "Rice=米")
 
                         ))
 
