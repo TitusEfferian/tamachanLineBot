@@ -665,21 +665,20 @@ public class LineBotController {
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
 
-            String username="test";
+            String username=url;
+            String link = "https://www.instagram.com/"+url+"/?__a=1";
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
-
-
             }
 
             CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                     Arrays.asList(
 
-                            new CarouselColumn(resultList.get(0), username, username, Arrays.asList(
+                            new CarouselColumn(resultList.get(0), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
@@ -690,7 +689,7 @@ public class LineBotController {
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(1), username, username, Arrays.asList(
+                            new CarouselColumn(resultList.get(1), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
@@ -701,7 +700,7 @@ public class LineBotController {
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(2), username, username, Arrays.asList(
+                            new CarouselColumn(resultList.get(2), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
@@ -712,7 +711,7 @@ public class LineBotController {
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(3), username, username, Arrays.asList(
+                            new CarouselColumn(resultList.get(3), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
@@ -723,7 +722,7 @@ public class LineBotController {
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(4), username, username, Arrays.asList(
+                            new CarouselColumn(resultList.get(4), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
