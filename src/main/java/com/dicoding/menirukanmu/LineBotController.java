@@ -383,7 +383,7 @@ public class LineBotController {
 
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base=USD&symbols=IDR");
-                            replyToUser(idTarget,jsonObject.toString());
+                            replyToUser(idTarget,variable1);
 
 
                         } catch (IOException e) {
