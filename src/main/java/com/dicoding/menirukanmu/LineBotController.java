@@ -405,8 +405,8 @@ public class LineBotController {
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = new Double(rates.getInt(variable2.toUpperCase()));
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString(d*number));
-
+                           // replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString(d*number));
+                            replyToUser(idTarget,d.toString());
 
 
                         } catch (IOException e) {
