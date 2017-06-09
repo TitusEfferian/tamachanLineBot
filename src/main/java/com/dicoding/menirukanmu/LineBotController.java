@@ -161,18 +161,7 @@ public class LineBotController {
         }
     }
 
-    public String converter(String text,String compiler,String temp)
-    {
-        Pattern p = Pattern.compile(compiler);
-        Matcher m = p.matcher(text);
 
-                while(m.find())
-                {
-                    temp=m.group(1);
-                    return  temp;
-                }
-                return null;
-    }
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -385,12 +374,20 @@ public class LineBotController {
                         String variable1="";
                         String variable2="";
 
-                        converter(msgText,"/convert (.*?) to",variable1);
-                        converter(msgText+";","to (.*?);",variable2);
+                        Pattern p1 = Pattern.compile("/convert (.*?) to");
+                        Matcher m1 = p1.matcher(msgText);
 
+                        Pattern p2 = Pattern.compile("to (.*?);");
+                        Matcher m2 = p2.matcher(msgText+";");
+
+                        while(m1.find() && m2.find())
+                        {
+                            variable1=m1.group(1);
+                            variable2=m2.group(2);
+                        }
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1+"&symbols="+variable2);
-                            replyToUser(idTarget,variable1);
+                            replyToUser(idTarget,jsonObject.toString());
 
 
                         } catch (IOException e) {
