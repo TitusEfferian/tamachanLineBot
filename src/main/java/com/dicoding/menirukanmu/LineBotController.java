@@ -542,32 +542,7 @@ public class LineBotController {
                     }
                     if(msgText.contains("/instagram"))
                     {
-                        try {
-                            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
-                            JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
-                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
 
-                            JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
-                            String result="";
-                            List<String> resultList = new ArrayList<>();
-
-                            for(int a=0;a<jsonArray.length();a++)
-                            {
-                                JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                resultList.add(jsonPart.getString("thumbnail_src"));
-
-                            }
-
-
-
-                            replyToUser(idTarget,Integer.toString(resultList.size()));
-
-
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     }
 
 
@@ -681,73 +656,43 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
-        String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
-        CarouselTemplate carouselTemplate = new CarouselTemplate(
+        try {
+            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
+            JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
+            JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
+            JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
+            List<String> resultList = new ArrayList<>();
 
-                Arrays.asList(
+            for(int a=0;a<jsonArray.length();a++)
+            {
+                JSONObject jsonPart = jsonArray.getJSONObject(a);
+                resultList.add(jsonPart.getString("thumbnail_src"));
+            }
 
-                        new CarouselColumn(imageUrl, "yingtze", "yingtze", Arrays.asList(
+            CarouselTemplate carouselTemplate = new CarouselTemplate(
 
-                                new URIAction("Go to instagram",
+                    Arrays.asList(
 
-                                        "https://www.instagram.com/yingtze/"),
+                            new CarouselColumn(resultList.get(0), "yingtze", "yingtze", Arrays.asList(
 
-                                new PostbackAction("likes",
+                                    new URIAction("Go to instagram",
 
-                                        "hello こんにちは")
+                                            "https://www.instagram.com/yingtze/"),
 
-                        )),
+                                    new PostbackAction("likes",
 
-                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/e35/c236.0.607.607/19050975_1783530481662292_3786096590062616576_n.jpg", "yingtze", "yingtze", Arrays.asList(
+                                            "hello こんにちは")
 
-                                new URIAction("Go to instagram",
+                            ))
+                    ));
+            TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
+            ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
+            responseReply(replyMessage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       // String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
 
-                                        "https://www.instagram.com/yingtze/"),
-
-                                new PostbackAction("likes",
-
-                                        "hello こんにちは")
-
-                        )),
-        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/18947782_229149460909774_8090545520289775616_n.jpg", "yingtze", "yingtze", Arrays.asList(
-
-                new URIAction("Go to instagram",
-
-                        "https://www.instagram.com/yingtze/"),
-
-                new PostbackAction("likes",
-
-                        "hello こんにちは")
-
-        )),
-        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/e35/c236.0.607.607/18888632_1039205836212078_1422464366384513024_n.jpg", "yingtze", "yingtze", Arrays.asList(
-
-                new URIAction("Go to instagram",
-
-                        "https://www.instagram.com/yingtze/"),
-
-                new PostbackAction("likes",
-
-                        "hello こんにちは")
-
-        )),
-                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/18948141_233828780443084_3488349592880152576_n.jpg", "yingtze", "yingtze", Arrays.asList(
-
-                                new URIAction("Go to instagram",
-
-                                        "https://www.instagram.com/yingtze/"),
-
-                                new PostbackAction("likes",
-
-                                        "hello こんにちは")
-
-                        ))
-
-
-                ));
-        TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
-        ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
-        responseReply(replyMessage);
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
