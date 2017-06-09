@@ -538,10 +538,10 @@ public class LineBotController {
                     }
                     if(msgText.contains("/stalk"))
                     {
-                        String url = splitter(msgText+";","/debug (.*?);","/debug");
+                        String url = splitter(msgText+";","/stalk (.*?);","/stalk");
 
-                        replyToUser(idTarget,url);
-                       // templateMessage(idTarget,"yingtze");
+                        //replyToUser(idTarget,url);
+                        templateMessage(idTarget,url);
                     }
 
                 } else {
