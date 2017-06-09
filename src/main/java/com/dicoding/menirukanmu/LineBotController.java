@@ -386,6 +386,8 @@ public class LineBotController {
                             number=Integer.parseInt(matcher.group(1));
                         }
 
+                        number = round(number);
+
                         Pattern p1 = Pattern.compile("/convert "+number+" (.*?) to");
                         Matcher m1 = p1.matcher(msgText);
 
@@ -411,7 +413,7 @@ public class LineBotController {
                             String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult);
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+number);
 
 
 
