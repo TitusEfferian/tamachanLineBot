@@ -450,6 +450,14 @@ public class LineBotController {
                         }
 
                     }
+                    if(msgText.contains("/weekly anime"))
+                    {
+                        try {
+                            getMessageDataForImage(idTarget,"https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/18839085_1919727671598077_3075675389604525350_n.png?oh=b4a2c4823de7e3d83443073da5e9f0b9&oe=59ACFC8F");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                     if (msgText.contains("/help")) {
@@ -471,7 +479,7 @@ public class LineBotController {
                         // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
                         //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
                         replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
-                        
+
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")) {
                         replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
@@ -481,8 +489,6 @@ public class LineBotController {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
