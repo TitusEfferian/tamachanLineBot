@@ -683,6 +683,17 @@ public class LineBotController {
 
                                             "hello こんにちは")
 
+                            )),
+                            new CarouselColumn(resultList.get(1), "yingtze", "yingtze", Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/yingtze/"),
+
+                                    new PostbackAction("likes",
+
+                                            "hello こんにちは")
+
                             ))
                     ));
             TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
