@@ -12,8 +12,12 @@ import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.MessageAction;
+import com.linecorp.bot.model.action.PostbackAction;
+import com.linecorp.bot.model.action.URIAction;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.*;
+import com.linecorp.bot.model.message.template.CarouselColumn;
+import com.linecorp.bot.model.message.template.CarouselTemplate;
 import com.linecorp.bot.model.message.template.ConfirmTemplate;
 import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.profile.UserProfileResponse;
@@ -648,16 +652,38 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
-        ConfirmTemplate confirmTemplate = new ConfirmTemplate(
+        CarouselTemplate carouselTemplate = new CarouselTemplate(
 
-                "Do it?",
+                Arrays.asList(
 
-                new MessageAction("Yes", "Yes!"),
+                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "hoge", "fuga", Arrays.asList(
 
-                new MessageAction("No", "No!")
+                                new URIAction("Go to line.me",
 
-        );
-        TemplateMessage templateMessage = new TemplateMessage(sourceid,confirmTemplate);
+                                        "https://line.me"),
+
+                                new PostbackAction("Say hello1",
+
+                                        "hello こんにちは")
+
+                        )),
+
+                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "hoge", "fuga", Arrays.asList(
+
+                                new PostbackAction("言 hello2",
+
+                                        "hello こんにちは",
+
+                                        "hello こんにちは"),
+
+                                new MessageAction("Say message",
+
+                                        "Rice=米")
+
+                        ))
+
+                ));
+        TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
         ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
         responseReply(replyMessage);
     }
