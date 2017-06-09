@@ -406,11 +406,11 @@ public class LineBotController {
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = rates.getDouble(variable2.toUpperCase());
                            // long l = rates.getLong(variable2.toUpperCase());
-                            DecimalFormat formatter = new DecimalFormat("#.###,00");
+                            DecimalFormat formatter = new DecimalFormat("0.000,##");
                             String currencyResult = formatter.format(Math.floor((d*number)*100)/100);
 
                             replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult);
-                           // replyToUser(idTarget,Long.toString(l));
+
 
 
                         } catch (IOException e) {
