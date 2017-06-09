@@ -531,7 +531,7 @@ public class LineBotController {
                     if (msgText.contains("/help")) {
                         try {
                             // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/convert 10 USD to IDR\n/weekly anime\n/weekly couple\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/convert 10 USD to IDR\n/weekly anime\n/weekly couple\n/stalk instagramUserName\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -652,6 +652,7 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid,String url)
     {
+
 
         try {
             JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"/?__a=1");
