@@ -11,8 +11,10 @@ import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.*;
+import com.linecorp.bot.model.message.template.ConfirmTemplate;
 import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -378,7 +380,6 @@ public class LineBotController {
                         String variable1="";
                         String variable2="";
                         int number=0;
-                        double numberNumber = round(15.25);
 
                         Pattern pattern = Pattern.compile("/convert (.*?) ");
                         Matcher matcher = pattern.matcher(msgText);
@@ -388,7 +389,7 @@ public class LineBotController {
                             number=Integer.parseInt(matcher.group(1));
                         }
 
-                        number = round(number);
+                     ;
 
                         Pattern p1 = Pattern.compile("/convert "+number+" (.*?) to");
                         Matcher m1 = p1.matcher(msgText);
@@ -531,6 +532,10 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/debug"))
+                    {
+                        templateMessage(idTarget);
+                    }
 
 
 
@@ -643,7 +648,18 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
-      //  TemplateMessage templateMessage = new TemplateMess
+        ConfirmTemplate confirmTemplate = new ConfirmTemplate(
+
+                "Do it?",
+
+                new MessageAction("Yes", "Yes!"),
+
+                new MessageAction("No", "No!")
+
+        );
+        TemplateMessage templateMessage = new TemplateMessage(sourceid,confirmTemplate);
+        ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
+        responseReply(replyMessage);
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
