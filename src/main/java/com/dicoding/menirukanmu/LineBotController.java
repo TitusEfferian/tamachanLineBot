@@ -538,8 +538,7 @@ public class LineBotController {
                     }
                     if(msgText.contains("/debug"))
                     {
-
-                        templateMessage(idTarget,splitter(msgText+";",("/debug (.?*)"),"/debug"));
+                        templateMessage(idTarget,splitter(msgText+";",("/debug (.?*);"),"/debug"));
                     }
                     if(msgText.contains("/instagram"))
                     {
