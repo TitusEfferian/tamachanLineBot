@@ -543,9 +543,9 @@ public class LineBotController {
                     if(msgText.contains("/instagram"))
                     {
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
+                            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/pellboyy/?__a=1");
                             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
-                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
+                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("followed_by").toString());
 
                             String sourceurl = "";
 
@@ -557,7 +557,7 @@ public class LineBotController {
 
                             }
                            // replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
-                            replyToUser(idTarget,sourceurl);
+                            replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
 
 
 
