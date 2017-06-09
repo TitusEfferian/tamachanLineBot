@@ -539,8 +539,8 @@ public class LineBotController {
                     if(msgText.contains("/debug"))
                     {
                         String url = splitter(msgText+";","/debug(.*?);","/debug");
-                        replyToUser(idTarget,url);
-                       // templateMessage(idTarget);
+
+                        templateMessage(idTarget,url);
                     }
                     if(msgText.contains("/instagram"))
                     {
@@ -656,80 +656,84 @@ public class LineBotController {
         }
 
     }
-    private void templateMessage(String sourceid)
+    private void templateMessage(String sourceid,String url)
     {
         try {
-            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/pellboyy/?__a=1");
+            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
 
+            String username="";
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
+                username=jsonPart.getString("username");
             }
-            String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
+
             CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                     Arrays.asList(
 
-                            new CarouselColumn(resultList.get(0), "yingtze", "yingtze", Arrays.asList(
+                            new CarouselColumn(resultList.get(0), username, username, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/"),
 
                                     new PostbackAction("likes",
 
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(1), "yingtze", "yingtze", Arrays.asList(
+                            new CarouselColumn(resultList.get(1), username, username, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/"),
 
                                     new PostbackAction("likes",
 
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(2), "yingtze", "yingtze", Arrays.asList(
+                            new CarouselColumn(resultList.get(2), username, username, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/"),
 
                                     new PostbackAction("likes",
 
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(3), "yingtze", "yingtze", Arrays.asList(
+                            new CarouselColumn(resultList.get(3), username, username, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/"),
 
                                     new PostbackAction("likes",
 
                                             "hello こんにちは")
 
                             )),
-                            new CarouselColumn(resultList.get(4), "yingtze", "yingtze", Arrays.asList(
+                            new CarouselColumn(resultList.get(4), username, username, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/yingtze/"),
+                                            "https://www.instagram.com/"+url+"/"),
 
                                     new PostbackAction("likes",
 
                                             "hello こんにちは")
 
                             ))
+
+
                     ));
             TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
             ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
