@@ -401,7 +401,7 @@ public class LineBotController {
                             variable2=m2.group(1);
                         }
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1.toUpperCase()+"&symbols="+variable2.toUpperCase());
+                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1);
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = new Double(rates.getInt(variable2.toUpperCase()));
 
