@@ -549,16 +549,18 @@ public class LineBotController {
 
                             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
                             String result="";
+                            List<String> resultList = new ArrayList<>();
 
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = jsonArray.getJSONObject(a);
-                                result=jsonPart.getString("thumbnail_src");
+                                resultList.add(jsonPart.getString("thumbnail_src"));
+
                             }
 
 
 
-                            replyToUser(idTarget,result.toString());
+                            replyToUser(idTarget,Integer.toString(resultList.size()));
 
 
 
