@@ -487,6 +487,14 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/weekly couple"))
+                    {
+                        try {
+                            getMessageDataForImage(idTarget,"https://scontent-sit4-1.xx.fbcdn.net/v/t31.0-0/p480x480/18954935_1922328001338044_5723289886971793934_o.png?oh=b36a6810342f82e3125f85fcba01bbde&oe=59DB252A");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                     if (msgText.contains("/help")) {
