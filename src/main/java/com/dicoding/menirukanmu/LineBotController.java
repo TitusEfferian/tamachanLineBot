@@ -388,8 +388,8 @@ public class LineBotController {
                         converter(msgText+";","to (.*?);",variable2);
 
                         try {
-                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base=USD&symbols=IDR");
-                            replyToUser(idTarget,variable2);
+                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1+"&symbols="+variable2);
+                            replyToUser(idTarget,variable1);
 
 
                         } catch (IOException e) {
