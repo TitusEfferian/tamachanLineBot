@@ -656,19 +656,19 @@ public class LineBotController {
 
                 Arrays.asList(
 
-                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "hoge", "fuga", Arrays.asList(
+                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/e35/c236.0.607.607/19050975_1783530481662292_3786096590062616576_n.jpg", "yingtze♥", "yingtze♥", Arrays.asList(
 
-                                new URIAction("Go to line.me",
+                                new URIAction("yingtze♥",
 
-                                        "https://line.me"),
+                                        "instagram.com/yingtze"),
 
-                                new PostbackAction("Say hello1",
+                                new PostbackAction("like",
 
-                                        "hello こんにちは")
+                                        "like")
 
                         )),
 
-                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "hoge", "fuga", Arrays.asList(
+                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg", "yingtze", "yingtze", Arrays.asList(
 
                                 new PostbackAction("言 hello2",
 
