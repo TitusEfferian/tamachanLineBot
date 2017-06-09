@@ -391,7 +391,7 @@ public class LineBotController {
                         }
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1+"&symbols="+variable2);
-                            replyToUser(idTarget,variable1+variable2);
+                            replyToUser(idTarget,jsonObject.toString());
 
 
                         } catch (IOException e) {
