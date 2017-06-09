@@ -538,7 +538,7 @@ public class LineBotController {
                     }
                     if(msgText.contains("/debug"))
                     {
-                        templateMessage(idTarget,splitter(msgText+";",("/debug (.?*);"),"/debug"));
+                       templateMessage(idTarget);
                     }
                     if(msgText.contains("/instagram"))
                     {
@@ -654,8 +654,9 @@ public class LineBotController {
         }
 
     }
-    private void templateMessage(String sourceid,String url)
+    private void templateMessage(String sourceid)
     {
+        String url ="yingtze";
         try {
             JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"+/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
