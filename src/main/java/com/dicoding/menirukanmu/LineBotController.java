@@ -369,9 +369,23 @@ public class LineBotController {
                     }
                     if(msgText.contains("/convert"))
                     {
+
+                        String variable1="";
+                        String bariable2="";
+
+                        Pattern p = Pattern.compile("/convert (.*?) to");
+                        Matcher m = p.matcher(msgText);
+
+                        while(m.find())
+                        {
+                            variable1=m.group(1);
+                        }
+
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base=USD&symbols=IDR");
                             replyToUser(idTarget,jsonObject.toString());
+
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
