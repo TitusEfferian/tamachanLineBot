@@ -403,7 +403,7 @@ public class LineBotController {
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             int calculate = 0;
                             calculate=Integer.parseInt(rates.getString(variable2))*number;
-                            replyToUser(idTarget,Integer.toString(calculate));
+                            replyToUser(idTarget,rates.getString(variable2));
 
 
                         } catch (IOException e) {
