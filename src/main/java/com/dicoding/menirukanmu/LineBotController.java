@@ -545,9 +545,17 @@ public class LineBotController {
                         try {
                             JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
                             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
-                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("followed_by").toString());
+                            JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
 
+                            JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
+                            for(int a=0;a<jsonArray.length();a++)
+                            {
+                                JSONObject jsonPart = new JSONObject(jsonArray.getJSONObject(a));
+                                getMessageDataForImage(idTarget,jsonPart.getString("thumbnail_src"));
+                            }
                             replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
+
+
 
 
                         } catch (IOException e) {
