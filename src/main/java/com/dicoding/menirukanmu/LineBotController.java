@@ -478,11 +478,11 @@ public class LineBotController {
 
                         // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
                         //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
-                        replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
+                       // replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")) {
-                        replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
+                       // replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
 
                         try {
                             getMessageDataForImage(idTarget, imagesUrl);
