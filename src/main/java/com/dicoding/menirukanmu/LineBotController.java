@@ -536,11 +536,11 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/instagram"))
+                    if(msgText.contains("/stalk"))
                     {
-                       String url = splitter(msgText+";","/debug (.*?);","/debug");
+                        //String url = splitter(msgText+";","/debug (.*?);","/debug");
 
-                        templateMessage(idTarget,url);
+                        templateMessage(idTarget,"yingtze");
                     }
 
                 } else {
