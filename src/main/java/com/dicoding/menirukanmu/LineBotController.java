@@ -536,19 +536,12 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
-                    if(msgText.contains("/debug"))
-                    {
-                       // String url = splitter(msgText+";","/debug(.*?);","/debug");
-
-                        templateMessage(idTarget);
-                    }
                     if(msgText.contains("/instagram"))
                     {
+                       String url = splitter(msgText+";","/debug(.*?);","/debug");
 
+                        templateMessage(idTarget,url);
                     }
-
-
-
 
                 } else {
                     String imagesUrl = "https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731";
@@ -656,9 +649,9 @@ public class LineBotController {
         }
 
     }
-    private void templateMessage(String sourceid)
+    private void templateMessage(String sourceid,String url)
     {
-        String url ="yingtze";
+
         try {
             JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
@@ -666,7 +659,7 @@ public class LineBotController {
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
 
             String username=url;
-            String link = "https://www.instagram.com/"+url+"/?__a=1";
+            String link = "https://www.instagram.com/"+url+"/";
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
@@ -682,55 +675,37 @@ public class LineBotController {
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/"),
-
-                                    new PostbackAction("likes",
-
-                                            "hello こんにちは")
+                                            "https://www.instagram.com/"+url+"/")
 
                             )),
                             new CarouselColumn(resultList.get(1), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/"),
+                                            "https://www.instagram.com/"+url+"/")
 
-                                    new PostbackAction("likes",
-
-                                            "hello こんにちは")
 
                             )),
                             new CarouselColumn(resultList.get(2), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/"),
+                                            "https://www.instagram.com/"+url+"/")
 
-                                    new PostbackAction("likes",
-
-                                            "hello こんにちは")
 
                             )),
                             new CarouselColumn(resultList.get(3), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/"),
-
-                                    new PostbackAction("likes",
-
-                                            "hello こんにちは")
+                                            "https://www.instagram.com/"+url+"/")
 
                             )),
                             new CarouselColumn(resultList.get(4), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/"),
-
-                                    new PostbackAction("likes",
-
-                                            "hello こんにちは")
+                                            "https://www.instagram.com/"+url+"/")
 
                             ))
 
