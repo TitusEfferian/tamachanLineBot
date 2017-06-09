@@ -551,9 +551,9 @@ public class LineBotController {
                             for(int a=0;a<jsonArray.length();a++)
                             {
                                 JSONObject jsonPart = new JSONObject(jsonArray.getJSONObject(a));
-                                getMessageDataForImage(idTarget,jsonPart.getString("thumbnail_src"));
+                                replyToUser(idTarget,jsonPart.getString("thumbnail_src"));
                             }
-                            replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
+                           // replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
 
 
 
