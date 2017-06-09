@@ -13,6 +13,7 @@ import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.*;
+import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 
@@ -377,7 +378,7 @@ public class LineBotController {
                         String variable1="";
                         String variable2="";
                         int number=0;
-                        double numberNumber = 15.25;
+                        double numberNumber = round(15.25);
 
                         Pattern pattern = Pattern.compile("/convert (.*?) ");
                         Matcher matcher = pattern.matcher(msgText);
@@ -592,6 +593,8 @@ public class LineBotController {
     {
         pushVideoMessage(targetId,videoString,imageString);
     }*/
+
+
 
 
     private void replyForMessageContaintImages(String textMessage,String imageUrl,String sourceId) {
