@@ -39,6 +39,7 @@ import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -405,10 +406,9 @@ public class LineBotController {
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = rates.getDouble(variable2.toUpperCase());
                            // long l = rates.getLong(variable2.toUpperCase());
+                            DecimalFormat formatter = new DecimalFormat("#,###.00");
 
-                           
-
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString(Math.floor((d*number)*100)/100));
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+formatter.format(Double.toString(Math.floor((d*number)*100)/100)));
                            // replyToUser(idTarget,Long.toString(l));
 
 
