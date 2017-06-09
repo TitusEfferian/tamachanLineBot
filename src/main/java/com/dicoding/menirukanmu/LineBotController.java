@@ -538,7 +538,7 @@ public class LineBotController {
                     }
                     if(msgText.contains("/debug"))
                     {
-                       templateMessage(idTarget);
+                        templateMessage(idTarget);
                     }
                     if(msgText.contains("/instagram"))
                     {
@@ -656,20 +656,19 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
-        String url ="yingtze";
         try {
-            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/"+url+"+/?__a=1");
+            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
-            List<String> resultList = new ArrayList<>();
 
+            List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
             }
-
+            String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
             CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                     Arrays.asList(
@@ -678,7 +677,12 @@ public class LineBotController {
 
                                     new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/")
+                                            "https://www.instagram.com/yingtze/"),
+
+                                    new PostbackAction("likes",
+
+                                            "hello こんにちは")
+
                             ))
                     ));
             TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
@@ -687,7 +691,6 @@ public class LineBotController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       // String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
 
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
