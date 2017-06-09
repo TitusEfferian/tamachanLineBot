@@ -377,6 +377,7 @@ public class LineBotController {
                         String variable1="";
                         String variable2="";
                         int number=0;
+                        double numberNumber = 15.25;
 
                         Pattern pattern = Pattern.compile("/convert (.*?) ");
                         Matcher matcher = pattern.matcher(msgText);
@@ -407,13 +408,12 @@ public class LineBotController {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1);
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = rates.getDouble(variable2.toUpperCase());
-                           // long l = rates.getLong(variable2.toUpperCase());
                             DecimalFormat formatter = new DecimalFormat("###.###");
                             String currencyResult = formatter.format(Math.floor((d*number)*100)/100);
-                            String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
+                           // String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult);
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber));
 
 
 
