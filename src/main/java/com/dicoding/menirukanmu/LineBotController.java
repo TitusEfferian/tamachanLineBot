@@ -373,8 +373,17 @@ public class LineBotController {
 
                         String variable1="";
                         String variable2="";
+                        int number=0;
 
-                        Pattern p1 = Pattern.compile("/convert (.*?) to");
+                        Pattern pattern = Pattern.compile("/convert (.*?) ");
+                        Matcher matcher = pattern.matcher(msgText);
+
+                        while (matcher.find())
+                        {
+                            number=Integer.parseInt(matcher.group(1));
+                        }
+
+                        Pattern p1 = Pattern.compile("/convert "+number+" (.*?) to");
                         Matcher m1 = p1.matcher(msgText);
 
                         Pattern p2 = Pattern.compile("to (.*?);");
