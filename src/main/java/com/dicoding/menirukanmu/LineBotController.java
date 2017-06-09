@@ -414,7 +414,7 @@ public class LineBotController {
                            // String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber));
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber*2));
 
 
 
@@ -640,6 +640,10 @@ public class LineBotController {
             e.printStackTrace();
         }
 
+    }
+    private void templateMessage(String sourceid)
+    {
+       // TemplateMessage templateMessage = new TemplateMes
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
