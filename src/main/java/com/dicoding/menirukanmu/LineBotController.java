@@ -652,19 +652,34 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
+        String imageUrl="https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg";
         CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                 Arrays.asList(
 
-                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "yingtze", "yingtze", Arrays.asList(
+                        new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
 
-                                new URIAction("yingtze",
+                                new URIAction("Go to line.me",
 
-                                        "instagram.com/yingtze"),
+                                        "https://line.me"),
 
-                                new PostbackAction("like",
+                                new PostbackAction("Say hello1",
 
-                                        "like")
+                                        "hello こんにちは")
+
+                        )),
+
+                        new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
+
+                                new PostbackAction("言 hello2",
+
+                                        "hello こんにちは",
+
+                                        "hello こんにちは"),
+
+                                new MessageAction("Say message",
+
+                                        "Rice=米")
 
                         ))
 
