@@ -547,8 +547,11 @@ public class LineBotController {
                             JSONObject jsonUser = new JSONObject(jsonObject.get("user").toString());
                             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
 
-                            
-                            replyToUser(idTarget,Integer.toString(jsonObject1.getInt("count")));
+                            JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
+
+
+
+                            replyToUser(idTarget,Integer.toString(jsonArray.length()));
 
 
 
