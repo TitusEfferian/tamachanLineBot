@@ -665,12 +665,13 @@ public class LineBotController {
             JSONObject jsonObject1 = new JSONObject(jsonUser.get("media").toString());
             JSONArray jsonArray = new JSONArray(jsonObject1.get("nodes").toString());
 
-            String username="test";
+            String username="";
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
+                username=jsonPart.getString("username");
 
             }
 
