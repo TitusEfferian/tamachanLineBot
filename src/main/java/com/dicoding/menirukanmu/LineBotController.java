@@ -693,7 +693,41 @@ public class LineBotController {
 
                                         "hello こんにちは")
 
+                        )),
+        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/18947782_229149460909774_8090545520289775616_n.jpg", "yingtze", "yingtze", Arrays.asList(
+
+                new URIAction("Go to instagram",
+
+                        "https://www.instagram.com/yingtze/"),
+
+                new PostbackAction("likes",
+
+                        "hello こんにちは")
+
+        )),
+        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/e35/c236.0.607.607/18888632_1039205836212078_1422464366384513024_n.jpg", "yingtze", "yingtze", Arrays.asList(
+
+                new URIAction("Go to instagram",
+
+                        "https://www.instagram.com/yingtze/"),
+
+                new PostbackAction("likes",
+
+                        "hello こんにちは")
+
+        )),
+                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/18948141_233828780443084_3488349592880152576_n.jpg", "yingtze", "yingtze", Arrays.asList(
+
+                                new URIAction("Go to instagram",
+
+                                        "https://www.instagram.com/yingtze/"),
+
+                                new PostbackAction("likes",
+
+                                        "hello こんにちは")
+
                         ))
+
 
                 ));
         TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
