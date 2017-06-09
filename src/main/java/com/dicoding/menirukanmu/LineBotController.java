@@ -378,14 +378,14 @@ public class LineBotController {
                         String variable1="";
                         String variable2="";
                         int number=0;
-                        double numberNumber = 0;
+                        double numberNumber = round(15.25);
 
                         Pattern pattern = Pattern.compile("/convert (.*?) ");
                         Matcher matcher = pattern.matcher(msgText);
 
                         while (matcher.find())
                         {
-                            numberNumber = Double.parseDouble(matcher.group(1));
+                            number=Integer.parseInt(matcher.group(1));
                         }
 
                         number = round(number);
@@ -410,12 +410,12 @@ public class LineBotController {
                             JSONObject rates = new JSONObject(jsonObject.get("rates").toString());
                             Double d = rates.getDouble(variable2.toUpperCase());
                             DecimalFormat formatter = new DecimalFormat("###.###");
-                            String currencyResult = formatter.format(Math.floor((d*numberNumber)*100)/100);
+                            String currencyResult = formatter.format(Math.floor((d*number)*100)/100);
                            // String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            //replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber*2));
-                            replyToUser(idTarget,Double.toString(numberNumber));
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(numberNumber*2));
+
 
 
                         } catch (IOException e) {
@@ -643,7 +643,7 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid)
     {
-       // TemplateMessage templateMessage = new TemplateMess
+      //  TemplateMessage templateMessage = new TemplateMess
     }
     private void replyVideoMessage(String sourceId,String videoString ,String imageString)throws IOException
     {
