@@ -540,6 +540,18 @@ public class LineBotController {
                     {
                         templateMessage(idTarget);
                     }
+                    if(msgText.contains("/instagram"))
+                    {
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("https://www.instagram.com/yingtze/?__a=1");
+
+                            replyToUser(idTarget,jsonObject.get("followed_by").toString());
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
 
