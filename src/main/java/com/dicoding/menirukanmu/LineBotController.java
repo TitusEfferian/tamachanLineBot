@@ -407,7 +407,7 @@ public class LineBotController {
                            // long l = rates.getLong(variable2.toUpperCase());
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString((d*number)*10000));
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+Double.toString((d*number)/10000));
                            // replyToUser(idTarget,Long.toString(l));
 
 
