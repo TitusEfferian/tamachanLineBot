@@ -656,7 +656,7 @@ public class LineBotController {
 
                 Arrays.asList(
 
-                        new CarouselColumn("https://scontent-sit4-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/18949609_1900685016867455_4385758867368181760_n.jpg", "yingtze", "yingtze", Arrays.asList(
+                        new CarouselColumn("https://myanimelist.cdn-dena.com/r/360x360/images/characters/5/325307.jpg?s=781315723350f071b8fcf201f626a731", "yingtze", "yingtze", Arrays.asList(
 
                                 new URIAction("yingtze",
 
