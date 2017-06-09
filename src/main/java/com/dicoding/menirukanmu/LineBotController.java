@@ -345,7 +345,7 @@ public class LineBotController {
 
                         try {
                             // JSONObject json= readJsonFromUrl("http://muslimsalat.com/"+part2+".json?key=5db94b590c066277ad540f984a288bac");
-                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/" + part2 + "/daily/09-06-2017.json?key=5db94b590c066277ad540f984a288bac");
+                            JSONObject json = readJsonFromUrl("http://muslimsalat.com/" + part2 + "/daily/10-06-2017.json?key=5db94b590c066277ad540f984a288bac");
                             JSONArray jsonArray = new JSONArray(json.get("items").toString());
 
                             for (int a = 0; a < jsonArray.length(); a++) {
@@ -538,7 +538,7 @@ public class LineBotController {
                     }
                     if(msgText.contains("/instagram"))
                     {
-                       String url = splitter(msgText+";","/debug(.*?);","/debug");
+                       String url = splitter(msgText+";","/debug (.*?);","/debug");
 
                         templateMessage(idTarget,url);
                     }
