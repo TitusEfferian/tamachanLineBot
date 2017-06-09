@@ -380,10 +380,14 @@ public class LineBotController {
                         Pattern p2 = Pattern.compile("to (.*?);");
                         Matcher m2 = p2.matcher(msgText+";");
 
-                        while(m1.find() && m2.find())
+                        while(m1.find())
                         {
                             variable1=m1.group(1);
-                            variable2=m2.group(2);
+
+                        }
+                        while (m2.find())
+                        {
+                            variable2=m2.group(1);
                         }
                         try {
                             JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base="+variable1+"&symbols="+variable2);
