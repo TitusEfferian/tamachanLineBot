@@ -367,6 +367,15 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("/convert"))
+                    {
+                        try {
+                            JSONObject jsonObject = readJsonFromUrl("http://api.fixer.io/latest?base=USD&symbols=IDR");
+                            replyToUser(idTarget,jsonObject.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                     if (msgText.contains("/bukalapak")) {
                         String string = msgText.toString() + ";";
@@ -463,7 +472,7 @@ public class LineBotController {
                     if (msgText.contains("/help")) {
                         try {
                             // getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian",idTarget);
-                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
+                            getMessageData("command list :\n/weather city name\n/osu_mode nickname eg : /mania jakads;\n/puasa city_name\n/bukalapak product_name\n/video youtubelink;\n/weekly anime\nbot leave for kick out this shit\n\n\nunder development for personal amusement\n-titus efferian & kato@linuxsec.org", payload.events[0].replyToken);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
