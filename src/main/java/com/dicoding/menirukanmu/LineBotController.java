@@ -383,7 +383,7 @@ public class LineBotController {
 
                         while (matcher.find())
                         {
-                            number=Integer.parseInt(matcher.group(1));
+                            number=Double.parseDouble(matcher.group(1));
                         }
 
                         number = round(number);
@@ -413,7 +413,7 @@ public class LineBotController {
                             String currency = NumberFormat.getNumberInstance().format(Math.floor((d*round(number))*100)/100);
 
 
-                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+number);
+                            replyToUser(idTarget,"latest currency on: "+jsonObject.get("date").toString()+"\n"+number+" "+variable1.toUpperCase()+" = "+variable2.toUpperCase()+" "+currencyResult+" "+Double.toString(number));
 
 
 
