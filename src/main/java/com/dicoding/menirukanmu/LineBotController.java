@@ -420,8 +420,8 @@ public class LineBotController {
                                 if (seller_name == "" && price == 0) {
                                     getMessageData("don't know", idTarget);
                                 } else {
-                                    getMessageData("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n" + url, idTarget);
-                                    getMessageDataForImage(payload.events[0].replyToken, imagesUrl);
+                                    replyForBukalapak("Seller Name: " + seller_name + "\nPositive Rating: " + Integer.toString(positive) + "\nNegative Rating: " + Integer.toString(negative) + "\nName: " + name + "\nPrice: Rp. " + Integer.toString(price) + "\n" + url, imagesUrl,idTarget);
+                                   // getMessageDataForImage(payload.events[0].replyToken, imagesUrl);
                                 }
 
                             } catch (IOException e) {
@@ -466,7 +466,7 @@ public class LineBotController {
                     if (msgText.contains("/debug")) {
 
                        // test(idTarget, Arrays.asList(new TextMessage("hai"), new TextMessage("anjing")));
-                        test(idTarget);
+
                     }
 
 
@@ -534,12 +534,9 @@ public class LineBotController {
     }*/
 
 
-    private void test(String sourceId) {
-        
-        ReplyMessage replyMessage = new ReplyMessage(sourceId,Arrays.asList(new TextMessage("a"),new TextMessage("b")));
+    private void replyForBukalapak(String textMessage,String imageUrl,String sourceId) {
 
-
-
+        ReplyMessage replyMessage = new ReplyMessage(sourceId,Arrays.asList(new TextMessage(textMessage),new ImageMessage(imageUrl,imageUrl)));
 
         try {
             Response<BotApiResponse> response = LineMessagingServiceBuilder
