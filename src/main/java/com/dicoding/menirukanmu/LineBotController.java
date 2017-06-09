@@ -444,7 +444,6 @@ public class LineBotController {
 
                             }
                             replyVideoMessage(payload.events[0].replyToken, result, info.get("thumbnail").toString());
-                            // getVideoData(idTarget, result, info.get("thumbnail").toString());
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -466,16 +465,17 @@ public class LineBotController {
 
 
                 } else {
-                    String imagesUrl = "https://lh4.googleusercontent.com/0MV5E36_Q8vgC6FuuFA83HjqUvvctjgKL4nv0FVtgYdcyDNoWQgkY_fSG_sJtmphrvYjJ969r1CkMaU=w1360-h613";
+                    String imagesUrl = "https://lh5.googleusercontent.com/19QIQN8iViOGymxtEdbvK8g7XsYnVuaDqk5LIhWxFEgiAMNGKfyvMBXH5HlkmrybDNQ5Gk1Z9IHe3do=w1360-h662";
                     if (payload.events[0].source.type.equals("group")) {
 
                         // getMessageData("my name is Tamachan, i'm the one who is going to beat hibiki!",idTarget);
                         //  replyToUser(idToken,"my name is Tamachan, i'm the one who is going to beat hibiki!");
+                        replyForMessageContaintImages("my name is meguri, i'm the one who is going to beat hibiki!",imagesUrl,idTarget);
 
 
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")) {
-                        replyToUser("my name is Tamachan, i'm the one who is going to beat hibiki!", idTarget);
+                        replyToUser("my name is meguri, i'm the one who is going to beat hibiki!", idTarget);
                         try {
                             getMessageDataForImage(idTarget, imagesUrl);
                         } catch (IOException e) {
@@ -499,9 +499,6 @@ public class LineBotController {
         }
     }*/
 
-    private void debug(String message, String targetId) throws IOException {
-        this.replyToUser(targetId, message);
-    }
 
     private void getMessageData(String message, String targetId) throws IOException {
 
