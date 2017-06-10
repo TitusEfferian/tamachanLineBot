@@ -713,7 +713,7 @@ public class LineBotController {
 
 
                     ));
-            TemplateMessage templateMessage = new TemplateMessage(sourceid,carouselTemplate);
+            TemplateMessage templateMessage = new TemplateMessage("meguri sent a photo",carouselTemplate);
             ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
             responseReply(replyMessage);
         } catch (IOException e) {
