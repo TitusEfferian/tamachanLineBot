@@ -668,48 +668,20 @@ public class LineBotController {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
             }
-            int temp =0;
-            Random rand = new Random();
-            List<Integer> randomList = new ArrayList<>();
-
-
-
-            while(randomList.size()<5)
-            {
-                temp=rand.nextInt(12)+1;
-                randomList.add(temp);
-            }
-            for(int a=0;a<5;a++)
-            {
-                for(int b=0;b<5;b++)
-                {
-                    if(randomList.get(b)==randomList.get(a))
-                    {
-                        randomList.set(b,rand.nextInt(12)+1);
-                    }
-                }
-            }
+          
 
             CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                     Arrays.asList(
 
-                            new CarouselColumn(resultList.get(randomList.get(0)), username, link, Arrays.asList(
+                            new CarouselColumn(resultList.get(0), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
                                             "https://www.instagram.com/"+url+"/")
 
                             )),
-                            new CarouselColumn(resultList.get(randomList.get(1)), username, link, Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-
-
-                            )),
-                            new CarouselColumn(resultList.get(randomList.get(2)), username, link, Arrays.asList(
+                            new CarouselColumn(resultList.get(1), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
@@ -717,14 +689,22 @@ public class LineBotController {
 
 
                             )),
-                            new CarouselColumn(resultList.get(randomList.get(3)), username, link, Arrays.asList(
+                            new CarouselColumn(resultList.get(2), username, link, Arrays.asList(
+
+                                    new URIAction("Go to instagram",
+
+                                            "https://www.instagram.com/"+url+"/")
+
+
+                            )),
+                            new CarouselColumn(resultList.get(3), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
                                             "https://www.instagram.com/"+url+"/")
 
                             )),
-                            new CarouselColumn(resultList.get(randomList.get(4)), username, link, Arrays.asList(
+                            new CarouselColumn(resultList.get(4), username, link, Arrays.asList(
 
                                     new URIAction("Go to instagram",
 
