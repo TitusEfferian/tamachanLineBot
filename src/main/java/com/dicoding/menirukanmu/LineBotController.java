@@ -56,6 +56,7 @@ import java.util.regex.Pattern;
 import retrofit2.Response;
 
 import static java.lang.Math.round;
+import static java.lang.Math.subtractExact;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -666,10 +667,15 @@ public class LineBotController {
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
-                bool = true;
+
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
             }
+            if(resultList.size()!=0)
+            {
+                bool = true;
+            }
+            
             int size = 12;
 
             ArrayList<Integer> list = new ArrayList<Integer>(size);
