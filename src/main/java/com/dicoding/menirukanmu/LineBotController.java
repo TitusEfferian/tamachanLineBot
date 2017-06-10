@@ -663,8 +663,12 @@ public class LineBotController {
             String username=url;
             String link = "https://www.instagram.com/"+url+"/";
             List<String> resultList = new ArrayList<>();
-           
-
+            for(int a=0;a<jsonArray.length();a++)
+            {
+                JSONObject jsonPart = jsonArray.getJSONObject(a);
+                resultList.add(jsonPart.getString("thumbnail_src"));
+            }
+          
 
             CarouselTemplate carouselTemplate = new CarouselTemplate(
 
