@@ -652,6 +652,7 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid,String url)
     {
+        boolean bool = false;
 
 
         try {
@@ -665,6 +666,7 @@ public class LineBotController {
             List<String> resultList = new ArrayList<>();
             for(int a=0;a<jsonArray.length();a++)
             {
+                bool = true;
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
             }
@@ -681,55 +683,61 @@ public class LineBotController {
                 int index = rand.nextInt(list.size());
                 randomList.add(list.remove(index));
             }
+            if(bool == false)
+            {
+                ReplyMessage replyMessage = new ReplyMessage(sourceid,new TextMessage("don't know"));
+                responseReply(replyMessage);
+            }
+
+            else {
+                CarouselTemplate carouselTemplate = new CarouselTemplate(
+
+                        Arrays.asList(
+
+                                new CarouselColumn(resultList.get(randomList.get(0)), username, link, Arrays.asList(
+
+                                        new URIAction("Go to instagram",
+
+                                                "https://www.instagram.com/" + url + "/")
+
+                                )),
+                                new CarouselColumn(resultList.get(randomList.get(1)), username, link, Arrays.asList(
+
+                                        new URIAction("Go to instagram",
+
+                                                "https://www.instagram.com/" + url + "/")
 
 
-            CarouselTemplate carouselTemplate = new CarouselTemplate(
+                                )),
+                                new CarouselColumn(resultList.get(randomList.get(2)), username, link, Arrays.asList(
 
-                    Arrays.asList(
+                                        new URIAction("Go to instagram",
 
-                            new CarouselColumn(resultList.get(randomList.get(0)), username, link, Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-
-                            )),
-                            new CarouselColumn(resultList.get(randomList.get(1)), username, link, Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
+                                                "https://www.instagram.com/" + url + "/")
 
 
-                            )),
-                            new CarouselColumn(resultList.get(randomList.get(2)), username, link, Arrays.asList(
+                                )),
+                                new CarouselColumn(resultList.get(randomList.get(3)), username, link, Arrays.asList(
 
-                                    new URIAction("Go to instagram",
+                                        new URIAction("Go to instagram",
 
-                                            "https://www.instagram.com/"+url+"/")
+                                                "https://www.instagram.com/" + url + "/")
 
+                                )),
+                                new CarouselColumn(resultList.get(randomList.get(4)), username, link, Arrays.asList(
 
-                            )),
-                            new CarouselColumn(resultList.get(randomList.get(3)), username, link, Arrays.asList(
+                                        new URIAction("Go to instagram",
 
-                                    new URIAction("Go to instagram",
+                                                "https://www.instagram.com/" + url + "/")
 
-                                            "https://www.instagram.com/"+url+"/")
-
-                            )),
-                            new CarouselColumn(resultList.get(randomList.get(4)), username, link, Arrays.asList(
-
-                                    new URIAction("Go to instagram",
-
-                                            "https://www.instagram.com/"+url+"/")
-
-                            ))
+                                ))
 
 
-                    ));
-            TemplateMessage templateMessage = new TemplateMessage("meguri sent a photo",carouselTemplate);
-            ReplyMessage replyMessage = new ReplyMessage(sourceid,templateMessage);
-            responseReply(replyMessage);
+                        ));
+                TemplateMessage templateMessage = new TemplateMessage("meguri sent a photo", carouselTemplate);
+                ReplyMessage replyMessage = new ReplyMessage(sourceid, templateMessage);
+                responseReply(replyMessage);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
