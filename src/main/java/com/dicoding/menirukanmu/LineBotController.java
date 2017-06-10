@@ -652,7 +652,7 @@ public class LineBotController {
     }
     private void templateMessage(String sourceid,String url)
     {
-        boolean bool = false;
+
 
 
         try {
@@ -670,11 +670,8 @@ public class LineBotController {
                 JSONObject jsonPart = jsonArray.getJSONObject(a);
                 resultList.add(jsonPart.getString("thumbnail_src"));
             }
-            if(resultList.size()!=0)
-            {
-                bool = true;
-            }
-            
+
+
             int size = 12;
 
             ArrayList<Integer> list = new ArrayList<Integer>(size);
@@ -688,13 +685,8 @@ public class LineBotController {
                 int index = rand.nextInt(list.size());
                 randomList.add(list.remove(index));
             }
-            if(bool == false)
-            {
-                ReplyMessage replyMessage = new ReplyMessage(sourceid,new TextMessage("don't know"));
-                responseReply(replyMessage);
-            }
 
-            else {
+          
                 CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                         Arrays.asList(
@@ -742,7 +734,7 @@ public class LineBotController {
                 TemplateMessage templateMessage = new TemplateMessage("meguri sent a photo", carouselTemplate);
                 ReplyMessage replyMessage = new ReplyMessage(sourceid, templateMessage);
                 responseReply(replyMessage);
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
