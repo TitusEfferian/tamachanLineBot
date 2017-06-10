@@ -526,6 +526,10 @@ public class LineBotController {
                             e.printStackTrace();
                         }
                     }
+                    if(msgText.contains("!ping"))
+                    {
+                        replyToUser(idTarget,"pong");
+                    }
 
 
                     if (msgText.contains("/help")) {
@@ -686,7 +690,7 @@ public class LineBotController {
                 randomList.add(list.remove(index));
             }
 
-          
+
                 CarouselTemplate carouselTemplate = new CarouselTemplate(
 
                         Arrays.asList(
